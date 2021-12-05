@@ -17,7 +17,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
 
   return (
     <Box>
-      <Link href={`/stories/${id}`}>
+      <Link href={`/stories/${id}`} passHref>
         <Title>{title}</Title>
       </Link>
       <SpaceBetween>

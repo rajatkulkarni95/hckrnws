@@ -33,15 +33,15 @@ const Meta: React.FC<Props> = ({ points, comments, time }) => {
   return (
     <Box>
       <Item>
-        <Image src="./upvote.svg" />
+        <Image src="./upvote.svg" alt="upvote" />
         <Text>{points}</Text>
       </Item>
       <Item>
-        <Image src="./comment.svg" />
+        <Image src="./comment.svg" alt="comment" />
         <Text>{comments}</Text>
       </Item>
       <Item>
-        <Image src="./clock.svg" />
+        <Image src="./clock.svg" alt="time" />
         <Text>{prettyTime(time)}</Text>
       </Item>
     </Box>

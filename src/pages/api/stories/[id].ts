@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const fetchItem = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
   const ITEM_BASE_URL = "https://api.hnpwa.com/v0/item";
 
@@ -17,3 +17,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
   }
 };
+
+export default fetchItem;
