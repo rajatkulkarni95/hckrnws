@@ -12,7 +12,7 @@ type Props = {
 
 const StoryListItem: React.FC<Props> = (props: Props) => {
   const {
-    story: { title, user, url, id, points, comments_count, time_ago },
+    story: { title, user, url, id, points, comments_count, time },
   } = props;
 
   return (
@@ -23,7 +23,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
       <SpaceBetween>
         <FlexColumn>
           <AuthorText>by {user}</AuthorText>
-          <Meta points={points} comments={comments_count} />
+          <Meta points={points} comments={comments_count} time={time} />
         </FlexColumn>
         <VisitLink href={url} target="_blank">
           Visit

@@ -1,19 +1,50 @@
-const Meta: React.FC = ({ points, comments }) => {
+import { prettyTime } from "helpers/time";
+import { styled } from "../../../stitches.config";
+
+type Props = {
+  points: number;
+  comments: number;
+  time: number;
+};
+
+const Box = styled("div", {
+  display: "flex",
+  marginTop: "12px",
+  alignItems: "center",
+});
+
+const Item = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  marginRight: "8px",
+});
+
+const Text = styled("p", {
+  fontSize: "12px",
+  marginLeft: "4px",
+});
+
+const Image = styled("img", {
+  height: "14px",
+  width: "14px",
+});
+
+const Meta: React.FC<Props> = ({ points, comments, time }) => {
   return (
-    <div style={{ display: "flex", marginTop: "12px", alignItems: "center" }}>
-      <div
-        style={{ display: "flex", alignItems: "center", marginRight: "8px" }}
-      >
-        <img src="./upvote.svg" height="14px" width="14px" />
-        <p style={{ fontSize: "12px", marginLeft: "4px" }}>{points}</p>
-      </div>
-      <div
-        style={{ display: "flex", alignItems: "center", marginRight: "8px" }}
-      >
-        <img src="./comment.svg" height="14px" width="14px" />
-        <p style={{ fontSize: "12px", marginLeft: "4px" }}>{comments}</p>
-      </div>
-    </div>
+    <Box>
+      <Item>
+        <Image src="./upvote.svg" />
+        <Text>{points}</Text>
+      </Item>
+      <Item>
+        <Image src="./comment.svg" />
+        <Text>{comments}</Text>
+      </Item>
+      <Item>
+        <Image src="./clock.svg" />
+        <Text>{prettyTime(time)}</Text>
+      </Item>
+    </Box>
   );
 };
 
