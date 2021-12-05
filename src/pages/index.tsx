@@ -2,23 +2,29 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { Container } from "../styles";
 import { TBaseStory } from "types/story";
+import { styled } from "../../stitches.config";
+import StoryListItem from "@components/StoryListItem";
 
 type PageProps = {
   response: TBaseStory[];
 };
+
+const Box = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  marginTop: "48px",
+});
 
 const Home: NextPage<PageProps> = (props: PageProps) => {
   const { response } = props;
   return (
     <Container>
       Hello from Pretty HackerNews!
-      <ul>
+      <Box>
         {response.map((story) => (
-          <li key={story.id}>
-            <Link href={`/stories/${story.id}`}>{story.title}</Link>
-          </li>
+          <StoryListItem story={story} key={story.id} />
         ))}
-      </ul>
+      </Box>
     </Container>
   );
 };

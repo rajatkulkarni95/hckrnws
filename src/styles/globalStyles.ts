@@ -6,7 +6,7 @@ export const globalStyles = globalCss({
     height: "100vh",
     display: "block",
     margin: "0 auto",
-    fontFamily: "$mono",
+    fontFamily: "$sans",
     background: "$background",
     color: "$primaryText",
     fontWeight: 400,

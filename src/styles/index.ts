@@ -7,3 +7,14 @@ export const Container = styled("div", {
     width: "90%",
   },
 });
+
+export const SpaceBetween = styled("div", {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+});
+
+export const FlexColumn = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+});

@@ -10,21 +10,19 @@ type PageProps = {
 
 const Story: NextPage<PageProps> = (props: PageProps) => {
   const router = useRouter();
-  const { storyId } = router.query;
+  const { id } = router.query;
   const { response } = props;
-  return <Container>Hello from Story {storyId}</Container>;
+  return <Container>Hello from Story {id}</Container>;
 };
 
-export async function getServerSideProps(context: {
-  query: { storyId: number };
-}) {
-  const { storyId } = context.query;
+export async function getServerSideProps(context: { query: { id: number } }) {
+  const { id } = context.query;
 
   const domainUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
       : process.env.NEXT_PUBLIC_DOMAIN_URL;
-  const res = await fetch(`${domainUrl}/api/stories/${storyId}`);
+  const res = await fetch(`${domainUrl}/api/stories/${id}`);
   const { response } = await res.json();
 
   if (!response) {

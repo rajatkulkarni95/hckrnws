@@ -4,6 +4,7 @@ export const { styled, getCssText } = createStitches({
   theme: {
     fonts: {
       mono: `'IBM Plex Mono', monospace`,
+      sans: "IBM Plex Sans, sans-serif",
     },
     colors: {
       primaryText: "hsl(210, 6%, 93%)",
