@@ -8,6 +8,7 @@ export type TBaseStory = {
   type: string;
   url: string;
   domain: string;
+  comments_count: number;
 };
 
 export type TDetailedStory = {

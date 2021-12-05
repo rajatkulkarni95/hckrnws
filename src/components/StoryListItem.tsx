@@ -4,6 +4,7 @@ import Link from "next/link";
 import { TBaseStory } from "types/story";
 import { styled } from "../../stitches.config";
 import { VisitLink } from "./Button";
+import Meta from "./Common/Meta";
 
 type Props = {
   story: TBaseStory;
@@ -11,8 +12,9 @@ type Props = {
 
 const StoryListItem: React.FC<Props> = (props: Props) => {
   const {
-    story: { title, user, url, id },
+    story: { title, user, url, id, points, comments_count, time_ago },
   } = props;
+
   return (
     <Box>
       <Link href={`/stories/${id}`}>
@@ -21,6 +23,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
       <SpaceBetween>
         <FlexColumn>
           <AuthorText>by {user}</AuthorText>
+          <Meta points={points} comments={comments_count} />
         </FlexColumn>
         <VisitLink href={url} target="_blank">
           Visit
@@ -34,10 +37,14 @@ const Box = styled("div", {
   padding: "16px",
   display: "flex",
   flexDirection: "column",
-  borderBottom: `4px solid`,
-  borderColor: "$secondaryText",
   width: "100%",
   background: "none",
+  borderRadius: "4px",
+  marginBottom: "16px",
+
+  "&:hover": {
+    background: "hsl(0, 0%, 13.6%)",
+  },
 });
 
 const Title = styled("p", {

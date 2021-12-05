@@ -1,17 +1,18 @@
 import { styled } from "../../stitches.config";
 
 export const VisitLink = styled("a", {
-  padding: "4px",
+  padding: "4px 8px",
   borderRadius: "3px",
-  border: "none",
-  background: "$secondaryText",
-  color: "$primaryText",
+  border: "1px solid",
+  borderColor: "$secondaryText",
+  color: "$secondaryText",
   fontFamily: "$sans",
   fontSize: "$1",
   textDecoration: "none",
   fontWeight: 500,
 
   "&:hover": {
-    filter: "brightness(110%)",
+    background: "$secondaryText",
+    color: "$primaryText",
   },
 });
