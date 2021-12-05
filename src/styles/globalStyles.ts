@@ -1,7 +1,7 @@
 import { globalCss } from "@stitches/react";
 
 export const globalStyles = globalCss({
-  "*": { margin: 0, padding: 0 },
+  "*": { margin: 0, padding: 0, boxSizing: "border-box" },
   body: {
     height: "100vh",
     display: "block",

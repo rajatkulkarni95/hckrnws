@@ -18,7 +18,7 @@ const Box = styled("div", {
 const Home: NextPage<PageProps> = (props: PageProps) => {
   const { response } = props;
   return (
-    <Container>
+    <Container width={{ "@initial": "lg", "@phone": "sm", "@tablet": "md" }}>
       Hello from Pretty HackerNews!
       <Box>
         {response.map((story) => (

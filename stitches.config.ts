@@ -1,6 +1,12 @@
 import { createStitches } from "@stitches/react";
 
 export const { styled, getCssText } = createStitches({
+  media: {
+    phone: `(420px <= width < 720px)`,
+    tablet: `(720px <= width < 1024px)`,
+    desktop: `(1024px <= width < 1536px)`,
+    wide: `(1536px <= width)`,
+  },
   theme: {
     fonts: {
       mono: `'IBM Plex Mono', monospace`,
@@ -22,10 +28,5 @@ export const { styled, getCssText } = createStitches({
       8: "40px",
       9: "48px",
     },
-  },
-  media: {
-    bp1: "(max-width: 1200px)",
-    bp2: "(max-width: 768px)",
-    bp3: "(max-width: 480px)",
   },
 });

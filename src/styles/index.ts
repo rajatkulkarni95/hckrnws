@@ -2,9 +2,12 @@ import { styled } from "@stitches/react";
 
 export const Container = styled("div", {
   margin: "0 auto",
-  width: "1000px",
-  "@bp1": {
-    width: "90%",
+  variants: {
+    width: {
+      sm: { width: "100%" },
+      md: { width: "90%" },
+      lg: { width: "1000px" },
+    },
   },
 });
 
