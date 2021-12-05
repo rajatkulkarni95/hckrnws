@@ -8,12 +8,15 @@ type PageProps = {
 
 const Home: NextPage<PageProps> = (props: PageProps) => {
   const { response } = props;
-  console.log("response", response);
   return <Container>Hello from Pretty HackerNews!</Container>;
 };
 
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3000/api/stories");
+  const domainUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : process.env.NEXT_PUBLIC_DOMAIN_URL;
+  const res = await fetch(`${domainUrl}/api/stories`);
   const { response } = await res.json();
 
   if (!response) {
