@@ -1,14 +1,26 @@
 import { NextPage } from "next";
+import Link from "next/link";
 import { Container } from "../styles";
-import { TStory } from "../types/story";
+import { TBaseStory } from "types/story";
 
 type PageProps = {
-  response: TStory[];
+  response: TBaseStory[];
 };
 
 const Home: NextPage<PageProps> = (props: PageProps) => {
   const { response } = props;
-  return <Container>Hello from Pretty HackerNews!</Container>;
+  return (
+    <Container>
+      Hello from Pretty HackerNews!
+      <ul>
+        {response.map((story) => (
+          <li key={story.id}>
+            <Link href={`/stories/${story.id}`}>{story.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  );
 };
 
 export async function getServerSideProps() {
