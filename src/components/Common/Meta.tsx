@@ -75,7 +75,7 @@ const Meta: React.FC<Props> = ({
     isDetailedView ? (
       <Item>{renderCommentItem()}</Item>
     ) : (
-      <Link href={`/stories/${id}`}>
+      <Link href={`/stories/${id}`} passHref>
         <LinkItem>{renderCommentItem()}</LinkItem>
       </Link>
     );

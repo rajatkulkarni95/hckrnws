@@ -72,7 +72,10 @@ const Comment: React.FC<Props> = (props: Props) => {
         )}
       </CommentContainer>
       {/* // Recursively call the same component for children comments */}
-      {comments && comments.map((comment) => <Comment comment={comment} />)}
+      {comments &&
+        comments.map((comment) => (
+          <Comment key={comment.id} comment={comment} />
+        ))}
     </Fragment>
   );
 };
