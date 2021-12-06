@@ -20,13 +20,12 @@ export type TDetailedStory = {
   time_ago: string;
   type: string;
   content: string;
-  comments: Comment[];
+  comments: TComment[];
 };
 
 export type TComment = {
   id: number;
   title: string;
-  points: number;
   user: string;
   time: number;
   time_ago: string;
@@ -36,4 +35,5 @@ export type TComment = {
   comments_count: number;
   level: number;
   url: string;
+  deleted?: boolean;
 };

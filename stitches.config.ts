@@ -20,7 +20,7 @@ export const { styled, getCssText } = createStitches({
       coloredLink: "#E9C46A",
     },
     fontSizes: {
-      1: "12px",
+      1: "14px",
       2: "16px",
       3: "20px",
       4: "24px",
