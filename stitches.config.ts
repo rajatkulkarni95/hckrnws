@@ -2,7 +2,7 @@ import { createStitches } from "@stitches/react";
 
 export const { styled, getCssText } = createStitches({
   media: {
-    phone: `(420px <= width < 720px)`,
+    phone: `(width < 720px)`,
     tablet: `(720px <= width < 1024px)`,
     desktop: `(1024px <= width < 1536px)`,
     wide: `(1536px <= width)`,

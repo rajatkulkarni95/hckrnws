@@ -1,13 +1,14 @@
-import { styled } from "@stitches/react";
+import { styled } from "../../stitches.config";
 
 export const Container = styled("div", {
   margin: "0 auto",
-  variants: {
-    width: {
-      sm: { width: "100%" },
-      md: { width: "90%" },
-      lg: { width: "1000px" },
-    },
+  width: "1000px",
+  "@phone": {
+    width: "100%",
+    padding: "16px",
+  },
+  "@tablet": {
+    width: "90%",
   },
 });
 

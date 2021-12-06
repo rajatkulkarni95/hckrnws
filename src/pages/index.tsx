@@ -4,6 +4,8 @@ import { Container } from "../styles";
 import { TBaseStory } from "types/story";
 import { styled } from "../../stitches.config";
 import StoryListItem from "@components/StoryListItem";
+import Head from "next/head";
+import { Fragment } from "react";
 
 type PageProps = {
   response: TBaseStory[];
@@ -13,19 +15,29 @@ const Box = styled("div", {
   display: "flex",
   flexDirection: "column",
   marginTop: "48px",
+
+  "@tablet": {
+    marginTop: "24px",
+  },
+
+  "@phone": {
+    marginTop: "16px",
+  },
 });
 
 const Home: NextPage<PageProps> = (props: PageProps) => {
   const { response } = props;
   return (
-    <Container width={{ "@initial": "lg", "@phone": "sm", "@tablet": "md" }}>
-      Hello from Pretty HackerNews!
+    <Fragment>
+      <Head>
+        <title>hckrnws - Cleaner Reading</title>
+      </Head>
       <Box>
         {response.map((story) => (
           <StoryListItem story={story} key={story.id} />
         ))}
       </Box>
-    </Container>
+    </Fragment>
   );
 };
 

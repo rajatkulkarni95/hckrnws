@@ -3,6 +3,7 @@ import { Container } from "../../styles";
 
 import { useRouter } from "next/router";
 import { TDetailedStory } from "types/story";
+import { Fragment } from "react";
 
 type PageProps = {
   response: TDetailedStory[];
@@ -12,7 +13,7 @@ const Story: NextPage<PageProps> = (props: PageProps) => {
   const router = useRouter();
   const { id } = router.query;
   const { response } = props;
-  return <Container>Hello from Story {id}</Container>;
+  return <Fragment>Hello from Story {id}</Fragment>;
 };
 
 export async function getServerSideProps(context: { query: { id: number } }) {
