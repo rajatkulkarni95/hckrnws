@@ -55,7 +55,7 @@ const PageList: NextPage<PageProps> = (props: PageProps) => {
       </Box>
       <PaginationContainer>
         {[...Array(10)].map((x, i) => (
-          <Link href={`/page/${i + 1}`} passHref>
+          <Link key={i + 1} href={`/page/${i + 1}`} passHref>
             <PageNumber selected={(i + 1).toString() === number}>
               {i + 1}
             </PageNumber>
