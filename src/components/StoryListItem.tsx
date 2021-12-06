@@ -41,7 +41,7 @@ const Box = styled("div", {
   background: "none",
   borderRadius: "4px",
   marginBottom: "16px",
-
+  transition: "0.2s",
   "&:hover": {
     background: "hsl(0, 0%, 13.6%)",
   },
