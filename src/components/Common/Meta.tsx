@@ -1,12 +1,20 @@
+import { FlexColumn } from "styles/";
 import { prettyTime } from "helpers/time";
 import Link from "next/link";
 import { styled } from "../../../stitches.config";
+import { Fragment } from "react";
+import Image from "next/image";
+import upvoteIcon from "svgs/upvote.svg";
+import commentIcon from "svgs/comment.svg";
+import clockIcon from "svgs/clock.svg";
 
 type Props = {
   points: number;
   comments: number;
   time: number;
-  id: number;
+  id?: number;
+  user: string;
+  isDetailedView?: boolean;
 };
 
 const Box = styled("div", {
@@ -41,29 +49,51 @@ const Text = styled("p", {
   marginLeft: "4px",
 });
 
-const Image = styled("img", {
-  height: "14px",
-  width: "14px",
+const AuthorText = styled("p", {
+  fontSize: "$1",
+  fontWeight: 700,
+  color: "$secondaryText",
 });
 
-const Meta: React.FC<Props> = ({ points, comments, time, id }) => {
-  return (
-    <Box>
-      <Item>
-        <Image src="./upvote.svg" alt="upvote" />
-        <Text>{points}</Text>
-      </Item>
+const Meta: React.FC<Props> = ({
+  points,
+  comments,
+  time,
+  id,
+  user,
+  isDetailedView = false,
+}) => {
+  const renderCommentItem = () => (
+    <Fragment>
+      <Image height={14} width={14} src={commentIcon} alt="comment" />
+      <Text>{comments}</Text>
+    </Fragment>
+  );
+
+  const renderCommentLink = () =>
+    isDetailedView ? (
+      <Item>{renderCommentItem()}</Item>
+    ) : (
       <Link href={`/stories/${id}`}>
-        <LinkItem>
-          <Image src="./comment.svg" alt="comment" />
-          <Text>{comments}</Text>
-        </LinkItem>
+        <LinkItem>{renderCommentItem()}</LinkItem>
       </Link>
-      <Item>
-        <Image src="./clock.svg" alt="time" />
-        <Text>{prettyTime(time)}</Text>
-      </Item>
-    </Box>
+    );
+
+  return (
+    <FlexColumn>
+      <AuthorText>by {user}</AuthorText>
+      <Box>
+        <Item>
+          <Image height={14} width={14} src={upvoteIcon} alt="upvote" />
+          <Text>{points}</Text>
+        </Item>
+        {renderCommentLink()}
+        <Item>
+          <Image height={14} width={14} src={clockIcon} alt="time" />
+          <Text>{prettyTime(time)}</Text>
+        </Item>
+      </Box>{" "}
+    </FlexColumn>
   );
 };
 

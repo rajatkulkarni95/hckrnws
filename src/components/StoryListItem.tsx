@@ -25,8 +25,13 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
       </VisitLink>
       <SpaceBetween css={{ marginTop: "8px" }}>
         <FlexColumn>
-          <AuthorText>by {user}</AuthorText>
-          <Meta id={id} points={points} comments={comments_count} time={time} />
+          <Meta
+            id={id}
+            points={points}
+            comments={comments_count}
+            time={time}
+            user={user}
+          />
         </FlexColumn>
       </SpaceBetween>
     </Box>
@@ -54,12 +59,6 @@ const Title = styled("p", {
   marginBottom: "8px",
   fontWeight: 500,
   cursor: "pointer",
-});
-
-const AuthorText = styled("p", {
-  fontSize: "$1",
-  fontWeight: 700,
-  color: "$secondaryText",
 });
 
 export default StoryListItem;

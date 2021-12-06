@@ -1,6 +1,4 @@
 import { NextPage } from "next";
-import Link from "next/link";
-import { Container } from "../styles";
 import { TBaseStory } from "types/story";
 import { styled } from "../../stitches.config";
 import StoryListItem from "@components/StoryListItem";
