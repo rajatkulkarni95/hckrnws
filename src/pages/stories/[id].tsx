@@ -8,6 +8,7 @@ import Head from "next/head";
 import { styled } from "../../../stitches.config";
 import Meta from "@components/Common/Meta";
 import Comment from "@components/Comments/Comment";
+import CommentList from "@components/Comments/CommentList";
 
 type PageProps = {
   response: TDetailedStory;
@@ -31,12 +32,12 @@ const Story: NextPage<PageProps> = (props: PageProps) => {
   const {
     response: { title, id, points, user, time, content, comments },
   } = props;
-  console.log("comments", comments);
 
   return (
     <Fragment>
       <Head>
         <title>{title} - hckrnws</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <FlexColumn css={{ padding: "16px 0", "@phone": { padding: "16px" } }}>
         <Title>{title}</Title>
@@ -48,10 +49,7 @@ const Story: NextPage<PageProps> = (props: PageProps) => {
           isDetailedView
           comments={comments.length}
         />
-        <h3 style={{ margin: "16px 0" }}>Comments</h3>
-        {comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
-        ))}
+        <CommentList comments={comments} />
       </FlexColumn>
     </Fragment>
   );
