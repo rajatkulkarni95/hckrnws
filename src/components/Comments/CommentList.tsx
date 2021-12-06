@@ -11,6 +11,10 @@ type Props = {
 const Title = styled("h3", {
   fontSize: "$4",
   margin: "16px 0",
+
+  "@phone": {
+    fontSize: "$3",
+  },
 });
 
 const CommentList: React.FC<Props> = (props: Props) => {

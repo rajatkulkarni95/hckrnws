@@ -45,7 +45,7 @@ const PageList: NextPage<PageProps> = (props: PageProps) => {
   return (
     <Fragment>
       <Head>
-        <title>hckrnws - Page ${number} </title>
+        <title>hckrnws - Page {number} </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Box>

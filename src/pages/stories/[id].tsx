@@ -5,10 +5,13 @@ import { useRouter } from "next/router";
 import { TDetailedStory } from "types/story";
 import { Fragment } from "react";
 import Head from "next/head";
+import Image from "next/image";
 import { styled } from "../../../stitches.config";
 import Meta from "@components/Common/Meta";
 import Comment from "@components/Comments/Comment";
 import CommentList from "@components/Comments/CommentList";
+import Button from "@components/Common/Button";
+import backIcon from "svgs/back.svg";
 
 type PageProps = {
   response: TDetailedStory;
@@ -19,6 +22,10 @@ const Title = styled("h2", {
   color: "$primaryText",
   margin: 0,
   marginBottom: "8px",
+
+  "@phone": {
+    fontSize: "$3",
+  },
 });
 
 const Content = styled("p", {
@@ -33,6 +40,8 @@ const Story: NextPage<PageProps> = (props: PageProps) => {
     response: { title, id, points, user, time, content, comments },
   } = props;
 
+  const onClickBack = () => router.back();
+
   return (
     <Fragment>
       <Head>
@@ -40,6 +49,9 @@ const Story: NextPage<PageProps> = (props: PageProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <FlexColumn css={{ padding: "16px 0", "@phone": { padding: "16px" } }}>
+        <Button onClick={onClickBack}>
+          <Image src={backIcon} width={14} height={14} /> Back
+        </Button>
         <Title>{title}</Title>
         <Content>{content}</Content>
         <Meta
