@@ -27,15 +27,31 @@ const Time = styled("p", {
   alignSelf: "flex-end",
 });
 
-const Text = styled("p", {
+const Text = styled("div", {
   fontSize: "$2",
 
   p: {
     marginBottom: "8px",
+    whiteSpace: "break-spaces",
   },
 
   a: {
     color: "$coloredLink",
+  },
+
+  pre: {
+    whiteSpace: "break-spaces",
+    padding: "8px",
+    background: "$codeBlock",
+    borderRadius: "4px",
+    margin: "8px 0",
+    overflowX: "scroll",
+  },
+
+  code: {
+    "@phone": {
+      fontSize: "$1",
+    },
   },
 });
 

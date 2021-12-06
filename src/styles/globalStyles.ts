@@ -10,6 +10,5 @@ export const globalStyles = globalCss({
     background: "$background",
     color: "$primaryText",
     fontWeight: 400,
-    width: "100%",
   },
 });

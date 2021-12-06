@@ -29,6 +29,7 @@ const Home: NextPage<PageProps> = (props: PageProps) => {
     <Fragment>
       <Head>
         <title>hckrnws - Cleaner Reading</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Box>
         {response.map((story) => (
