@@ -16,7 +16,13 @@ const Title = styled("h2", {
   fontSize: "$4",
   color: "$primaryText",
   margin: 0,
-  marginBottom: "16px",
+  marginBottom: "8px",
+});
+
+const Content = styled("p", {
+  fontSize: "$2",
+  color: "$secondaryText",
+  marginBottom: "8px",
 });
 
 const Story: NextPage<PageProps> = (props: PageProps) => {
@@ -30,8 +36,9 @@ const Story: NextPage<PageProps> = (props: PageProps) => {
       <Head>
         <title>{title} - hckrnws</title>
       </Head>
-      <FlexColumn css={{ padding: "16px" }}>
+      <FlexColumn css={{ padding: "16px 0", "@phone": { padding: "16px" } }}>
         <Title>{title}</Title>
+        <Content></Content>
         <Meta
           time={time}
           points={points}

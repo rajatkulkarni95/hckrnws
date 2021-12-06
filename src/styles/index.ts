@@ -2,7 +2,7 @@ import { styled } from "../../stitches.config";
 
 export const Container = styled("div", {
   margin: "0 auto",
-  width: "1000px",
+  width: "1200px",
   "@phone": {
     width: "100%",
     padding: "16px",

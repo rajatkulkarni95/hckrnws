@@ -4,7 +4,7 @@ import Link from "next/link";
 import { TBaseStory } from "types/story";
 import { styled } from "../../stitches.config";
 import Meta from "./Common/Meta";
-import { VisitLink } from "./Common/HyperLink";
+import { HyperLink } from "./Common/HyperLink";
 
 type Props = {
   story: TBaseStory;
@@ -20,9 +20,9 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
       <Link href={`/stories/${id}`} passHref>
         <Title>{title}</Title>
       </Link>
-      <VisitLink href={url} target="_blank">
+      <HyperLink href={url} target="_blank">
         {url}
-      </VisitLink>
+      </HyperLink>
       <SpaceBetween css={{ marginTop: "8px" }}>
         <FlexColumn>
           <Meta

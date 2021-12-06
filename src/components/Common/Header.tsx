@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Fragment } from "react";
 import { SpaceBetween } from "styles/";
 import { styled } from "../../../stitches.config";
@@ -6,7 +7,9 @@ const Header: React.FC = () => {
   return (
     <Fragment>
       <SpaceBetween css={{ padding: "16px 0", "@phone": { padding: "16px" } }}>
-        <Heading>hckrnws</Heading>
+        <Link href="/" passHref>
+          <Heading>hckrnws</Heading>
+        </Link>
         <p>About</p>
       </SpaceBetween>
     </Fragment>
@@ -18,6 +21,8 @@ const Heading = styled("h1", {
   margin: 0,
   padding: 0,
   fontWeight: 700,
+  textDecoration: "none",
+  cursor: "pointer",
 
   "@phone": {
     fontSize: "$4",

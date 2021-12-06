@@ -28,6 +28,7 @@ const Item = styled("div", {
   alignItems: "center",
   marginRight: "8px",
   padding: "4px",
+  paddingLeft: 0,
 });
 
 const LinkItem = styled("div", {
