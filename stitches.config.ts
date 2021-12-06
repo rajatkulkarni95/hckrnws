@@ -16,6 +16,7 @@ export const { styled, getCssText } = createStitches({
       primaryText: "hsl(210, 6%, 93%)",
       secondaryText: "hsl(206, 6%, 43%)",
       background: "hsl(240, 4%, 9%)",
+      link: "hsl(21, 35, 92)",
     },
     fontSizes: {
       1: "12px",

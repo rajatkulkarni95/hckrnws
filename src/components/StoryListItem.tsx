@@ -3,8 +3,8 @@ import { SpaceBetween } from "styles/";
 import Link from "next/link";
 import { TBaseStory } from "types/story";
 import { styled } from "../../stitches.config";
-import { VisitLink } from "./Button";
 import Meta from "./Common/Meta";
+import { VisitLink } from "./Common/HyperLink";
 
 type Props = {
   story: TBaseStory;
@@ -20,14 +20,14 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
       <Link href={`/stories/${id}`} passHref>
         <Title>{title}</Title>
       </Link>
-      <SpaceBetween>
+      <VisitLink href={url} target="_blank">
+        {url}
+      </VisitLink>
+      <SpaceBetween css={{ marginTop: "8px" }}>
         <FlexColumn>
           <AuthorText>by {user}</AuthorText>
-          <Meta points={points} comments={comments_count} time={time} />
+          <Meta id={id} points={points} comments={comments_count} time={time} />
         </FlexColumn>
-        <VisitLink href={url} target="_blank">
-          Visit
-        </VisitLink>
       </SpaceBetween>
     </Box>
   );
