@@ -6,6 +6,7 @@ import Head from "next/head";
 import { Fragment } from "react";
 import Link from "next/link";
 import { PageNumber } from "@components/Common/PageNumber";
+import { useRouter } from "next/router";
 
 type PageProps = {
   response: TBaseStory[];
@@ -30,10 +31,16 @@ const PaginationContainer = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+
+  "@phone": {
+    flexWrap: "wrap",
+  },
 });
 
 const Home: NextPage<PageProps> = (props: PageProps) => {
   const { response } = props;
+  const router = useRouter();
+  const { number } = router.query;
   return (
     <Fragment>
       <Head>

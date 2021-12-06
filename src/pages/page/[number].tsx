@@ -31,6 +31,10 @@ const PaginationContainer = styled("div", {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+
+  "@phone": {
+    flexWrap: "wrap",
+  },
 });
 
 const PageList: NextPage<PageProps> = (props: PageProps) => {

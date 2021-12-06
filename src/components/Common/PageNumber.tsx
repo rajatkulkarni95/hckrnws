@@ -16,6 +16,7 @@ export const PageNumber = styled("button", {
 
   "@phone": {
     marginRight: "8px",
+    marginBottom: "16px",
   },
 
   "&:hover": {
