@@ -5,6 +5,7 @@ import Comment from "./Comment";
 
 type Props = {
   comments: TComment[];
+  op: string;
 };
 
 const Title = styled("h3", {
@@ -13,12 +14,12 @@ const Title = styled("h3", {
 });
 
 const CommentList: React.FC<Props> = (props: Props) => {
-  const { comments } = props;
+  const { comments, op } = props;
   return (
     <Fragment>
       <Title>Comments</Title>
       {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
+        <Comment key={comment.id} comment={comment} op={op} />
       ))}
     </Fragment>
   );

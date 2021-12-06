@@ -13,11 +13,31 @@ type Props = {
     deleted?: boolean;
     comments: TComment[];
   };
+  op: string;
 };
 
 const Author = styled("p", {
   fontSize: "$1",
   color: "$primaryText",
+  fontWeight: 500,
+  display: "flex",
+  alignItems: "center",
+  variants: {
+    op: {
+      true: {
+        color: "#f9c74f",
+      },
+    },
+  },
+});
+
+const OPTag = styled("span", {
+  padding: "2px 4px",
+  fontSize: "12px",
+  borderRadius: "4px",
+  background: "$secondaryText",
+  color: "$primaryText",
+  marginLeft: "8px",
   fontWeight: 500,
 });
 
@@ -70,14 +90,18 @@ const CommentContainer = styled("div", {
 const Comment: React.FC<Props> = (props: Props) => {
   const {
     comment: { user, time, content, deleted, level, comments },
+    op,
   } = props;
+  const isCommenterOP = user === op;
   return (
     <Fragment>
       {/* Indent the children based on the level */}
       <CommentContainer css={{ marginLeft: `calc(16 * ${level}px)` }}>
         {!deleted && (
           <SpaceBetween css={{ marginBottom: "8px" }}>
-            <Author>{user}</Author>
+            <Author op={isCommenterOP}>
+              {user} {isCommenterOP && <OPTag>OP</OPTag>}
+            </Author>
             <Time>{prettyTime(time)}</Time>
           </SpaceBetween>
         )}
@@ -90,7 +114,7 @@ const Comment: React.FC<Props> = (props: Props) => {
       {/* // Recursively call the same component for children comments */}
       {comments &&
         comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} />
+          <Comment key={comment.id} comment={comment} op={op} />
         ))}
     </Fragment>
   );

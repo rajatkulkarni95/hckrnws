@@ -49,7 +49,7 @@ const Story: NextPage<PageProps> = (props: PageProps) => {
           isDetailedView
           comments={comments.length}
         />
-        <CommentList comments={comments} />
+        <CommentList comments={comments} op={user} />
       </FlexColumn>
     </Fragment>
   );
