@@ -13,10 +13,8 @@ import CommentList from "@components/Comments/CommentList";
 import Button from "@components/Common/Button";
 import backIcon from "svgs/back.svg";
 import { HyperLink } from "@components/Common/HyperLink";
-
-type PageProps = {
-  response: TDetailedStory;
-};
+import useSWR from "swr";
+import fetcher from "helpers/fetcher";
 
 const Title = styled("h2", {
   fontSize: "$4",
@@ -35,11 +33,20 @@ const Content = styled("p", {
   marginBottom: "8px",
 });
 
-const Story: NextPage<PageProps> = (props: PageProps) => {
+const Story: NextPage = () => {
   const router = useRouter();
-  const {
-    response: { title, id, points, user, time, content, comments, url },
-  } = props;
+  const { id: storyId } = router.query;
+
+  const ITEM_BASE_URL = "https://api.hnpwa.com/v0/item";
+
+  const { data, error } = useSWR<TDetailedStory, Error>(
+    `${ITEM_BASE_URL}/${storyId}.json`,
+    fetcher
+  );
+
+  if (!data) return <p>"Loading..."</p>;
+
+  const { title, id, points, user, time, content, comments, url } = data;
 
   const onClickBack = () => router.back();
 
@@ -70,28 +77,5 @@ const Story: NextPage<PageProps> = (props: PageProps) => {
     </Fragment>
   );
 };
-
-export async function getServerSideProps(context: { query: { id: number } }) {
-  const { id } = context.query;
-
-  const domainUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : process.env.NEXT_PUBLIC_DOMAIN_URL;
-  const res = await fetch(`${domainUrl}/api/stories/${id}`);
-  const { response } = await res.json();
-
-  if (!response) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      response,
-    }, // will be passed to the page component as props
-  };
-}
 
 export default Story;

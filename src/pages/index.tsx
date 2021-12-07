@@ -65,13 +65,11 @@ const Home: NextPage<PageProps> = (props: PageProps) => {
   );
 };
 
-export async function getServerSideProps() {
-  const domainUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : process.env.NEXT_PUBLIC_DOMAIN_URL;
-  const res = await fetch(`${domainUrl}/api/stories`);
-  const { response } = await res.json();
+export async function getStaticProps() {
+  const NEWS_BASE_URL = "https://api.hnpwa.com/v0/news";
+
+  const result = await fetch(`${NEWS_BASE_URL}/1.json`);
+  const response = await result.json();
 
   if (!response) {
     return {
