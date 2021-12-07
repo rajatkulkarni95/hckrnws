@@ -66,16 +66,14 @@ const PageList: NextPage<PageProps> = (props: PageProps) => {
   );
 };
 
-export async function getServerSideProps(context: {
-  query: { number: number };
-}) {
-  const { number } = context.query;
-  const domainUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : process.env.NEXT_PUBLIC_DOMAIN_URL;
-  const res = await fetch(`${domainUrl}/api/page/${number}`);
-  const { response } = await res.json();
+export async function getStaticProps(props: { params: { number: string } }) {
+  const {
+    params: { number },
+  } = props;
+  const NEWS_BASE_URL = "https://api.hnpwa.com/v0/news";
+
+  const result = await fetch(`${NEWS_BASE_URL}/${number}.json`);
+  const response = await result.json();
 
   if (!response) {
     return {
@@ -87,6 +85,24 @@ export async function getServerSideProps(context: {
     props: {
       response,
     }, // will be passed to the page component as props
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { number: "1" } },
+      { params: { number: "2" } },
+      { params: { number: "3" } },
+      { params: { number: "4" } },
+      { params: { number: "5" } },
+      { params: { number: "6" } },
+      { params: { number: "7" } },
+      { params: { number: "8" } },
+      { params: { number: "9" } },
+      { params: { number: "10" } },
+    ],
+    fallback: false,
   };
 }
 
