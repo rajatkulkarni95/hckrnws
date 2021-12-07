@@ -18,14 +18,18 @@ type Props = {
 
 const Author = styled("p", {
   fontSize: "$1",
-  color: "$secondaryText",
+  color: "$primaryText",
+  background: "$codeBlock",
+  padding: "4px",
+  borderRadius: "4px",
   fontWeight: 500,
   display: "flex",
   alignItems: "center",
   variants: {
     op: {
       true: {
-        color: "#f9c74f",
+        color: "#4970CB",
+        background: "#1D2433",
       },
     },
   },
