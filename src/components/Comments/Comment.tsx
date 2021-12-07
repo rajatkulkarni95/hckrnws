@@ -18,7 +18,7 @@ type Props = {
 
 const Author = styled("p", {
   fontSize: "$1",
-  color: "$primaryText",
+  color: "$secondaryText",
   fontWeight: 500,
   display: "flex",
   alignItems: "center",
@@ -80,7 +80,7 @@ const DeletedComment = styled("i", {
 });
 
 const CommentContainer = styled("div", {
-  padding: "8px",
+  padding: "8px 0",
   borderBottom: "1px solid",
   borderColor: "$secondaryText",
   display: "flex",

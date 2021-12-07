@@ -49,7 +49,7 @@ const Story: NextPage<PageProps> = (props: PageProps) => {
         <title>{title} - hckrnws</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <FlexColumn css={{ padding: "16px 0", "@phone": { padding: "16px" } }}>
+      <FlexColumn css={{ padding: "16px 0" }}>
         <Button onClick={onClickBack}>
           <Image src={backIcon} width={14} height={14} /> Back
         </Button>

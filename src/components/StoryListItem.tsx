@@ -50,6 +50,10 @@ const Box = styled("div", {
   "&:hover": {
     background: "hsl(0, 0%, 13.6%)",
   },
+
+  "@phone": {
+    padding: "8px",
+  },
 });
 
 const Title = styled("p", {
