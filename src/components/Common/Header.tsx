@@ -10,7 +10,6 @@ const Header: React.FC = () => {
         <Link href="/" passHref>
           <Heading>hckrnws</Heading>
         </Link>
-        <p>About</p>
       </SpaceBetween>
     </Fragment>
   );
@@ -23,6 +22,12 @@ const Heading = styled("h1", {
   fontWeight: 700,
   textDecoration: "none",
   cursor: "pointer",
+  borderBottom: "2px solid",
+  borderColor: "transparent",
+
+  "&:hover": {
+    borderColor: "$primaryText",
+  },
 
   "@phone": {
     fontSize: "$4",
