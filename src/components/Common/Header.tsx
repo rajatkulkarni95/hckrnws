@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   return (
     <Fragment>
       <SpaceBetween css={{ padding: "16px 0" }}>
-        <Link href="/" passHref>
+        <Link href="/page/1" passHref>
           <Heading>hckrnws</Heading>
         </Link>
       </SpaceBetween>

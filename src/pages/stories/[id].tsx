@@ -8,7 +8,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { styled } from "../../../stitches.config";
 import Meta from "@components/Common/Meta";
-import Comment from "@components/Comments/Comment";
 import CommentList from "@components/Comments/CommentList";
 import Button from "@components/Common/Button";
 import backIcon from "svgs/back.svg";
@@ -33,6 +32,12 @@ const Content = styled("p", {
   marginBottom: "8px",
 });
 
+const CenteredText = styled("p", {
+  display: "flex",
+  justifyContent: "center",
+  width: "100%",
+});
+
 const Story: NextPage = () => {
   const router = useRouter();
   const { id: storyId } = router.query;
@@ -44,7 +49,9 @@ const Story: NextPage = () => {
     fetcher
   );
 
-  if (!data) return <p>"Loading..."</p>;
+  if (!data) return <CenteredText>Loading...</CenteredText>;
+
+  if (error) return <CenteredText>Oops! Something went wrong :(</CenteredText>;
 
   const { title, id, points, user, time, content, comments, url } = data;
 
