@@ -15,6 +15,9 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
     story: { title, user, url, id, points, comments_count, time },
   } = props;
 
+  // To hide the job posting's that have no discussions around them
+  if (!user) return null;
+
   return (
     <Box>
       <Link href={`/stories/${id}`} passHref>
