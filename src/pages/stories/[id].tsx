@@ -12,6 +12,7 @@ import Comment from "@components/Comments/Comment";
 import CommentList from "@components/Comments/CommentList";
 import Button from "@components/Common/Button";
 import backIcon from "svgs/back.svg";
+import { HyperLink } from "@components/Common/HyperLink";
 
 type PageProps = {
   response: TDetailedStory;
@@ -37,7 +38,7 @@ const Content = styled("p", {
 const Story: NextPage<PageProps> = (props: PageProps) => {
   const router = useRouter();
   const {
-    response: { title, id, points, user, time, content, comments },
+    response: { title, id, points, user, time, content, comments, url },
   } = props;
 
   const onClickBack = () => router.back();
@@ -53,6 +54,9 @@ const Story: NextPage<PageProps> = (props: PageProps) => {
           <Image src={backIcon} width={14} height={14} /> Back
         </Button>
         <Title>{title}</Title>
+        <HyperLink href={url} target="_blank">
+          {url}
+        </HyperLink>
         <Content>{content}</Content>
         <Meta
           time={time}
