@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { FlexColumn } from "../../styles";
+import { CenteredText, FlexColumn } from "../../styles";
 
 import { useRouter } from "next/router";
 import { TDetailedStory } from "types/story";
@@ -30,12 +30,6 @@ const Content = styled("p", {
   fontSize: "$2",
   color: "$secondaryText",
   marginBottom: "8px",
-});
-
-const CenteredText = styled("p", {
-  display: "flex",
-  justifyContent: "center",
-  width: "100%",
 });
 
 const Story: NextPage = () => {

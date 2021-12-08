@@ -23,3 +23,10 @@ export const FlexColumn = styled("div", {
   display: "flex",
   flexDirection: "column",
 });
+
+export const CenteredText = styled("p", {
+  display: "flex",
+  justifyContent: "center",
+  width: "100%",
+  marginTop: "36px",
+});
