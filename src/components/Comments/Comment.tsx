@@ -96,11 +96,7 @@ const CommentContainer = styled("div", {
   marginBottom: "8px",
   position: "relative",
   width: "100%",
-  borderLeft: "3px solid",
-
-  "@phone": {
-    borderLeft: "2px solid",
-  },
+  borderLeft: "2px solid",
 
   variants: {
     levels: {
@@ -160,13 +156,13 @@ const Comment: React.FC<Props> = (props: Props) => {
           ) : (
             <Text dangerouslySetInnerHTML={{ __html: content }} />
           )}
-          {/* // Recursively call the same component for children comments */}
-          {comments &&
-            comments.map((comment) => (
-              <Comment key={comment.id} comment={comment} op={op} />
-            ))}
         </CommentContainer>
+        {/* // Recursively call the same component for children comments */}
       </div>
+      {comments &&
+        comments.map((comment) => (
+          <Comment key={comment.id} comment={comment} op={op} />
+        ))}
     </Fragment>
   );
 };
