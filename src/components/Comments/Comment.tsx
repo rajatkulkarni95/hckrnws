@@ -57,10 +57,6 @@ const Time = styled("p", {
 const Text = styled("div", {
   fontSize: "$2",
 
-  "@phone": {
-    fontSize: "$1",
-  },
-
   p: {
     marginBottom: "8px",
     whiteSpace: "break-spaces",
@@ -90,10 +86,8 @@ const DeletedComment = styled("i", {
   color: "$secondaryText",
 });
 
-const CommentBorder = styled("p", {});
-
 const CommentContainer = styled("div", {
-  padding: "0 8px",
+  padding: "0 8px 4px 12px",
   display: "flex",
   flexDirection: "column",
   marginTop: "8px",
@@ -105,28 +99,28 @@ const CommentContainer = styled("div", {
   variants: {
     levels: {
       "0": {
-        borderColor: "$level0",
+        borderLeftColor: "$level0",
       },
       "1": {
-        borderColor: "$level1",
+        borderLeftColor: "$level1",
       },
       "2": {
-        borderColor: "$level2",
+        borderLeftColor: "$level2",
       },
       "3": {
-        borderColor: "$level3",
+        borderLeftColor: "$level3",
       },
       "4": {
-        borderColor: "$level4",
+        borderLeftColor: "$level4",
       },
       "5": {
-        borderColor: "$level5",
+        borderLeftColor: "$level5",
       },
       "6": {
-        borderColor: "$level6",
+        borderLeftColor: "$level6",
       },
       "7": {
-        borderColor: "$level7",
+        borderLeftColor: "$level7",
       },
     },
   },
