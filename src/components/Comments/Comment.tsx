@@ -125,7 +125,7 @@ const CommentContainer = styled("div", {
 const CollapseButton = styled("button", {
   display: "flex",
   alignItems: "center",
-  marginRight: "4px",
+  marginRight: "8px",
   padding: "4px",
   background: "$codeBlock",
   cursor: "pointer",
@@ -162,7 +162,7 @@ const Comment: React.FC<Props> = (props: Props) => {
             <CollapseButton onClick={() => setCollapsed(false)}>
               <Image height={14} width={14} src={chevronDown} alt="unhide" />
             </CollapseButton>
-            <OPTag>{comments_count}</OPTag>
+            <OPTag css={{ marginLeft: "4px" }}>{comments_count}</OPTag>
           </AlignCenter>
         </SpaceBetween>
       </CommentContainer>

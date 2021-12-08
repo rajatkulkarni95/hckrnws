@@ -58,8 +58,11 @@ const Story: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <FlexColumn css={{ padding: "16px 0" }}>
-        <Button onClick={onClickBack}>
-          <Image src={backIcon} width={14} height={14} /> Back
+        <Button
+          css={{ width: "48px", marginBottom: "16px" }}
+          onClick={onClickBack}
+        >
+          <Image src={backIcon} width={14} height={14} />
         </Button>
         <Title>{title}</Title>
         <HyperLink href={url} target="_blank">
