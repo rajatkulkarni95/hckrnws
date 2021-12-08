@@ -1,18 +1,14 @@
 import { prettyTime } from "helpers/time";
-import { Fragment } from "react";
-import { FlexColumn, SpaceBetween } from "styles/";
+import Image from "next/image";
+import { Fragment, useState } from "react";
+import { AlignCenter, SpaceBetween } from "styles/";
 import { TComment } from "types/story";
 import { styled } from "../../../stitches.config";
+import chevronDown from "svgs/chevron_down.svg";
+import chevronUp from "svgs/chevron_up.svg";
 
 type Props = {
-  comment: {
-    user: string;
-    time: number;
-    level?: number;
-    content: string;
-    deleted?: boolean;
-    comments: TComment[];
-  };
+  comment: TComment;
   op: string;
 };
 
@@ -36,7 +32,7 @@ const Author = styled("p", {
 });
 
 const OPTag = styled("span", {
-  padding: "2px 4px",
+  padding: "2px 6px",
   fontSize: "12px",
   borderRadius: "4px",
   background: "$secondaryText",
@@ -126,12 +122,51 @@ const CommentContainer = styled("div", {
   },
 });
 
+const CollapseButton = styled("button", {
+  display: "flex",
+  alignItems: "center",
+  marginRight: "4px",
+  padding: "4px",
+  background: "$codeBlock",
+  cursor: "pointer",
+  borderRadius: "3px",
+  border: "none",
+
+  "&:hover": {
+    background: "#4a4e69",
+  },
+});
+
 const Comment: React.FC<Props> = (props: Props) => {
   const {
-    comment: { user, time, content, deleted, level, comments },
+    comment: { user, time, content, deleted, level, comments, comments_count },
     op,
   } = props;
   const isCommenterOP = user === op;
+  const [collapsed, setCollapsed] = useState<Boolean>(false);
+
+  if (collapsed)
+    return (
+      <CommentContainer
+        css={{
+          marginLeft: `calc(16px * ${level})`,
+          "@phone": { marginLeft: `calc(8px * ${level})` },
+        }}
+        levels={level}
+      >
+        <SpaceBetween css={{ marginBottom: "8px" }}>
+          <Author op={isCommenterOP}>
+            {user} {isCommenterOP && <OPTag>OP</OPTag>}
+          </Author>
+          <AlignCenter>
+            <CollapseButton onClick={() => setCollapsed(false)}>
+              <Image height={14} width={14} src={chevronDown} alt="unhide" />
+            </CollapseButton>
+            <OPTag>{comments_count}</OPTag>
+          </AlignCenter>
+        </SpaceBetween>
+      </CommentContainer>
+    );
 
   return (
     <Fragment>
@@ -149,7 +184,13 @@ const Comment: React.FC<Props> = (props: Props) => {
               <Author op={isCommenterOP}>
                 {user} {isCommenterOP && <OPTag>OP</OPTag>}
               </Author>
-              <Time>{prettyTime(time)}</Time>
+              <AlignCenter>
+                <CollapseButton onClick={() => setCollapsed(true)}>
+                  <Image height={14} width={14} src={chevronUp} alt="hide" />
+                </CollapseButton>
+
+                <Time>{prettyTime(time)}</Time>
+              </AlignCenter>
             </SpaceBetween>
           )}
           {deleted ? (

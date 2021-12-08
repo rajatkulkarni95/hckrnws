@@ -27,6 +27,11 @@ export const FlexColumn = styled("div", {
   flexDirection: "column",
 });
 
+export const AlignCenter = styled("div", {
+  display: "flex",
+  alignItems: "center",
+});
+
 export const CenteredText = styled("p", {
   display: "flex",
   justifyContent: "center",
