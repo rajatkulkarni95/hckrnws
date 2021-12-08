@@ -41,7 +41,7 @@ const LinkItem = styled("div", {
   borderRadius: "3px",
 
   "&:hover": {
-    background: "#4a4e69",
+    background: "#333757",
   },
 });
 
