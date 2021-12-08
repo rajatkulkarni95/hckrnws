@@ -93,25 +93,38 @@ const CommentContainer = styled("div", {
   marginTop: "8px",
   marginBottom: "8px",
   position: "relative",
+  width: "100%",
+  borderLeft: "3px solid",
 
-  borderLeft: "2px solid",
+  "@phone": {
+    borderLeft: "2px solid",
+  },
 
   variants: {
     levels: {
-      1: {
+      "0": {
+        borderColor: "$level0",
+      },
+      "1": {
         borderColor: "$level1",
       },
-      2: {
+      "2": {
         borderColor: "$level2",
       },
-      3: {
+      "3": {
         borderColor: "$level3",
       },
-      4: {
+      "4": {
         borderColor: "$level4",
       },
-      5: {
+      "5": {
         borderColor: "$level5",
+      },
+      "6": {
+        borderColor: "$level6",
+      },
+      "7": {
+        borderColor: "$level7",
       },
     },
   },
@@ -123,13 +136,14 @@ const Comment: React.FC<Props> = (props: Props) => {
     op,
   } = props;
   const isCommenterOP = user === op;
+
   return (
     <Fragment>
       {/* Indent the children based on the level */}
       <div style={{ display: "flex" }}>
         <CommentContainer
           css={{ marginLeft: `calc(16 * ${level}px)` }}
-          levels={{ "@initial": 1 }}
+          levels={level}
         >
           {!deleted && (
             <SpaceBetween css={{ marginBottom: "8px" }}>
