@@ -48,7 +48,10 @@ const OPTag = styled("span", {
 const Time = styled("p", {
   fontSize: "$1",
   color: "$secondaryText",
-  alignSelf: "flex-end",
+
+  "@phone": {
+    fontSize: "$0",
+  },
 });
 
 const Text = styled("div", {
@@ -84,11 +87,34 @@ const DeletedComment = styled("i", {
 });
 
 const CommentContainer = styled("div", {
-  padding: "8px 0",
-  borderBottom: "1px solid",
-  borderColor: "$secondaryText",
+  padding: "0 8px",
   display: "flex",
   flexDirection: "column",
+  marginTop: "8px",
+  marginBottom: "8px",
+  position: "relative",
+
+  borderLeft: "2px solid",
+
+  variants: {
+    levels: {
+      1: {
+        borderColor: "$level1",
+      },
+      2: {
+        borderColor: "$level2",
+      },
+      3: {
+        borderColor: "$level3",
+      },
+      4: {
+        borderColor: "$level4",
+      },
+      5: {
+        borderColor: "$level5",
+      },
+    },
+  },
 });
 
 const Comment: React.FC<Props> = (props: Props) => {
@@ -100,21 +126,26 @@ const Comment: React.FC<Props> = (props: Props) => {
   return (
     <Fragment>
       {/* Indent the children based on the level */}
-      <CommentContainer css={{ marginLeft: `calc(16 * ${level}px)` }}>
-        {!deleted && (
-          <SpaceBetween css={{ marginBottom: "8px" }}>
-            <Author op={isCommenterOP}>
-              {user} {isCommenterOP && <OPTag>OP</OPTag>}
-            </Author>
-            <Time>{prettyTime(time)}</Time>
-          </SpaceBetween>
-        )}
-        {deleted ? (
-          <DeletedComment>Comment was deleted :(</DeletedComment>
-        ) : (
-          <Text dangerouslySetInnerHTML={{ __html: content }} />
-        )}
-      </CommentContainer>
+      <div style={{ display: "flex" }}>
+        <CommentContainer
+          css={{ marginLeft: `calc(16 * ${level}px)` }}
+          levels={{ "@initial": 1 }}
+        >
+          {!deleted && (
+            <SpaceBetween css={{ marginBottom: "8px" }}>
+              <Author op={isCommenterOP}>
+                {user} {isCommenterOP && <OPTag>OP</OPTag>}
+              </Author>
+              <Time>{prettyTime(time)}</Time>
+            </SpaceBetween>
+          )}
+          {deleted ? (
+            <DeletedComment>Comment was deleted :(</DeletedComment>
+          ) : (
+            <Text dangerouslySetInnerHTML={{ __html: content }} />
+          )}
+        </CommentContainer>
+      </div>
       {/* // Recursively call the same component for children comments */}
       {comments &&
         comments.map((comment) => (

@@ -2,8 +2,11 @@ import { styled } from "../../stitches.config";
 
 export const Container = styled("div", {
   margin: "0 auto",
-  width: "1200px",
+  width: "1000px",
   overflowX: "hidden",
+  "@wide": {
+    width: "1200px",
+  },
   "@tablet": {
     width: "90%",
   },

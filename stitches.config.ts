@@ -19,8 +19,15 @@ export const { styled, getCssText } = createStitches({
       link: "hsl(21, 35, 92)",
       coloredLink: "#E9C46A",
       codeBlock: "#25292D",
+
+      level1: "#F02D3D",
+      level2: "#FAA916",
+      level3: "#6A994E",
+      level4: "#2A9BB7",
+      level5: "#543B54",
     },
     fontSizes: {
+      0: "12px",
       1: "14px",
       2: "16px",
       3: "20px",
