@@ -2,7 +2,7 @@ import { styled } from "../../../stitches.config";
 
 export const HyperLink = styled("a", {
   color: "$link",
-  whiteSpace: "pre-line",
+  overflowWrap: "break-word",
 
   "&:hover": {
     color: "$coloredLink",
