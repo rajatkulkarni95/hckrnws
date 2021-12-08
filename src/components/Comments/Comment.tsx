@@ -57,6 +57,10 @@ const Time = styled("p", {
 const Text = styled("div", {
   fontSize: "$2",
 
+  "@phone": {
+    fontSize: "$1",
+  },
+
   p: {
     marginBottom: "8px",
     whiteSpace: "break-spaces",
@@ -140,7 +144,10 @@ const Comment: React.FC<Props> = (props: Props) => {
       {/* Indent the children based on the level */}
       <div style={{ display: "flex" }}>
         <CommentContainer
-          css={{ ...(level !== 0 && { marginLeft: "16px" }) }}
+          css={{
+            marginLeft: `calc(16px * ${level})`,
+            "@phone": { marginLeft: `calc(8px * ${level})` },
+          }}
           levels={level}
         >
           {!deleted && (
