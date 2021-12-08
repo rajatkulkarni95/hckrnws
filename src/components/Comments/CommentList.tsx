@@ -1,3 +1,4 @@
+import { CenteredText } from "styles/";
 import { Fragment } from "react";
 import { TComment } from "types/story";
 import { styled } from "../../../stitches.config";
@@ -21,10 +22,18 @@ const CommentList: React.FC<Props> = (props: Props) => {
   const { comments, op } = props;
   return (
     <Fragment>
-      <Title>Comments</Title>
-      {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} op={op} />
-      ))}
+      {comments.length > 0 ? (
+        <Fragment>
+          <Title>Comments</Title>
+          {comments.map((comment) => (
+            <Comment key={comment.id} comment={comment} op={op} />
+          ))}
+        </Fragment>
+      ) : (
+        <CenteredText css={{ fontWeight: 700 }}>
+          No comments posted yet!
+        </CenteredText>
+      )}
     </Fragment>
   );
 };
