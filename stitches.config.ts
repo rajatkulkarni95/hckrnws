@@ -19,6 +19,7 @@ export const { styled, getCssText } = createStitches({
       link: "hsl(21, 35, 92)",
       coloredLink: "#E9C46A",
       codeBlock: "#25292D",
+      accent: "hsl(0, 0%, 13.6%)",
 
       level0: "#F02D3D",
       level1: "#FAA916",

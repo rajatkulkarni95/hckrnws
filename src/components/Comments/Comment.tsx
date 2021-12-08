@@ -32,13 +32,14 @@ const Author = styled("p", {
 });
 
 const OPTag = styled("span", {
-  padding: "2px 6px",
+  padding: "4px 6px",
   fontSize: "12px",
   borderRadius: "4px",
-  background: "$secondaryText",
+  background: "$accent",
   color: "$primaryText",
   marginLeft: "8px",
   fontWeight: 500,
+  lineHeight: 1.2,
 });
 
 const Time = styled("p", {
@@ -125,9 +126,9 @@ const CommentContainer = styled("div", {
 const CollapseButton = styled("button", {
   display: "flex",
   alignItems: "center",
-  marginRight: "8px",
+  marginLeft: "8px",
   padding: "4px",
-  background: "$codeBlock",
+  background: "$accent",
   cursor: "pointer",
   borderRadius: "3px",
   border: "none",
@@ -147,25 +148,27 @@ const Comment: React.FC<Props> = (props: Props) => {
 
   if (collapsed)
     return (
-      <CommentContainer
-        css={{
-          marginLeft: `calc(16px * ${level})`,
-          "@phone": { marginLeft: `calc(8px * ${level})` },
-        }}
-        levels={level}
-      >
-        <SpaceBetween css={{ marginBottom: "8px" }}>
-          <Author op={isCommenterOP}>
-            {user} {isCommenterOP && <OPTag>OP</OPTag>}
-          </Author>
-          <AlignCenter>
-            <CollapseButton onClick={() => setCollapsed(false)}>
-              <Image height={14} width={14} src={chevronDown} alt="unhide" />
-            </CollapseButton>
-            <OPTag css={{ marginLeft: "4px" }}>{comments_count}</OPTag>
-          </AlignCenter>
-        </SpaceBetween>
-      </CommentContainer>
+      <div style={{ display: "flex" }}>
+        <CommentContainer
+          css={{
+            marginLeft: `calc(16px * ${level})`,
+            "@phone": { marginLeft: `calc(8px * ${level})` },
+          }}
+          levels={level}
+        >
+          <SpaceBetween css={{ marginBottom: "8px" }}>
+            <Author op={isCommenterOP}>
+              {user} {isCommenterOP && <OPTag>OP</OPTag>}
+            </Author>
+            <AlignCenter>
+              <OPTag css={{ marginRight: "4px" }}>{comments_count}</OPTag>
+              <CollapseButton onClick={() => setCollapsed(false)}>
+                <Image height={14} width={14} src={chevronDown} alt="unhide" />
+              </CollapseButton>
+            </AlignCenter>
+          </SpaceBetween>
+        </CommentContainer>
+      </div>
     );
 
   return (
@@ -185,11 +188,10 @@ const Comment: React.FC<Props> = (props: Props) => {
                 {user} {isCommenterOP && <OPTag>OP</OPTag>}
               </Author>
               <AlignCenter>
+                <Time>{prettyTime(time)}</Time>
                 <CollapseButton onClick={() => setCollapsed(true)}>
                   <Image height={14} width={14} src={chevronUp} alt="hide" />
                 </CollapseButton>
-
-                <Time>{prettyTime(time)}</Time>
               </AlignCenter>
             </SpaceBetween>
           )}
@@ -201,10 +203,9 @@ const Comment: React.FC<Props> = (props: Props) => {
         </CommentContainer>
         {/* // Recursively call the same component for children comments */}
       </div>
-      {comments &&
-        comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} op={op} />
-        ))}
+      {comments?.map((comment) => (
+        <Comment key={comment.id} comment={comment} op={op} />
+      ))}
     </Fragment>
   );
 };

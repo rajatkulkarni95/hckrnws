@@ -51,7 +51,7 @@ const Box = styled("div", {
   marginBottom: "16px",
   transition: "0.2s",
   "&:hover": {
-    background: "hsl(0, 0%, 13.6%)",
+    background: "$accent",
   },
 
   "@phone": {
