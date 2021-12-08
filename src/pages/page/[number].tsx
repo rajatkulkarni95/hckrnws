@@ -7,6 +7,9 @@ import { Fragment } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { PageNumber } from "@components/Common/PageNumber";
+import useSWR from "swr";
+import fetcher from "helpers/fetcher";
+import { CenteredText } from "styles/";
 
 type PageProps = {
   response: TBaseStory[];
@@ -38,9 +41,19 @@ const PaginationContainer = styled("div", {
 });
 
 const PageList: NextPage<PageProps> = (props: PageProps) => {
-  const { response } = props;
   const router = useRouter();
   const { number } = router.query;
+
+  const NEWS_BASE_URL = "https://api.hnpwa.com/v0/news";
+
+  const { data, error } = useSWR<TBaseStory[], Error>(
+    `${NEWS_BASE_URL}/${number}.json`,
+    fetcher
+  );
+
+  if (!data) return <CenteredText>Loading...</CenteredText>;
+
+  if (error) return <CenteredText>Oops! Something went wrong :(</CenteredText>;
 
   return (
     <Fragment>
@@ -49,7 +62,7 @@ const PageList: NextPage<PageProps> = (props: PageProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Box>
-        {response.map((story) => (
+        {data.map((story) => (
           <StoryListItem story={story} key={story.id} />
         ))}
       </Box>
@@ -65,45 +78,5 @@ const PageList: NextPage<PageProps> = (props: PageProps) => {
     </Fragment>
   );
 };
-
-export async function getStaticProps(props: { params: { number: string } }) {
-  const {
-    params: { number },
-  } = props;
-  const NEWS_BASE_URL = "https://api.hnpwa.com/v0/news";
-
-  const result = await fetch(`${NEWS_BASE_URL}/${number}.json`);
-  const response = await result.json();
-
-  if (!response) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      response,
-    }, // will be passed to the page component as props
-  };
-}
-
-export async function getStaticPaths() {
-  return {
-    paths: [
-      { params: { number: "1" } },
-      { params: { number: "2" } },
-      { params: { number: "3" } },
-      { params: { number: "4" } },
-      { params: { number: "5" } },
-      { params: { number: "6" } },
-      { params: { number: "7" } },
-      { params: { number: "8" } },
-      { params: { number: "9" } },
-      { params: { number: "10" } },
-    ],
-    fallback: false,
-  };
-}
 
 export default PageList;
