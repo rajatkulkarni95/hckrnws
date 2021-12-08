@@ -86,6 +86,8 @@ const DeletedComment = styled("i", {
   color: "$secondaryText",
 });
 
+const CommentBorder = styled("p", {});
+
 const CommentContainer = styled("div", {
   padding: "0 8px",
   display: "flex",
@@ -142,7 +144,7 @@ const Comment: React.FC<Props> = (props: Props) => {
       {/* Indent the children based on the level */}
       <div style={{ display: "flex" }}>
         <CommentContainer
-          css={{ marginLeft: `calc(16 * ${level}px)` }}
+          css={{ ...(level !== 0 && { marginLeft: "16px" }) }}
           levels={level}
         >
           {!deleted && (
@@ -158,13 +160,13 @@ const Comment: React.FC<Props> = (props: Props) => {
           ) : (
             <Text dangerouslySetInnerHTML={{ __html: content }} />
           )}
+          {/* // Recursively call the same component for children comments */}
+          {comments &&
+            comments.map((comment) => (
+              <Comment key={comment.id} comment={comment} op={op} />
+            ))}
         </CommentContainer>
       </div>
-      {/* // Recursively call the same component for children comments */}
-      {comments &&
-        comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} op={op} />
-        ))}
     </Fragment>
   );
 };
