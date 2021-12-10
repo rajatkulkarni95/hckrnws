@@ -6,6 +6,7 @@ import { styled } from "../../../stitches.config";
 import ChevronDown from "svgs/chevron_down.svg";
 import ChevronUp from "svgs/chevron_up.svg";
 import { contains } from "helpers/contains";
+import { useTheme } from "next-themes";
 
 type Props = {
   comment: TComment;
@@ -143,7 +144,7 @@ const CollapseButton = styled("button", {
   border: "none",
 
   "&:hover": {
-    background: "#4a4e69",
+    background: "$secondaryText",
   },
 });
 
@@ -156,6 +157,9 @@ const Comment: React.FC<Props> = (props: Props) => {
   const [collapsed, setCollapsed] = useState<Boolean>(false);
   const element = document.createElement("div");
   element.innerHTML = content;
+
+  const { theme } = useTheme();
+  const stroke = theme === "light" ? "#161618" : "#FFFFFF";
 
   // find quotes and apply styles
   useEffect(() => {
@@ -179,7 +183,12 @@ const Comment: React.FC<Props> = (props: Props) => {
             <AlignCenter>
               <OPTag css={{ marginRight: "4px" }}>{comments_count}</OPTag>
               <CollapseButton onClick={() => setCollapsed(false)}>
-                <ChevronDown height={14} width={14} alt="unhide" />
+                <ChevronDown
+                  height={14}
+                  width={14}
+                  alt="unhide"
+                  stroke={stroke}
+                />
               </CollapseButton>
             </AlignCenter>
           </SpaceBetween>
@@ -206,7 +215,12 @@ const Comment: React.FC<Props> = (props: Props) => {
               <AlignCenter>
                 <Time>{prettyTime(time)}</Time>
                 <CollapseButton onClick={() => setCollapsed(true)}>
-                  <ChevronUp height={14} width={14} alt="hide" />
+                  <ChevronUp
+                    height={14}
+                    width={14}
+                    alt="hide"
+                    stroke={stroke}
+                  />
                 </CollapseButton>
               </AlignCenter>
             </SpaceBetween>

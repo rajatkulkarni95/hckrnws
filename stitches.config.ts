@@ -20,6 +20,7 @@ export const { styled, getCssText, createTheme } = createStitches({
       coloredLink: "#E9C46A",
       codeBlock: "#25292D",
       accent: "#464444",
+      hovered: "#232323",
 
       level0: "#F02D3D",
       level1: "#FAA916",
@@ -53,6 +54,7 @@ export const lightTheme = createTheme({
     link: "#3C474B",
     coloredLink: "#467599",
     codeBlock: "#D0CCD0",
-    accent: "#E5E5E5",
+    accent: "#BABABA",
+    hovered: "#E5E5E5",
   },
 });
