@@ -11,13 +11,12 @@ export default class Document extends NextDocument {
             id="stitches"
             dangerouslySetInnerHTML={{ __html: getCssText() }}
           />
-          {/* <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap"
-            rel="stylesheet"
-          /> */}
           <link
-            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap"
-            rel="stylesheet"
+            rel="preload"
+            href="/fonts/ibm-plex-sans-var.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
           />
         </Head>
         <body>

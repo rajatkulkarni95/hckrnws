@@ -5,21 +5,21 @@ export const { styled, getCssText } = createStitches({
     phone: `(width < 720px)`,
     tablet: `(720px <= width < 1024px)`,
     desktop: `(1024px <= width < 1536px)`,
-    wide: `(1536px <= width)`,
+    wide: `(1920 <= width)`,
   },
   theme: {
     fonts: {
       mono: `'IBM Plex Mono', monospace`,
-      sans: "IBM Plex Sans, sans-serif",
+      sans: "IBM Plex Sans",
     },
     colors: {
-      primaryText: "hsl(210, 6%, 93%)",
+      primaryText: "#EAEAEA",
       secondaryText: "hsl(206, 6%, 43%)",
       background: "hsl(240, 4%, 9%)",
       link: "hsl(21, 35, 92)",
       coloredLink: "#E9C46A",
       codeBlock: "#25292D",
-      accent: "hsl(0, 0%, 13.6%)",
+      accent: "#464444",
 
       level0: "#F02D3D",
       level1: "#FAA916",
