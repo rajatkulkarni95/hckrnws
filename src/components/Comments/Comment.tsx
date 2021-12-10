@@ -55,10 +55,6 @@ const Text = styled("div", {
   fontSize: "$2",
   lineHeight: 1.5,
 
-  "@phone": {
-    fontSize: "$1",
-  },
-
   p: {
     marginBottom: "4px",
     whiteSpace: "break-spaces",
