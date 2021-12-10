@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { SpaceBetween } from "styles/";
 import { styled } from "../../../stitches.config";
+import ThemeChanger from "./ThemeToggle";
 
 const Header: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const Header: React.FC = () => {
         <Link href="/page/1" passHref>
           <Heading>hckrnws</Heading>
         </Link>
+        <ThemeChanger />
       </SpaceBetween>
     </Fragment>
   );

@@ -1,6 +1,6 @@
 import { createStitches } from "@stitches/react";
 
-export const { styled, getCssText } = createStitches({
+export const { styled, getCssText, createTheme } = createStitches({
   media: {
     phone: `(width < 720px)`,
     tablet: `(720px <= width < 1024px)`,
@@ -20,6 +20,9 @@ export const { styled, getCssText } = createStitches({
       coloredLink: "#E9C46A",
       codeBlock: "#25292D",
       accent: "#464444",
+      hovered: "#232323",
+      opBG: "#1D2433",
+      opColor: "#4970CB",
 
       level0: "#F02D3D",
       level1: "#FAA916",
@@ -42,5 +45,20 @@ export const { styled, getCssText } = createStitches({
       8: "40px",
       9: "48px",
     },
+  },
+});
+
+export const lightTheme = createTheme({
+  colors: {
+    primaryText: "#161618",
+    secondaryText: "#6F6F6F",
+    background: "#ECEDEE",
+    link: "#3C474B",
+    coloredLink: "#467599",
+    codeBlock: "#D0CCD0",
+    accent: "#BABABA",
+    hovered: "#E5E5E5",
+    opBG: "#b9ccf4",
+    opColor: "#1d456c",
   },
 });
