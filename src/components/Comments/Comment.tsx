@@ -25,8 +25,8 @@ const Author = styled("span", {
   variants: {
     op: {
       true: {
-        color: "#4970CB",
-        background: "#1D2433",
+        color: "$opColor",
+        background: "$opBG",
       },
     },
   },

@@ -21,6 +21,8 @@ export const { styled, getCssText, createTheme } = createStitches({
       codeBlock: "#25292D",
       accent: "#464444",
       hovered: "#232323",
+      opBG: "#1D2433",
+      opColor: "#4970CB",
 
       level0: "#F02D3D",
       level1: "#FAA916",
@@ -56,5 +58,7 @@ export const lightTheme = createTheme({
     codeBlock: "#D0CCD0",
     accent: "#BABABA",
     hovered: "#E5E5E5",
+    opBG: "#b9ccf4",
+    opColor: "#1d456c",
   },
 });
