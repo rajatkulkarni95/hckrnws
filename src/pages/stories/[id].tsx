@@ -5,12 +5,11 @@ import { useRouter } from "next/router";
 import { TDetailedStory } from "types/story";
 import { Fragment } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import { styled } from "../../../stitches.config";
 import Meta from "@components/Common/Meta";
 import CommentList from "@components/Comments/CommentList";
 import Button from "@components/Common/Button";
-import backIcon from "svgs/back.svg";
+import BackIcon from "svgs/back.svg";
 import { HyperLink } from "@components/Common/HyperLink";
 import useSWR from "swr";
 import fetcher from "helpers/fetcher";
@@ -62,7 +61,7 @@ const Story: NextPage = () => {
           css={{ width: "48px", marginBottom: "16px" }}
           onClick={onClickBack}
         >
-          <Image src={backIcon} width={14} height={14} />
+          <BackIcon width={14} height={14} />
         </Button>
         <Title>{title}</Title>
         <HyperLink href={url} target="_blank">

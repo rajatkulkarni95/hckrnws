@@ -1,11 +1,10 @@
 import { prettyTime } from "helpers/time";
-import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 import { AlignCenter, SpaceBetween } from "styles/";
 import { TComment } from "types/story";
 import { styled } from "../../../stitches.config";
-import chevronDown from "svgs/chevron_down.svg";
-import chevronUp from "svgs/chevron_up.svg";
+import ChevronDown from "svgs/chevron_down.svg";
+import ChevronUp from "svgs/chevron_up.svg";
 import { contains } from "helpers/contains";
 
 type Props = {
@@ -180,7 +179,7 @@ const Comment: React.FC<Props> = (props: Props) => {
             <AlignCenter>
               <OPTag css={{ marginRight: "4px" }}>{comments_count}</OPTag>
               <CollapseButton onClick={() => setCollapsed(false)}>
-                <Image height={14} width={14} src={chevronDown} alt="unhide" />
+                <ChevronDown height={14} width={14} alt="unhide" />
               </CollapseButton>
             </AlignCenter>
           </SpaceBetween>
@@ -207,7 +206,7 @@ const Comment: React.FC<Props> = (props: Props) => {
               <AlignCenter>
                 <Time>{prettyTime(time)}</Time>
                 <CollapseButton onClick={() => setCollapsed(true)}>
-                  <Image height={14} width={14} src={chevronUp} alt="hide" />
+                  <ChevronUp height={14} width={14} alt="hide" />
                 </CollapseButton>
               </AlignCenter>
             </SpaceBetween>

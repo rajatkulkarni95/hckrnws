@@ -3,10 +3,9 @@ import { prettyTime } from "helpers/time";
 import Link from "next/link";
 import { styled } from "../../../stitches.config";
 import { Fragment } from "react";
-import Image from "next/image";
-import upvoteIcon from "svgs/upvote.svg";
-import commentIcon from "svgs/comment.svg";
-import clockIcon from "svgs/clock.svg";
+import UpvoteIcon from "svgs/upvote.svg";
+import CommentIcon from "svgs/comment.svg";
+import ClockIcon from "svgs/clock.svg";
 
 type Props = {
   points: number;
@@ -66,7 +65,7 @@ const Meta: React.FC<Props> = ({
 }) => {
   const renderCommentItem = () => (
     <Fragment>
-      <Image height={14} width={14} src={commentIcon} alt="comment" />
+      <CommentIcon height={14} width={14} alt="comment" />
       <Text>{comments}</Text>
     </Fragment>
   );
@@ -85,12 +84,12 @@ const Meta: React.FC<Props> = ({
       <AuthorText>by {user}</AuthorText>
       <Box>
         <Item>
-          <Image height={14} width={14} src={upvoteIcon} alt="upvote" />
+          <UpvoteIcon height={14} width={14} alt="upvote" />
           <Text>{points}</Text>
         </Item>
         {renderCommentLink()}
         <Item>
-          <Image height={14} width={14} src={clockIcon} alt="time" />
+          <ClockIcon height={14} width={14} alt="time" />
           <Text>{prettyTime(time)}</Text>
         </Item>
       </Box>{" "}
