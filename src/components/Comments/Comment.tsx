@@ -53,14 +53,16 @@ const Time = styled("p", {
 
 const Text = styled("div", {
   fontSize: "$2",
+  lineHeight: 1.5,
 
   p: {
-    marginBottom: "8px",
+    marginBottom: "4px",
     whiteSpace: "break-spaces",
   },
 
   a: {
     color: "$coloredLink",
+    whiteSpace: "break-spaces",
   },
 
   pre: {
@@ -69,7 +71,7 @@ const Text = styled("div", {
     background: "$codeBlock",
     borderRadius: "4px",
     margin: "8px 0",
-    overflowX: "scroll",
+    overflowX: "auto",
   },
 
   code: {
