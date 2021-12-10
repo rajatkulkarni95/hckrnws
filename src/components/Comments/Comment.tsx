@@ -1,18 +1,19 @@
 import { prettyTime } from "helpers/time";
 import Image from "next/image";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { AlignCenter, SpaceBetween } from "styles/";
 import { TComment } from "types/story";
 import { styled } from "../../../stitches.config";
 import chevronDown from "svgs/chevron_down.svg";
 import chevronUp from "svgs/chevron_up.svg";
+import { contains } from "helpers/contains";
 
 type Props = {
   comment: TComment;
   op: string;
 };
 
-const Author = styled("p", {
+const Author = styled("span", {
   fontSize: "$1",
   color: "$primaryText",
   background: "$codeBlock",
@@ -42,7 +43,7 @@ const OPTag = styled("span", {
   lineHeight: 1.2,
 });
 
-const Time = styled("p", {
+const Time = styled("span", {
   fontSize: "$1",
   color: "$secondaryText",
 
@@ -72,6 +73,13 @@ const Text = styled("div", {
     borderRadius: "4px",
     margin: "8px 0",
     overflowX: "auto",
+  },
+
+  ".quotes": {
+    padding: "8px 16px",
+    borderLeft: "2px solid",
+    color: "$secondaryText",
+    marginBottom: "8px",
   },
 
   code: {
@@ -147,6 +155,13 @@ const Comment: React.FC<Props> = (props: Props) => {
   } = props;
   const isCommenterOP = user === op;
   const [collapsed, setCollapsed] = useState<Boolean>(false);
+  const element = document.createElement("div");
+  element.innerHTML = content;
+
+  // find quotes and apply styles
+  useEffect(() => {
+    contains("p", ">", "quotes");
+  }, []);
 
   if (collapsed)
     return (

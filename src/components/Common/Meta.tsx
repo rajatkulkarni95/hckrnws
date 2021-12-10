@@ -45,12 +45,12 @@ const LinkItem = styled("div", {
   },
 });
 
-const Text = styled("p", {
+const Text = styled("span", {
   fontSize: "12px",
   marginLeft: "4px",
 });
 
-const AuthorText = styled("p", {
+const AuthorText = styled("span", {
   fontSize: "$1",
   fontWeight: 700,
   color: "$secondaryText",

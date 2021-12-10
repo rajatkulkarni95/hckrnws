@@ -59,7 +59,7 @@ const Box = styled("div", {
   },
 });
 
-const Title = styled("p", {
+const Title = styled("h4", {
   fontSize: "$2",
   color: "$primaryText",
   whiteSpace: "break-spaces",
