@@ -11,7 +11,7 @@ const ThemeChanger: React.FC = () => {
     <Fragment>
       {theme === "dark" ? (
         <Icon onClick={() => setTheme("light")}>
-          <SunIcon width={18} height={18} />
+          <SunIcon width={18} height={18} stroke="#FFFFFF" />
         </Icon>
       ) : (
         <Icon onClick={() => setTheme("dark")}>

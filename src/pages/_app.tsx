@@ -4,6 +4,7 @@ import React from "react";
 import { globalStyles } from "../styles/globalStyles";
 import Header from "@components/Common/Header";
 import { ThemeProvider } from "next-themes";
+import { lightTheme } from "../../stitches.config";
 
 function App({ Component, pageProps }: AppProps) {
   globalStyles();
@@ -12,7 +13,7 @@ function App({ Component, pageProps }: AppProps) {
       attribute="class"
       defaultTheme="system"
       value={{
-        // light: light.className,
+        light: lightTheme.className,
         dark: "dark",
       }}
     >
