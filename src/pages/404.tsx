@@ -32,10 +32,7 @@ const NotFound: NextPage = () => {
       css={{
         justifyContent: "center",
         alignItems: "center",
-        border: "3px solid",
-        borderColor: "$codeBlock",
         height: "400px",
-        borderRadius: "4px",
         marginTop: "48px",
       }}
     >

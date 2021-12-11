@@ -46,9 +46,9 @@ const Story: NextPage = () => {
     fetcher
   );
 
-  if (!data) return <CenteredText>Loading...</CenteredText>;
-
   if (error) return <CenteredText>Oops! Something went wrong :(</CenteredText>;
+
+  if (!data) return <CenteredText>Loading...</CenteredText>;
 
   const { title, id, points, user, time, content, comments, url } = data;
 
