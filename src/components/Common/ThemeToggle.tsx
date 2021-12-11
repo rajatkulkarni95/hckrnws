@@ -5,7 +5,7 @@ import SunIcon from "svgs/sun.svg";
 import { styled } from "../../../stitches.config";
 
 const ThemeChanger: React.FC = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme = "dark", setTheme } = useTheme();
 
   return (
     <Fragment>
