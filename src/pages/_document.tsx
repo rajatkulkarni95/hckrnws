@@ -12,10 +12,10 @@ export default class Document extends NextDocument {
             dangerouslySetInnerHTML={{ __html: getCssText() }}
           />
           <link
-            rel="preload"
             href="/fonts/ibm-plex-sans-var.woff2"
             as="font"
             type="font/woff2"
+            rel="preload"
             crossOrigin="anonymous"
           />
         </Head>

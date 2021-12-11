@@ -6,7 +6,6 @@ export const globalStyles = globalCss({
     fontFamily: "IBM Plex Sans",
     fontStyle: "normal",
     fontWeight: " 100 900",
-    fontDisplay: "optional",
     src: "url(/fonts/ibm-plex-sans-var.woff2) format('woff2')",
   },
   html: {
