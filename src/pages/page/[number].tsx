@@ -51,9 +51,9 @@ const PageList: NextPage<PageProps> = (props: PageProps) => {
     fetcher
   );
 
-  if (!data) return <CenteredText>Loading...</CenteredText>;
-
   if (error) return <CenteredText>Oops! Something went wrong :(</CenteredText>;
+
+  if (!data) return <CenteredText>Loading...</CenteredText>;
 
   return (
     <Fragment>

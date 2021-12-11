@@ -1,4 +1,4 @@
-import Button from "@components/Common/Button";
+import { Button } from "@components/Common/Button";
 import { FlexColumn } from "styles/";
 import { NextPage } from "next";
 import Link from "next/link";
@@ -32,10 +32,7 @@ const NotFound: NextPage = () => {
       css={{
         justifyContent: "center",
         alignItems: "center",
-        border: "3px solid",
-        borderColor: "$codeBlock",
         height: "400px",
-        borderRadius: "4px",
         marginTop: "48px",
       }}
     >
