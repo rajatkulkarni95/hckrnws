@@ -50,6 +50,8 @@ const Box = styled("div", {
   borderRadius: "4px",
   marginBottom: "16px",
   transition: "0.2s",
+  borderBottom: "1px solid",
+  borderColor: "$accent",
   "&:hover": {
     background: "$hovered",
   },
