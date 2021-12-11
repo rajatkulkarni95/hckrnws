@@ -8,7 +8,7 @@ import Head from "next/head";
 import { styled } from "../../../stitches.config";
 import Meta from "@components/Common/Meta";
 import CommentList from "@components/Comments/CommentList";
-import Button from "@components/Common/Button";
+import { Button } from "@components/Common/Button";
 import BackIcon from "svgs/back.svg";
 import { HyperLink } from "@components/Common/HyperLink";
 import useSWR from "swr";

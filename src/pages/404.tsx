@@ -1,4 +1,4 @@
-import Button from "@components/Common/Button";
+import { Button } from "@components/Common/Button";
 import { FlexColumn } from "styles/";
 import { NextPage } from "next";
 import Link from "next/link";

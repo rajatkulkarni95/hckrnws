@@ -1,6 +1,6 @@
 import { styled } from "../../../stitches.config";
 
-const Button = styled("button", {
+export const Button = styled("button", {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -23,4 +23,15 @@ const Button = styled("button", {
   },
 });
 
-export default Button;
+export const Icon = styled("button", {
+  cursor: "pointer",
+  padding: "4px",
+  borderRadius: "4px",
+  border: "none",
+  background: "transparent",
+  transition: "0.2s",
+
+  "&:hover": {
+    background: "$codeBlock",
+  },
+});

@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import MoonIcon from "svgs/moon.svg";
 import SunIcon from "svgs/sun.svg";
 import { styled } from "../../../stitches.config";
+import { Icon } from "./Button";
 
 const ThemeChanger: React.FC = () => {
   const { theme = "dark", setTheme } = useTheme();
@@ -21,18 +22,5 @@ const ThemeChanger: React.FC = () => {
     </Fragment>
   );
 };
-
-const Icon = styled("button", {
-  cursor: "pointer",
-  padding: "4px",
-  borderRadius: "4px",
-  border: "none",
-  background: "transparent",
-  transition: "0.2s",
-
-  "&:hover": {
-    background: "$codeBlock",
-  },
-});
 
 export default ThemeChanger;

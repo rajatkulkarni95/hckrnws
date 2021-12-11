@@ -65,43 +65,43 @@ const Why: NextPage = () => {
     <FlexColumn>
       <Title>Why hckrnws?</Title>
       <Text>
-        Why make this when there's a perfectly well{" "}
+        Why make this when there&apos;s a perfectly well &nbsp;
         <HyperLink href="news.ycombinator.com">Hacker News</HyperLink> already?
       </Text>
       <Text css={{ fontStyle: "italic" }}>
-        Well cause it isn't perfect, atleast for me! :)
+        Well cause it isn&apos;t perfect, atleast for me! :)
       </Text>
       <Text>
         As someone who frequents the news site, more so as a spectator rather
-        than a contributor, I've felt it cut short in places that I've been
-        spoilt into taking for granted by a few other apps. While I don't like
-        the reddit UI a lot with the redesign, apps like{" "}
+        than a contributor, I&apos;ve felt it cut short in places that I&apos;ve
+        been spoilt into taking for granted by a few other apps. While I
+        don&apos;t like the reddit UI a lot with the redesign, apps like &nbsp;
         <HyperLink href="https://apps.apple.com/us/app/apollo-for-reddit/id979274575">
           Apollo
         </HyperLink>{" "}
-        and{" "}
+        &nbsp; and &nbsp;
         <HyperLink href="https://play.google.com/store/apps/details?id=com.laurencedawson.reddit_sync">
           Sync
         </HyperLink>{" "}
-        have made it a joy to browse/read through.
+        &nbsp; have made it a joy to browse/read through.
       </Text>
       <Text>
-        So I've tried to implement some sort of balance to this one which makes
-        it a significantly better experience for me (<i>and hopefully others</i>
-        ) to read.
+        So I&apos;ve tried to implement some sort of balance to this one which
+        makes it a significantly better experience for me (
+        <i>and hopefully others</i>) to read.
       </Text>
       <Text>
         Some changes that <strong>hckrnws</strong> makes in an attempt to
         improve the experience are:
-        <ul>
+        <ul style={{ listStyleType: "none" }}>
           <li>
             <Text>
               <Points color={1}>Dark Mode</Points> - Someone who tends to read
-              in the night, I'm annoyed at the fact that hacker news is a bright
-              light shining out of my screen. Sure there's extensions and other
-              stuff that try to help the cause, but if I'm going to make the
-              app, might as well ship with native dark mode. Fear not, a light
-              version also exists!
+              in the night, I&apos;m annoyed at the fact that hacker news is a
+              bright light shining out of my screen. Sure there&apos;s
+              extensions and other stuff that try to help the cause, but if
+              I&apos;m going to make the app, might as well ship with native
+              dark mode. Fear not, a light version also exists!
             </Text>
           </li>
           <li>
@@ -115,10 +115,10 @@ const Why: NextPage = () => {
           <li>
             <Text>
               <Points color={3}>Highlighted Comment Threads</Points> - Comments
-              are easily identifiable as who is who's child in long threads,
-              with a Apollo/Sync style vertical collapsable line. Also, an
-              easier way to identify the OP in the comments. (colored and has a
-              badge beside them).
+              are easily identifiable as who is who&apos;s child in long
+              threads, with a Apollo/Sync style vertical collapsable line. Also,
+              an easier way to identify the OP in the comments. (colored and has
+              a badge beside them).
             </Text>
             <Box>
               <Comment comment={exampleComment} op="uudecoded" />
@@ -143,24 +143,24 @@ const Why: NextPage = () => {
         </ul>
       </Text>
       <Text>
-        This is far from perfect, and it'll never be, but it's{" "}
+        This is far from perfect, and it&apos;ll never be, but it&apos;s &nbsp;
         <HyperLink href="https://github.com/rajatkulkarni95/hckrnws">
           open source
-        </HyperLink>{" "}
-        for people who want to look at the code (read/fork/contribute/take) (its
-        a NextJS/Typescript app with Stitches for styling), backed by the hnPWA
-        api.
+        </HyperLink>
+        &nbsp; for people who want to look at the code
+        (read/fork/contribute/take) (its a NextJS/Typescript app with Stitches
+        for styling), backed by the hnPWA api.
       </Text>
 
       <Text>
-        Over time I'd be adding a couple of features as my usage goes such as
-        the ability to change to Mono/Serif fonts, increasing font sizes, and
+        Over time I&apos;d be adding a couple of features as my usage goes such
+        as the ability to change to Mono/Serif fonts, increasing font sizes, and
         other sections like Show HN.
       </Text>
 
       <Text>
         If this seems like something you may use from time to time, and would
-        like to see a feature or two incorporated, you can either{" "}
+        like to see a feature or two incorporated, you can either &nbsp;
         <HyperLink href="https://twitter.com/JokingRajat">tweet</HyperLink> at
         me/create a ticket on the github repo.
       </Text>
@@ -169,8 +169,7 @@ const Why: NextPage = () => {
         news.ycombinator.com
       </Text>
       <Text>
-        {" "}
-        - Designed and Developed by{" "}
+        &nbsp; - Designed and Developed by &nbsp;
         <HyperLink href="https://twitter.com/JokingRajat">Rajat</HyperLink>
       </Text>
     </FlexColumn>
