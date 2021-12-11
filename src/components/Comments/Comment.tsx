@@ -159,8 +159,6 @@ const Comment: React.FC<Props> = (props: Props) => {
   } = props;
   const isCommenterOP = user === op;
   const [collapsed, setCollapsed] = useState<Boolean>(false);
-  const element = document.createElement("div");
-  element.innerHTML = content;
 
   const { theme } = useTheme();
   const stroke = theme === "light" ? "#161618" : "#FFFFFF";

@@ -26,7 +26,6 @@ export type TDetailedStory = {
 
 export type TComment = {
   id: number;
-  title: string;
   user: string;
   time: number;
   time_ago: string;
