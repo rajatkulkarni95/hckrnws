@@ -66,7 +66,10 @@ const Why: NextPage = () => {
       <Title>Why hckrnws?</Title>
       <Text>
         Why make this when there&apos;s a perfectly well &nbsp;
-        <HyperLink href="news.ycombinator.com">Hacker News</HyperLink> already?
+        <HyperLink href="https://news.ycombinator.com">
+          Hacker News
+        </HyperLink>{" "}
+        already?
       </Text>
       <Text css={{ fontStyle: "italic" }}>
         Well cause it isn&apos;t perfect, atleast for me! :)
