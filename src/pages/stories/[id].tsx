@@ -51,9 +51,15 @@ const Story: NextPage = () => {
 
   if (!data) return <CenteredText>Loading...</CenteredText>;
 
-  const { title, id, points, user, time, content, comments, url } = data;
+  const { title, id, points, user, time, content, comments } = data;
+  let { url } = data;
 
   const onClickBack = () => router.back();
+
+  // If url links to a hackernews story, remove the params, so that it can route inside hckrnws
+  if (url.startsWith("item?id=")) {
+    url = url.replace("item?id=", "");
+  }
 
   return (
     <Fragment>
