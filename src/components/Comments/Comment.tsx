@@ -7,6 +7,7 @@ import ChevronDown from "svgs/chevron_down.svg";
 import ChevronUp from "svgs/chevron_up.svg";
 import { contains } from "helpers/contains";
 import { useTheme } from "next-themes";
+import InnerHTMLText from "@components/Common/InnerHTMLText";
 
 type Props = {
   comment: TComment;
@@ -49,47 +50,6 @@ const Time = styled("span", {
 
   "@phone": {
     fontSize: "$0",
-  },
-});
-
-const Text = styled("div", {
-  fontSize: "$2",
-  lineHeight: 1.5,
-
-  "@phone": {
-    fontSize: "$1",
-  },
-
-  p: {
-    marginBottom: "4px",
-    whiteSpace: "break-spaces",
-  },
-
-  a: {
-    color: "$coloredLink",
-    whiteSpace: "break-spaces",
-  },
-
-  pre: {
-    whiteSpace: "break-spaces",
-    padding: "8px",
-    background: "$codeBlock",
-    borderRadius: "4px",
-    margin: "8px 0",
-    overflowX: "auto",
-  },
-
-  ".quotes": {
-    padding: "8px 16px",
-    borderLeft: "2px solid",
-    color: "$secondaryText",
-    marginBottom: "8px",
-  },
-
-  code: {
-    "@phone": {
-      fontSize: "$1",
-    },
   },
 });
 
@@ -230,7 +190,7 @@ const Comment: React.FC<Props> = (props: Props) => {
           {deleted ? (
             <DeletedComment>Comment was deleted :(</DeletedComment>
           ) : (
-            <Text dangerouslySetInnerHTML={{ __html: content }} />
+            <InnerHTMLText dangerouslySetInnerHTML={{ __html: content }} />
           )}
         </CommentContainer>
         {/* // Recursively call the same component for children comments */}

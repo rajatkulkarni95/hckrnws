@@ -14,6 +14,7 @@ import { HyperLink } from "@components/Common/HyperLink";
 import useSWR from "swr";
 import fetcher from "helpers/fetcher";
 import { useTheme } from "next-themes";
+import InnerHTMLText from "@components/Common/InnerHTMLText";
 
 const Title = styled("h2", {
   fontSize: "$4",
@@ -71,7 +72,7 @@ const Story: NextPage = () => {
         <HyperLink href={url} target="_blank">
           {url}
         </HyperLink>
-        <Content>{content}</Content>
+        <InnerHTMLText dangerouslySetInnerHTML={{ __html: content }} />
         <Meta
           time={time}
           points={points}
