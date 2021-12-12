@@ -9,7 +9,7 @@ export const { styled, getCssText, createTheme } = createStitches({
   },
   theme: {
     fonts: {
-      mono: `'IBM Plex Mono', monospace`,
+      mono: "IBM Plex Mono",
       sans: "IBM Plex Sans",
     },
     colors: {
