@@ -18,6 +18,13 @@ export default class Document extends NextDocument {
             rel="preload"
             crossOrigin="anonymous"
           />
+          <link
+            href="/fonts/IBMPlexMono-Text.woff2"
+            as="font"
+            type="font/woff2"
+            rel="preload"
+            crossOrigin="anonymous"
+          />
         </Head>
         <body>
           <Main />

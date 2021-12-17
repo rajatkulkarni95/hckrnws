@@ -13,13 +13,13 @@ const Title = styled("h2", {
 
 const Text = styled("p", {
   fontSize: "$2",
-  lineHeight: 1.5,
+  lineHeight: "1.65rem",
   margin: "8px 0",
 });
 
 const Points = styled("span", {
   fontSize: "$2",
-  lineHeight: 1.5,
+  lineHeight: "1.65rem",
   borderBottom: "2px solid",
 
   variants: {

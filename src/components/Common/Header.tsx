@@ -3,12 +3,8 @@ import { Fragment } from "react";
 import { AlignCenter, SpaceBetween } from "styles/";
 import { styled } from "../../../stitches.config";
 import ThemeChanger from "./ThemeToggle";
-import Question from "svgs/question.svg";
-import { Icon } from "./Button";
-import { useTheme } from "next-themes";
 
 const Header: React.FC = () => {
-  const { theme = "dark" } = useTheme();
   return (
     <Fragment>
       <SpaceBetween css={{ padding: "16px 0" }}>
@@ -16,15 +12,6 @@ const Header: React.FC = () => {
           <Heading>hckrnws</Heading>
         </Link>
         <AlignCenter>
-          <Icon css={{ marginRight: "16px" }}>
-            <Link href="/why" passHref>
-              <Question
-                width={18}
-                height={18}
-                stroke={theme === "dark" ? "#FFFFFF" : "#232323"}
-              />
-            </Link>
-          </Icon>
           <ThemeChanger />
         </AlignCenter>
       </SpaceBetween>
