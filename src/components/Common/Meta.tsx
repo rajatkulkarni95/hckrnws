@@ -1,4 +1,3 @@
-import { FlexColumn } from "styles/";
 import { prettyTime } from "helpers/time";
 import Link from "next/link";
 import { styled } from "../../../stitches.config";
@@ -6,7 +5,9 @@ import { Fragment } from "react";
 import UpvoteIcon from "svgs/upvote.svg";
 import CommentIcon from "svgs/comment.svg";
 import ClockIcon from "svgs/clock.svg";
+import ExternalLinkIcon from "svgs/external_link.svg";
 import { useTheme } from "next-themes";
+import { HyperLink } from "./HyperLink";
 
 type Props = {
   points: number;
@@ -14,12 +15,14 @@ type Props = {
   time: number;
   id?: number;
   user: string;
+  url: string;
   isDetailedView?: boolean;
 };
 
 const Box = styled("div", {
   display: "flex",
   alignItems: "center",
+  marginTop: "4px",
 });
 
 const Item = styled("div", {
@@ -62,6 +65,7 @@ const Meta: React.FC<Props> = ({
   time,
   id,
   user,
+  url,
   isDetailedView = false,
 }) => {
   const { theme } = useTheme();
@@ -84,7 +88,7 @@ const Meta: React.FC<Props> = ({
 
   return (
     <Box>
-      <AuthorText>by {user}</AuthorText>
+      {isDetailedView && <AuthorText>by {user}</AuthorText>}
       <Item>
         <UpvoteIcon height={14} width={14} alt="upvote" stroke={stroke} />
         <Text>{points}</Text>
@@ -94,6 +98,15 @@ const Meta: React.FC<Props> = ({
         <ClockIcon height={14} width={14} alt="time" stroke={stroke} />
         <Text>{prettyTime(time)}</Text>
       </Item>
+      <LinkItem>
+        <HyperLink
+          href={url}
+          target="_blank"
+          css={{ height: "14px", display: "flex" }}
+        >
+          <ExternalLinkIcon height={14} width={14} alt="time" stroke={stroke} />
+        </HyperLink>
+      </LinkItem>
     </Box>
   );
 };

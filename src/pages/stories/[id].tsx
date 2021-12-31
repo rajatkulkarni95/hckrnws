@@ -75,9 +75,7 @@ const Story: NextPage = () => {
           <BackIcon width={14} height={14} stroke={stroke} />
         </Button>
         <Title>{title}</Title>
-        <HyperLink href={url} target="_blank">
-          {url}
-        </HyperLink>
+
         <InnerHTMLText dangerouslySetInnerHTML={{ __html: content }} />
         <Meta
           time={time}
@@ -85,6 +83,7 @@ const Story: NextPage = () => {
           user={user}
           isDetailedView
           comments={comments.length}
+          url={url}
         />
         <CommentList comments={comments} op={user} />
       </FlexColumn>

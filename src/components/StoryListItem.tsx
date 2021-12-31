@@ -23,10 +23,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
       <Link href={`/stories/${id}`} passHref>
         <Title>{title}</Title>
       </Link>
-      <HyperLink href={url} target="_blank">
-        {url}
-      </HyperLink>
-      <SpaceBetween css={{ marginTop: "8px" }}>
+      <SpaceBetween>
         <FlexColumn>
           <Meta
             id={id}
@@ -34,6 +31,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
             comments={comments_count}
             time={time}
             user={user}
+            url={url}
           />
         </FlexColumn>
       </SpaceBetween>
@@ -50,6 +48,7 @@ const Box = styled("div", {
   borderRadius: "4px",
   marginBottom: "8px",
   transition: "0.2s",
+  borderBottom: "1px dotted",
   "&:hover": {
     background: "$hovered",
   },
@@ -63,7 +62,6 @@ const Title = styled("h4", {
   fontSize: "$2",
   color: "$primaryText",
   whiteSpace: "break-spaces",
-  marginBottom: "8px",
   fontWeight: 500,
   cursor: "pointer",
 });
