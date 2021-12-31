@@ -9,6 +9,8 @@ import ExternalLinkIcon from "svgs/external_link.svg";
 import { useTheme } from "next-themes";
 import { HyperLink } from "./HyperLink";
 import { FlexColumn } from "styles/";
+import { Size } from "types/size";
+import useWindowSize from "hooks/useWindowSize";
 
 type Props = {
   points: number;
@@ -73,6 +75,9 @@ const Meta: React.FC<Props> = ({
 }) => {
   const { theme } = useTheme();
   const stroke = theme === "light" ? "#161618" : "#FFFFFF";
+
+  const size: Size = useWindowSize();
+
   const renderCommentItem = () => (
     <Fragment>
       <CommentIcon height={14} width={14} alt="comment" stroke={stroke} />
@@ -88,6 +93,9 @@ const Meta: React.FC<Props> = ({
         <LinkItem>{renderCommentItem()}</LinkItem>
       </Link>
     );
+
+  // Assigning a number greater than the compared value, so that it defaults to false
+  const isMobile = (size?.width ?? 641) < 640;
 
   return (
     <FlexColumn>
@@ -115,7 +123,7 @@ const Meta: React.FC<Props> = ({
             />
           </HyperLink>
         </LinkItem>
-        {domain && <Text>({domain})</Text>}
+        {domain && !isMobile && <Text>({domain})</Text>}
       </Box>{" "}
       {isDetailedView && <AuthorText>by {user}</AuthorText>}
     </FlexColumn>

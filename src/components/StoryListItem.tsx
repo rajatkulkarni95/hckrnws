@@ -4,16 +4,27 @@ import Link from "next/link";
 import { TBaseStory } from "types/story";
 import { styled } from "../../stitches.config";
 import Meta from "./Common/Meta";
-import { HyperLink } from "./Common/HyperLink";
+import useWindowSize from "hooks/useWindowSize";
+import { Size } from "types/size";
 
 type Props = {
   story: TBaseStory;
 };
 
+const Text = styled("span", {
+  fontSize: "12px",
+  marginLeft: "4px",
+});
+
 const StoryListItem: React.FC<Props> = (props: Props) => {
   const {
     story: { title, user, url, id, points, comments_count, time, domain },
   } = props;
+
+  const size: Size = useWindowSize();
+
+  // Assigning a number greater than the compared value, so that it defaults to false
+  const isMobile = (size?.width ?? 641) < 640;
 
   // To hide the job posting's that have no discussions around them
   if (!user) return null;
@@ -21,7 +32,9 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
   return (
     <Box>
       <Link href={`/stories/${id}`} passHref>
-        <Title>{title}</Title>
+        <Title>
+          {title} {isMobile && <Text>({domain})</Text>}
+        </Title>
       </Link>
       <SpaceBetween>
         <FlexColumn>
