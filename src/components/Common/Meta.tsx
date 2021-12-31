@@ -41,7 +41,7 @@ const LinkItem = styled("div", {
   borderRadius: "3px",
 
   "&:hover": {
-    background: "#333757",
+    background: "$codeBlock",
   },
 });
 
