@@ -14,6 +14,8 @@ import useSWR from "swr";
 import fetcher from "helpers/fetcher";
 import { useTheme } from "next-themes";
 import InnerHTMLText from "@components/Common/InnerHTMLText";
+import { Size } from "types/size";
+import useWindowSize from "hooks/useWindowSize";
 
 const Title = styled("h2", {
   fontSize: "$4",
@@ -26,15 +28,16 @@ const Title = styled("h2", {
   },
 });
 
-const Content = styled("p", {
-  fontSize: "$2",
-  color: "$secondaryText",
-  marginBottom: "8px",
+const Text = styled("span", {
+  fontSize: "12px",
+  marginLeft: "4px",
 });
 
 const Story: NextPage = () => {
   const router = useRouter();
   const { id: storyId } = router.query;
+
+  const size: Size = useWindowSize();
 
   const { theme } = useTheme();
   const stroke = theme === "light" ? "#161618" : "#FFFFFF";
@@ -60,6 +63,9 @@ const Story: NextPage = () => {
     url = url.replace("item?id=", "");
   }
 
+  // Assigning a number greater than the compared value, so that it defaults to false
+  const isMobile = (size?.width ?? 641) < 640;
+
   return (
     <Fragment>
       <Head>
@@ -73,7 +79,9 @@ const Story: NextPage = () => {
         >
           <BackIcon width={14} height={14} stroke={stroke} />
         </Button>
-        <Title>{title}</Title>
+        <Title>
+          {title} {isMobile && <Text>({domain})</Text>}
+        </Title>
 
         <InnerHTMLText dangerouslySetInnerHTML={{ __html: content }} />
         <Meta
