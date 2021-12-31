@@ -10,7 +10,6 @@ import Meta from "@components/Common/Meta";
 import CommentList from "@components/Comments/CommentList";
 import { Button } from "@components/Common/Button";
 import BackIcon from "svgs/back.svg";
-import { HyperLink } from "@components/Common/HyperLink";
 import useSWR from "swr";
 import fetcher from "helpers/fetcher";
 import { useTheme } from "next-themes";
@@ -51,7 +50,7 @@ const Story: NextPage = () => {
 
   if (!data) return <CenteredText>Loading...</CenteredText>;
 
-  const { title, id, points, user, time, content, comments } = data;
+  const { title, id, points, user, time, content, comments, domain } = data;
   let { url } = data;
 
   const onClickBack = () => router.back();
@@ -84,6 +83,7 @@ const Story: NextPage = () => {
           isDetailedView
           comments={comments.length}
           url={url}
+          domain={domain}
         />
         <CommentList comments={comments} op={user} />
       </FlexColumn>

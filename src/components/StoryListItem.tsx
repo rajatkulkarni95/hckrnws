@@ -12,7 +12,7 @@ type Props = {
 
 const StoryListItem: React.FC<Props> = (props: Props) => {
   const {
-    story: { title, user, url, id, points, comments_count, time },
+    story: { title, user, url, id, points, comments_count, time, domain },
   } = props;
 
   // To hide the job posting's that have no discussions around them
@@ -32,6 +32,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
             time={time}
             user={user}
             url={url}
+            domain={domain}
           />
         </FlexColumn>
       </SpaceBetween>

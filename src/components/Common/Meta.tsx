@@ -8,6 +8,7 @@ import ClockIcon from "svgs/clock.svg";
 import ExternalLinkIcon from "svgs/external_link.svg";
 import { useTheme } from "next-themes";
 import { HyperLink } from "./HyperLink";
+import { FlexColumn } from "styles/";
 
 type Props = {
   points: number;
@@ -17,6 +18,7 @@ type Props = {
   user: string;
   url: string;
   isDetailedView?: boolean;
+  domain: string;
 };
 
 const Box = styled("div", {
@@ -56,7 +58,7 @@ const AuthorText = styled("span", {
   fontSize: "$1",
   fontWeight: 700,
   color: "$secondaryText",
-  marginRight: "8px",
+  marginTop: "8px",
 });
 
 const Meta: React.FC<Props> = ({
@@ -66,6 +68,7 @@ const Meta: React.FC<Props> = ({
   id,
   user,
   url,
+  domain,
   isDetailedView = false,
 }) => {
   const { theme } = useTheme();
@@ -87,27 +90,35 @@ const Meta: React.FC<Props> = ({
     );
 
   return (
-    <Box>
+    <FlexColumn>
+      <Box>
+        <Item>
+          <UpvoteIcon height={14} width={14} alt="upvote" stroke={stroke} />
+          <Text>{points}</Text>
+        </Item>
+        {renderCommentLink()}
+        <Item>
+          <ClockIcon height={14} width={14} alt="time" stroke={stroke} />
+          <Text>{prettyTime(time)}</Text>
+        </Item>
+        <LinkItem css={{ marginRight: "4px" }}>
+          <HyperLink
+            href={url}
+            target="_blank"
+            css={{ height: "14px", display: "flex" }}
+          >
+            <ExternalLinkIcon
+              height={14}
+              width={14}
+              alt="time"
+              stroke={stroke}
+            />
+          </HyperLink>
+        </LinkItem>
+        {domain && <Text>({domain})</Text>}
+      </Box>{" "}
       {isDetailedView && <AuthorText>by {user}</AuthorText>}
-      <Item>
-        <UpvoteIcon height={14} width={14} alt="upvote" stroke={stroke} />
-        <Text>{points}</Text>
-      </Item>
-      {renderCommentLink()}
-      <Item>
-        <ClockIcon height={14} width={14} alt="time" stroke={stroke} />
-        <Text>{prettyTime(time)}</Text>
-      </Item>
-      <LinkItem>
-        <HyperLink
-          href={url}
-          target="_blank"
-          css={{ height: "14px", display: "flex" }}
-        >
-          <ExternalLinkIcon height={14} width={14} alt="time" stroke={stroke} />
-        </HyperLink>
-      </LinkItem>
-    </Box>
+    </FlexColumn>
   );
 };
 
