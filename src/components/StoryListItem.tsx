@@ -48,10 +48,8 @@ const Box = styled("div", {
   width: "100%",
   background: "none",
   borderRadius: "4px",
-  marginBottom: "16px",
+  marginBottom: "8px",
   transition: "0.2s",
-  borderBottom: "1px solid",
-  borderColor: "$accent",
   "&:hover": {
     background: "$hovered",
   },

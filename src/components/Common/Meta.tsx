@@ -19,7 +19,6 @@ type Props = {
 
 const Box = styled("div", {
   display: "flex",
-  marginTop: "12px",
   alignItems: "center",
 });
 
@@ -41,7 +40,7 @@ const LinkItem = styled("div", {
   borderRadius: "3px",
 
   "&:hover": {
-    background: "$codeBlock",
+    background: "$accent",
   },
 });
 
@@ -54,6 +53,7 @@ const AuthorText = styled("span", {
   fontSize: "$1",
   fontWeight: 700,
   color: "$secondaryText",
+  marginRight: "8px",
 });
 
 const Meta: React.FC<Props> = ({
@@ -83,20 +83,18 @@ const Meta: React.FC<Props> = ({
     );
 
   return (
-    <FlexColumn>
+    <Box>
       <AuthorText>by {user}</AuthorText>
-      <Box>
-        <Item>
-          <UpvoteIcon height={14} width={14} alt="upvote" stroke={stroke} />
-          <Text>{points}</Text>
-        </Item>
-        {renderCommentLink()}
-        <Item>
-          <ClockIcon height={14} width={14} alt="time" stroke={stroke} />
-          <Text>{prettyTime(time)}</Text>
-        </Item>
-      </Box>{" "}
-    </FlexColumn>
+      <Item>
+        <UpvoteIcon height={14} width={14} alt="upvote" stroke={stroke} />
+        <Text>{points}</Text>
+      </Item>
+      {renderCommentLink()}
+      <Item>
+        <ClockIcon height={14} width={14} alt="time" stroke={stroke} />
+        <Text>{prettyTime(time)}</Text>
+      </Item>
+    </Box>
   );
 };
 
