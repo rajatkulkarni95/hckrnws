@@ -46,12 +46,13 @@ const Box = styled("div", {
   flexDirection: "column",
   width: "100%",
   background: "none",
-  borderRadius: "4px",
   marginBottom: "8px",
   transition: "0.2s",
   borderBottom: "1px dotted",
   "&:hover": {
     background: "$hovered",
+    borderRadius: "4px",
+    borderColor: "transparent",
   },
 
   "@phone": {
