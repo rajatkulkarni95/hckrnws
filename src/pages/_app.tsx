@@ -2,9 +2,9 @@ import { Container } from "styles/";
 import type { AppProps } from "next/app";
 import React from "react";
 import { globalStyles } from "../styles/globalStyles";
-import Header from "@components/Common/Header";
 import { ThemeProvider } from "next-themes";
 import { lightTheme } from "../../stitches.config";
+import Header from "@components/Header";
 
 function App({ Component, pageProps }: AppProps) {
   globalStyles();

@@ -1,19 +1,29 @@
+import { Fragment, useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
-import { Fragment } from "react";
-import { AlignCenter, SpaceBetween } from "styles/";
 import { styled } from "../../../stitches.config";
-import ThemeChanger from "./ThemeToggle";
+
+import { SpaceBetween } from "styles/";
+import Options from "./Options";
 
 const Header: React.FC = () => {
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  // When mounted on client, now we can show the UI
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
+
+  const handleThemeChange = (value: string) => setTheme(value);
+
   return (
     <Fragment>
       <SpaceBetween css={{ padding: "16px 0" }}>
         <Link href="/page/1" passHref>
           <Heading>hckrnws</Heading>
         </Link>
-        <AlignCenter>
-          <ThemeChanger />
-        </AlignCenter>
+        <Options theme={theme} handleThemeChange={handleThemeChange} />
       </SpaceBetween>
     </Fragment>
   );

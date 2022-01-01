@@ -2,7 +2,7 @@ import { styled } from "../../../stitches.config";
 
 const InnerHTMLText = styled("div", {
   fontSize: "$2",
-  lineHeight: "1.65rem",
+  lineHeight: "1.5rem",
 
   p: {
     marginBottom: "4px",
