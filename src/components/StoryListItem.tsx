@@ -1,5 +1,3 @@
-import { FlexColumn } from "styles/";
-import { SpaceBetween } from "styles/";
 import Link from "next/link";
 import { TBaseStory } from "types/story";
 import { styled } from "../../stitches.config";
@@ -36,19 +34,16 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
           {title} {isMobile && <Text>({domain})</Text>}
         </Title>
       </Link>
-      <SpaceBetween>
-        <FlexColumn>
-          <Meta
-            id={id}
-            points={points}
-            comments={comments_count}
-            time={time}
-            user={user}
-            url={url}
-            domain={domain}
-          />
-        </FlexColumn>
-      </SpaceBetween>
+
+      <Meta
+        id={id}
+        points={points}
+        comments={comments_count}
+        time={time}
+        user={user}
+        url={url}
+        domain={domain}
+      />
     </Box>
   );
 };

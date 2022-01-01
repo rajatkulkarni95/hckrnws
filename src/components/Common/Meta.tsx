@@ -5,10 +5,11 @@ import { Fragment } from "react";
 import UpvoteIcon from "svgs/upvote.svg";
 import CommentIcon from "svgs/comment.svg";
 import ClockIcon from "svgs/clock.svg";
+import StarIcon from "svgs/star.svg";
 import ExternalLinkIcon from "svgs/external_link.svg";
 import { useTheme } from "next-themes";
 import { HyperLink } from "./HyperLink";
-import { FlexColumn } from "styles/";
+import { FlexColumn, SpaceBetween } from "styles/";
 import { Size } from "types/size";
 import useWindowSize from "hooks/useWindowSize";
 
@@ -26,7 +27,6 @@ type Props = {
 const Box = styled("div", {
   display: "flex",
   alignItems: "center",
-  marginTop: "4px",
 });
 
 const Item = styled("div", {
@@ -58,7 +58,7 @@ const Text = styled("span", {
 
 const AuthorText = styled("span", {
   fontSize: "$1",
-  fontWeight: 700,
+  fontWeight: 500,
   color: "$secondaryText",
   marginTop: "8px",
 });
@@ -99,32 +99,38 @@ const Meta: React.FC<Props> = ({
 
   return (
     <FlexColumn>
-      <Box>
-        <Item>
-          <UpvoteIcon height={14} width={14} alt="upvote" stroke={stroke} />
-          <Text>{points}</Text>
-        </Item>
-        {renderCommentLink()}
-        <Item>
-          <ClockIcon height={14} width={14} alt="time" stroke={stroke} />
-          <Text>{prettyTime(time)}</Text>
-        </Item>
-        <LinkItem css={{ marginRight: "4px" }}>
-          <HyperLink
-            href={url}
-            target="_blank"
-            css={{ height: "14px", display: "flex" }}
-          >
-            <ExternalLinkIcon
-              height={14}
-              width={14}
-              alt="time"
-              stroke={stroke}
-            />
-          </HyperLink>
+      <SpaceBetween css={{ marginTop: "4px" }}>
+        <Box>
+          <Item>
+            <UpvoteIcon height={14} width={14} alt="upvote" stroke={stroke} />
+            <Text>{points}</Text>
+          </Item>
+          {renderCommentLink()}
+          <Item>
+            <ClockIcon height={14} width={14} alt="time" stroke={stroke} />
+            <Text>{prettyTime(time)}</Text>
+          </Item>
+          <LinkItem css={{ marginRight: "4px" }}>
+            <HyperLink
+              href={url}
+              target="_blank"
+              css={{ height: "14px", display: "flex" }}
+            >
+              <ExternalLinkIcon
+                height={14}
+                width={14}
+                alt="time"
+                stroke={stroke}
+              />
+            </HyperLink>
+          </LinkItem>
+          {domain && !isMobile && <Text>({domain})</Text>}
+        </Box>
+        <LinkItem>
+          <StarIcon height={14} width={14} alt="star" stroke={stroke} />
+          <Text>Star</Text>
         </LinkItem>
-        {domain && !isMobile && <Text>({domain})</Text>}
-      </Box>{" "}
+      </SpaceBetween>
       {isDetailedView && <AuthorText>by {user}</AuthorText>}
     </FlexColumn>
   );
