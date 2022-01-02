@@ -4,8 +4,8 @@ export type TBaseStory = {
   points: number;
   user: string;
   time: number;
-  time_ago: string;
-  type: string;
+  time_ago?: string;
+  type?: string;
   url: string;
   domain: string;
   comments_count: number;

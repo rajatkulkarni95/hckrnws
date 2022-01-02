@@ -12,7 +12,6 @@ import { HyperLink } from "./HyperLink";
 import { FlexColumn, SpaceBetween } from "styles/";
 import { Size } from "types/size";
 import useWindowSize from "hooks/useWindowSize";
-import useStore from "store/useStore";
 
 type Props = {
   points: number;
@@ -24,6 +23,7 @@ type Props = {
   isDetailedView?: boolean;
   domain: string;
   handleStarring: MouseEventHandler<HTMLButtonElement>;
+  isStoryStarred: boolean;
 };
 
 const Box = styled("div", {
@@ -77,6 +77,7 @@ const Meta: React.FC<Props> = ({
   url,
   domain,
   handleStarring,
+  isStoryStarred,
   isDetailedView = false,
 }) => {
   const { theme } = useTheme();
@@ -84,9 +85,6 @@ const Meta: React.FC<Props> = ({
 
   const size: Size = useWindowSize();
 
-  const starred = useStore((state) => state.starred);
-
-  const isStoryStarred: boolean = starred?.some((story) => story.id === id);
   const starColor = theme === "light" ? "#FFB224" : "#F1A10D";
 
   const renderCommentItem = () => (

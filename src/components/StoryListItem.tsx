@@ -42,6 +42,8 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
     }
   };
 
+  const isStoryStarred: boolean = starred?.some((story) => story.id === id);
+
   return (
     <Box>
       <Link href={`/stories/${id}`} passHref>
@@ -59,6 +61,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
         url={url}
         domain={domain}
         handleStarring={handleStar}
+        isStoryStarred={isStoryStarred}
       />
     </Box>
   );
