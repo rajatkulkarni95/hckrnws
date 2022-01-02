@@ -52,7 +52,7 @@ const Star: NextPage<PageProps> = (props: PageProps) => {
         Your Stars <Text>{starred?.length} stories</Text>
       </Title>
       <Box>
-        {starred.map((story) => (
+        {starred?.map((story) => (
           <StoryListItem story={story} key={story.id} />
         ))}
       </Box>
