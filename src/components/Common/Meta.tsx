@@ -1,14 +1,15 @@
 import { prettyTime } from "helpers/time";
 import Link from "next/link";
 import { styled } from "../../../stitches.config";
-import { Fragment } from "react";
+import { Fragment, MouseEventHandler } from "react";
 import UpvoteIcon from "svgs/upvote.svg";
 import CommentIcon from "svgs/comment.svg";
 import ClockIcon from "svgs/clock.svg";
+import StarIcon from "svgs/star.svg";
 import ExternalLinkIcon from "svgs/external_link.svg";
 import { useTheme } from "next-themes";
 import { HyperLink } from "./HyperLink";
-import { FlexColumn } from "styles/";
+import { FlexColumn, SpaceBetween } from "styles/";
 import { Size } from "types/size";
 import useWindowSize from "hooks/useWindowSize";
 
@@ -21,12 +22,13 @@ type Props = {
   url: string;
   isDetailedView?: boolean;
   domain: string;
+  handleStarring: MouseEventHandler<HTMLButtonElement>;
+  isStoryStarred: boolean;
 };
 
 const Box = styled("div", {
   display: "flex",
   alignItems: "center",
-  marginTop: "4px",
 });
 
 const Item = styled("div", {
@@ -37,7 +39,7 @@ const Item = styled("div", {
   paddingLeft: 0,
 });
 
-const LinkItem = styled("div", {
+const LinkItem = styled("button", {
   display: "flex",
   alignItems: "center",
   marginRight: "8px",
@@ -45,6 +47,7 @@ const LinkItem = styled("div", {
   background: "none",
   cursor: "pointer",
   borderRadius: "3px",
+  border: "none",
 
   "&:hover": {
     background: "$accent",
@@ -54,11 +57,13 @@ const LinkItem = styled("div", {
 const Text = styled("span", {
   fontSize: "12px",
   marginLeft: "4px",
+  color: "$primaryText",
+  fontFamily: "$sans",
 });
 
 const AuthorText = styled("span", {
   fontSize: "$1",
-  fontWeight: 700,
+  fontWeight: 500,
   color: "$secondaryText",
   marginTop: "8px",
 });
@@ -71,12 +76,16 @@ const Meta: React.FC<Props> = ({
   user,
   url,
   domain,
+  handleStarring,
+  isStoryStarred,
   isDetailedView = false,
 }) => {
   const { theme } = useTheme();
   const stroke = theme === "light" ? "#161618" : "#FFFFFF";
 
   const size: Size = useWindowSize();
+
+  const starColor = theme === "light" ? "#FFB224" : "#F1A10D";
 
   const renderCommentItem = () => (
     <Fragment>
@@ -99,32 +108,44 @@ const Meta: React.FC<Props> = ({
 
   return (
     <FlexColumn>
-      <Box>
-        <Item>
-          <UpvoteIcon height={14} width={14} alt="upvote" stroke={stroke} />
-          <Text>{points}</Text>
-        </Item>
-        {renderCommentLink()}
-        <Item>
-          <ClockIcon height={14} width={14} alt="time" stroke={stroke} />
-          <Text>{prettyTime(time)}</Text>
-        </Item>
-        <LinkItem css={{ marginRight: "4px" }}>
-          <HyperLink
-            href={url}
-            target="_blank"
-            css={{ height: "14px", display: "flex" }}
-          >
-            <ExternalLinkIcon
-              height={14}
-              width={14}
-              alt="time"
-              stroke={stroke}
-            />
-          </HyperLink>
+      <SpaceBetween css={{ marginTop: "4px" }}>
+        <Box>
+          <Item>
+            <UpvoteIcon height={14} width={14} alt="upvote" stroke={stroke} />
+            <Text>{points}</Text>
+          </Item>
+          {renderCommentLink()}
+          <Item>
+            <ClockIcon height={14} width={14} alt="time" stroke={stroke} />
+            <Text>{prettyTime(time)}</Text>
+          </Item>
+          <LinkItem css={{ marginRight: "4px" }}>
+            <HyperLink
+              href={url}
+              target="_blank"
+              css={{ height: "14px", display: "flex" }}
+            >
+              <ExternalLinkIcon
+                height={14}
+                width={14}
+                alt="time"
+                stroke={stroke}
+              />
+            </HyperLink>
+          </LinkItem>
+          {domain && !isMobile && <Text>({domain})</Text>}
+        </Box>
+        <LinkItem onClick={handleStarring}>
+          <StarIcon
+            height={14}
+            width={14}
+            alt="star"
+            stroke={isStoryStarred ? "none" : stroke}
+            fill={isStoryStarred ? starColor : "none"}
+          />
+          <Text>{isStoryStarred ? "Starred" : "Star"}</Text>
         </LinkItem>
-        {domain && !isMobile && <Text>({domain})</Text>}
-      </Box>{" "}
+      </SpaceBetween>
       {isDetailedView && <AuthorText>by {user}</AuthorText>}
     </FlexColumn>
   );

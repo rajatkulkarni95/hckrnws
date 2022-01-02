@@ -16,6 +16,7 @@ import { useTheme } from "next-themes";
 import InnerHTMLText from "@components/Common/InnerHTMLText";
 import { Size } from "types/size";
 import useWindowSize from "hooks/useWindowSize";
+import useStore from "store/useStore";
 
 const Title = styled("h2", {
   fontSize: "$4",
@@ -38,6 +39,9 @@ const Story: NextPage = () => {
   const { id: storyId } = router.query;
 
   const size: Size = useWindowSize();
+
+  const starStory = useStore((state) => state.starStory);
+  const starred = useStore((state) => state.starred);
 
   const { theme } = useTheme();
   const stroke = theme === "light" ? "#161618" : "#FFFFFF";
@@ -66,6 +70,30 @@ const Story: NextPage = () => {
   // Assigning a number greater than the compared value, so that it defaults to false
   const isMobile = (size?.width ?? 641) < 640;
 
+  const story = {
+    id,
+    title,
+    points,
+    user,
+    time,
+    url,
+    domain,
+    comments_count: comments.length,
+  };
+
+  const handleStar = () => {
+    // save them to the zustand store, which in turn will save to local storage
+    const isStoryStarred = starred?.some((story) => story.id === id);
+    if (isStoryStarred) {
+      const filteredStories = starred?.filter((story) => story.id !== id);
+      starStory(filteredStories);
+    } else {
+      starStory([...starred, story]);
+    }
+  };
+
+  const isStoryStarred: boolean = starred?.some((story) => story.id === id);
+
   return (
     <Fragment>
       <Head>
@@ -92,6 +120,8 @@ const Story: NextPage = () => {
           comments={comments.length}
           url={url}
           domain={domain}
+          handleStarring={handleStar}
+          isStoryStarred={isStoryStarred}
         />
         <CommentList comments={comments} op={user} />
       </FlexColumn>
