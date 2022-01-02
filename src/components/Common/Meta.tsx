@@ -1,7 +1,7 @@
 import { prettyTime } from "helpers/time";
 import Link from "next/link";
 import { styled } from "../../../stitches.config";
-import { Fragment } from "react";
+import { Fragment, MouseEventHandler } from "react";
 import UpvoteIcon from "svgs/upvote.svg";
 import CommentIcon from "svgs/comment.svg";
 import ClockIcon from "svgs/clock.svg";
@@ -12,6 +12,7 @@ import { HyperLink } from "./HyperLink";
 import { FlexColumn, SpaceBetween } from "styles/";
 import { Size } from "types/size";
 import useWindowSize from "hooks/useWindowSize";
+import useStore from "store/useStore";
 
 type Props = {
   points: number;
@@ -22,6 +23,7 @@ type Props = {
   url: string;
   isDetailedView?: boolean;
   domain: string;
+  handleStarring: MouseEventHandler<HTMLButtonElement>;
 };
 
 const Box = styled("div", {
@@ -37,7 +39,7 @@ const Item = styled("div", {
   paddingLeft: 0,
 });
 
-const LinkItem = styled("div", {
+const LinkItem = styled("button", {
   display: "flex",
   alignItems: "center",
   marginRight: "8px",
@@ -45,6 +47,7 @@ const LinkItem = styled("div", {
   background: "none",
   cursor: "pointer",
   borderRadius: "3px",
+  border: "none",
 
   "&:hover": {
     background: "$accent",
@@ -54,6 +57,8 @@ const LinkItem = styled("div", {
 const Text = styled("span", {
   fontSize: "12px",
   marginLeft: "4px",
+  color: "$primaryText",
+  fontFamily: "$sans",
 });
 
 const AuthorText = styled("span", {
@@ -71,12 +76,18 @@ const Meta: React.FC<Props> = ({
   user,
   url,
   domain,
+  handleStarring,
   isDetailedView = false,
 }) => {
   const { theme } = useTheme();
   const stroke = theme === "light" ? "#161618" : "#FFFFFF";
 
   const size: Size = useWindowSize();
+
+  const starred = useStore((state) => state.starred);
+
+  const isStoryStarred: boolean = starred?.some((story) => story.id === id);
+  const starColor = theme === "light" ? "#FFB224" : "#F1A10D";
 
   const renderCommentItem = () => (
     <Fragment>
@@ -126,9 +137,15 @@ const Meta: React.FC<Props> = ({
           </LinkItem>
           {domain && !isMobile && <Text>({domain})</Text>}
         </Box>
-        <LinkItem>
-          <StarIcon height={14} width={14} alt="star" stroke={stroke} />
-          <Text>Star</Text>
+        <LinkItem onClick={handleStarring}>
+          <StarIcon
+            height={14}
+            width={14}
+            alt="star"
+            stroke={isStoryStarred ? "none" : stroke}
+            fill={isStoryStarred ? starColor : "none"}
+          />
+          <Text>{isStoryStarred ? "Starred" : "Star"}</Text>
         </LinkItem>
       </SpaceBetween>
       {isDetailedView && <AuthorText>by {user}</AuthorText>}

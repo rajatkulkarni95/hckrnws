@@ -4,6 +4,7 @@ import { styled } from "../../stitches.config";
 import Meta from "./Common/Meta";
 import useWindowSize from "hooks/useWindowSize";
 import { Size } from "types/size";
+import useStore from "store/useStore";
 
 type Props = {
   story: TBaseStory;
@@ -17,9 +18,12 @@ const Text = styled("span", {
 const StoryListItem: React.FC<Props> = (props: Props) => {
   const {
     story: { title, user, url, id, points, comments_count, time, domain },
+    story,
   } = props;
 
   const size: Size = useWindowSize();
+  const starStory = useStore((state) => state.starStory);
+  const starred = useStore((state) => state.starred);
 
   // Assigning a number greater than the compared value, so that it defaults to false
   const isMobile = (size?.width ?? 641) < 640;
@@ -27,11 +31,22 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
   // To hide the job posting's that have no discussions around them
   if (!user) return null;
 
+  const handleStar = () => {
+    // save them to the zustand store, which in turn will save to local storage
+    const isStoryStarred = starred?.some((story) => story.id === id);
+    if (isStoryStarred) {
+      const filteredStories = starred?.filter((story) => story.id !== id);
+      starStory(filteredStories);
+    } else {
+      starStory([...starred, story]);
+    }
+  };
+
   return (
     <Box>
       <Link href={`/stories/${id}`} passHref>
         <Title>
-          {title} {isMobile && <Text>({domain})</Text>}
+          {title} {isMobile && domain && <Text>({domain})</Text>}
         </Title>
       </Link>
 
@@ -43,6 +58,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
         user={user}
         url={url}
         domain={domain}
+        handleStarring={handleStar}
       />
     </Box>
   );
