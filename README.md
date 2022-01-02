@@ -16,6 +16,7 @@ yarn dev
 - [Stitches](stitches.dev/) - CSS in JS
 - [swr](https://swr.vercel.app/) - Data Fetching
 - [HeroIcons](https://heroicons.com/) - Svg Icons
+- [Zustand](https://github.com/pmndrs/zustand) - Lightweight state mangement for handling starred stories
 
 ## Features
 
@@ -24,6 +25,7 @@ yarn dev
 - Quotes are easily identifable
 - Post Author tags for identification
 - Better Readibility
+- Star stories for reading them later
 
 This project is in no way affiliated with YCombinator or Hackernews. All sources to be accredited to them.
 
