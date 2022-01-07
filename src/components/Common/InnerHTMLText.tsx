@@ -2,7 +2,7 @@ import { styled } from "../../../stitches.config";
 
 const InnerHTMLText = styled("div", {
   fontSize: "$2",
-  lineHeight: "19px",
+  lineHeight: "24px",
 
   "@phone": {
     fontSize: "$1",
