@@ -80,7 +80,7 @@ const Why: NextPage = () => {
         already?
       </Text>
       <Text css={{ fontStyle: "italic" }}>
-        Well cause it isn&apos;t perfect, atleast for me! :)
+        Well cause it isn&apos;t perfect, at least for me! :)
       </Text>
       <Text>
         As someone who frequents the news site, more so as a spectator rather
@@ -159,7 +159,7 @@ const Why: NextPage = () => {
           open source
         </HyperLink>
         &nbsp; for people who want to look at the code
-        (read/fork/contribute/take) (its a NextJS/Typescript app with Stitches
+        (read/fork/contribute/take) (it's a NextJS/Typescript app with Stitches
         for styling), backed by the hnPWA api.
       </Text>
 
