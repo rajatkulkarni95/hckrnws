@@ -125,7 +125,7 @@ const Meta: React.FC<Props> = ({
           <LinkItem css={{ marginRight: "4px" }}>
             <HyperLink
               href={externalLink}
-              target="_blank"
+              target="_self"
               css={{ height: "14px", display: "flex" }}
             >
               <ExternalLinkIcon
