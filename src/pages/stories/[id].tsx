@@ -108,7 +108,7 @@ const Story: NextPage = () => {
           <BackIcon width={14} height={14} stroke={stroke} />
         </Button>
         <Title>
-          {title} {isMobile && <Text>({domain})</Text>}
+          {title} {isMobile && domain && <Text>({domain})</Text>}
         </Title>
 
         <InnerHTMLText dangerouslySetInnerHTML={{ __html: content }} />
