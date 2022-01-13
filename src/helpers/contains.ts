@@ -7,3 +7,7 @@ export function contains(selector: string, text: string, className: string) {
       }
     });
 }
+
+export const isHackerNewsLink = (url: string) => {
+  return url.startsWith("item?id");
+};

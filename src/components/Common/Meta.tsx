@@ -12,6 +12,7 @@ import { HyperLink } from "./HyperLink";
 import { FlexColumn, SpaceBetween } from "styles/";
 import { Size } from "types/size";
 import useWindowSize from "hooks/useWindowSize";
+import { isHackerNewsLink } from "helpers/contains";
 
 type Props = {
   points: number;
@@ -87,6 +88,8 @@ const Meta: React.FC<Props> = ({
 
   const starColor = theme === "light" ? "#FFB224" : "#F1A10D";
 
+  const externalLink = isHackerNewsLink(url) ? `/stories/${id}` : url;
+
   const renderCommentItem = () => (
     <Fragment>
       <CommentIcon height={14} width={14} alt="comment" stroke={stroke} />
@@ -121,7 +124,7 @@ const Meta: React.FC<Props> = ({
           </Item>
           <LinkItem css={{ marginRight: "4px" }}>
             <HyperLink
-              href={url}
+              href={externalLink}
               target="_blank"
               css={{ height: "14px", display: "flex" }}
             >
