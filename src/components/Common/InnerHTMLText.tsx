@@ -6,6 +6,7 @@ const InnerHTMLText = styled("div", {
 
   "@phone": {
     fontSize: "$1",
+    lineHeight: "19px",
   },
 
   p: {
