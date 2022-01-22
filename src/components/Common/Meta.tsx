@@ -59,7 +59,7 @@ const Text = styled("span", {
   fontSize: "12px",
   marginLeft: "4px",
   color: "$primaryText",
-  fontFamily: "$sans",
+  fontFamily: "$system",
 });
 
 const AuthorText = styled("span", {

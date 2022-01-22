@@ -11,6 +11,7 @@ export const { styled, getCssText, createTheme } = createStitches({
     fonts: {
       mono: "IBM Plex Mono",
       sans: "IBM Plex Sans",
+      system: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
     },
     colors: {
       primaryText: "#EAEAEA",

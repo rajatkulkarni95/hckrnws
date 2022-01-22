@@ -24,7 +24,7 @@ export const globalStyles = globalCss({
     height: "100vh",
     display: "block",
     margin: "0 auto",
-    fontFamily: "$sans",
+    fontFamily: "$system",
     background: "$background",
     color: "$primaryText",
     fontStyle: "normal",

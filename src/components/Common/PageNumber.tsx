@@ -4,7 +4,7 @@ export const PageNumber = styled("button", {
   padding: "8px 16px",
   fontSize: "$2",
   fontWeight: 500,
-  fontFamily: "$sans",
+  fontFamily: "$system",
   border: `2px solid`,
   borderRadius: "4px",
   borderColor: "$coloredLink",
