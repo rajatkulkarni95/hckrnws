@@ -5,7 +5,7 @@ export const Button = styled("button", {
   alignItems: "center",
   justifyContent: "space-between",
   padding: "4px 16px",
-  fontFamily: "$system",
+  fontFamily: "$untitled",
   fontWeight: 500,
   fontSize: "$2",
   border: "1px solid",
