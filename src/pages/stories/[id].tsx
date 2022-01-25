@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { CenteredText, FlexColumn } from "../../styles";
 
 import { useRouter } from "next/router";
@@ -10,13 +10,16 @@ import Meta from "@components/Common/Meta";
 import CommentList from "@components/Comments/CommentList";
 import { Button } from "@components/Common/Button";
 import BackIcon from "svgs/back.svg";
-import useSWR from "swr";
-import fetcher from "helpers/fetcher";
 import { useTheme } from "next-themes";
 import InnerHTMLText from "@components/Common/InnerHTMLText";
 import { Size } from "types/size";
 import useWindowSize from "hooks/useWindowSize";
 import useStore from "store/useStore";
+
+type Props = {
+  data: TDetailedStory;
+  errorCode: false | number;
+};
 
 const Title = styled("h2", {
   fontSize: "$4",
@@ -34,9 +37,9 @@ const Text = styled("span", {
   marginLeft: "4px",
 });
 
-const Story: NextPage = () => {
+const Story: NextPage<Props> = (props: Props) => {
   const router = useRouter();
-  const { id: storyId } = router.query;
+  const { data, errorCode } = props;
 
   const size: Size = useWindowSize();
 
@@ -46,14 +49,8 @@ const Story: NextPage = () => {
   const { theme } = useTheme();
   const stroke = theme === "light" ? "#161618" : "#FFFFFF";
 
-  const ITEM_BASE_URL = "https://api.hnpwa.com/v0/item";
-
-  const { data, error } = useSWR<TDetailedStory, Error>(
-    `${ITEM_BASE_URL}/${storyId}.json`,
-    fetcher
-  );
-
-  if (error) return <CenteredText>Oops! Something went wrong :(</CenteredText>;
+  if (errorCode)
+    return <CenteredText>Oops! Something went wrong :(</CenteredText>;
 
   if (!data) return <CenteredText>Loading...</CenteredText>;
 
@@ -127,6 +124,26 @@ const Story: NextPage = () => {
       </FlexColumn>
     </Fragment>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.query;
+
+  const ITEM_BASE_URL = "https://api.hnpwa.com/v0/item";
+
+  const fetchUrl = `${ITEM_BASE_URL}/${id}.json`;
+
+  const response = await fetch(fetchUrl);
+  const errorCode = response.ok ? false : response.status;
+  // Only run the json if the error is not present
+  const data = errorCode === false ? await response.json() : [];
+
+  return {
+    props: {
+      errorCode,
+      data,
+    },
+  };
 };
 
 export default Story;
