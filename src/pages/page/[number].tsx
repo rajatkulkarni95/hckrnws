@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { TBaseStory } from "types/story";
 import { styled } from "../../../stitches.config";
 import StoryListItem from "@components/StoryListItem";
@@ -7,12 +7,11 @@ import { Fragment } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { PageNumber } from "@components/Common/PageNumber";
-import useSWR from "swr";
-import fetcher from "helpers/fetcher";
 import { CenteredText } from "styles/";
 
 type PageProps = {
-  response: TBaseStory[];
+  data: TBaseStory[];
+  errorCode: false | number;
 };
 
 const Box = styled("div", {
@@ -43,17 +42,10 @@ const PaginationContainer = styled("div", {
 const PageList: NextPage<PageProps> = (props: PageProps) => {
   const router = useRouter();
   const { number } = router.query;
+  const { data, errorCode } = props;
 
-  const NEWS_BASE_URL = "https://api.hnpwa.com/v0/news";
-  // Due to the redirect being made from / to /page/1 , the number sometimes is undefined when it reaches the fetch
-  // Setting it to 1, avoids the undefined api call
-  const fetchUrl = number
-    ? `${NEWS_BASE_URL}/${number}.json`
-    : `${NEWS_BASE_URL}/1.json`;
-
-  const { data, error } = useSWR<TBaseStory[], Error>(fetchUrl, fetcher);
-
-  if (error) return <CenteredText>Oops! Something went wrong :(</CenteredText>;
+  if (errorCode)
+    return <CenteredText>Oops! Something went wrong :(</CenteredText>;
 
   if (!data) return <CenteredText>Loading...</CenteredText>;
 
@@ -79,6 +71,29 @@ const PageList: NextPage<PageProps> = (props: PageProps) => {
       </PaginationContainer>
     </Fragment>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { number } = context.query;
+
+  const NEWS_BASE_URL = "https://api.hnpwa.com/v0/news";
+  // Due to the redirect being made from / to /page/1 , the number sometimes is undefined when it reaches the fetch
+  // Setting it to 1, avoids the undefined api call
+  const fetchUrl = number
+    ? `${NEWS_BASE_URL}/${number}.json`
+    : `${NEWS_BASE_URL}/1.json`;
+
+  const response = await fetch(fetchUrl);
+  const errorCode = response.ok ? false : response.status;
+  // Only run the json if the error is not present
+  const data = errorCode === false ? await response.json() : [];
+
+  return {
+    props: {
+      errorCode,
+      data,
+    },
+  };
 };
 
 export default PageList;
