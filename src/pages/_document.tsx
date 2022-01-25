@@ -22,7 +22,6 @@ export default class Document extends NextDocument {
             href="/fonts/IBMPlexMono-Text.woff2"
             as="font"
             type="font/woff2"
-            rel="preload"
             crossOrigin="anonymous"
           />
         </Head>
