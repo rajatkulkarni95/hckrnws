@@ -45,11 +45,13 @@ const PageList: NextPage<PageProps> = (props: PageProps) => {
   const { number } = router.query;
 
   const NEWS_BASE_URL = "https://api.hnpwa.com/v0/news";
+  // Due to the redirect being made from / to /page/1 , the number sometimes is undefined when it reaches the fetch
+  // Setting it to 1, avoids the undefined api call
+  const fetchUrl = number
+    ? `${NEWS_BASE_URL}/${number}.json`
+    : `${NEWS_BASE_URL}/1.json`;
 
-  const { data, error } = useSWR<TBaseStory[], Error>(
-    `${NEWS_BASE_URL}/${number}.json`,
-    fetcher
-  );
+  const { data, error } = useSWR<TBaseStory[], Error>(fetchUrl, fetcher);
 
   if (error) return <CenteredText>Oops! Something went wrong :(</CenteredText>;
 
