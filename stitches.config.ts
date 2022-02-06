@@ -9,8 +9,8 @@ export const { styled, getCssText, createTheme } = createStitches({
   },
   theme: {
     fonts: {
-      mono: "IBM Plex Mono",
-      sans: "IBM Plex Sans",
+      mono: "Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace",
+      sans: "-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif",
     },
     colors: {
       primaryText: "#EAEAEA",
