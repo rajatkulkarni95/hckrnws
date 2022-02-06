@@ -9,8 +9,8 @@ export const { styled, getCssText, createTheme } = createStitches({
   },
   theme: {
     fonts: {
-      mono: "Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace",
-      sans: "-apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif",
+      mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+      sans: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
     },
     colors: {
       primaryText: "#EAEAEA",
