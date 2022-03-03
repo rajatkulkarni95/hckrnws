@@ -102,7 +102,9 @@ const Meta: React.FC<Props> = ({
       <Item>{renderCommentItem()}</Item>
     ) : (
       <Link href={`/stories/${id}`} passHref>
-        <LinkItem>{renderCommentItem()}</LinkItem>
+        <LinkItem as="a" css={{ textDecoration: "none" }}>
+          {renderCommentItem()}
+        </LinkItem>
       </Link>
     );
 
