@@ -17,7 +17,7 @@ const Options: React.FC<Props> = ({ theme, handleThemeChange }: Props) => {
   return (
     <AlignCenter>
       <Icon css={{ marginRight: "16px" }}>
-        <Link href="/why" passHref>
+        <Link href="/about" passHref>
           <Question
             width={18}
             height={18}
