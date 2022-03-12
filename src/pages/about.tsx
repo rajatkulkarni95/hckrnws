@@ -1,7 +1,6 @@
 import { Container } from "styles/";
 import { NextPage } from "next";
 import { styled } from "../../stitches.config";
-import { Button } from "@components/Common/Button";
 
 const Text = styled("p", {
   color: "$primaryText",
