@@ -122,7 +122,7 @@ const Meta: React.FC<Props> = ({
             <Text>{prettyTime(time)}</Text>
           </Item>
           <LinkItem css={{ marginRight: "4px" }}>
-            <a href={externalLink} target="_blank">
+            <a href={externalLink} target="_blank" rel="noreferrer noopener">
               <ExternalLinkIcon
                 height={14}
                 width={14}
