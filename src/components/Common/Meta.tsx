@@ -8,7 +8,6 @@ import ClockIcon from "svgs/clock.svg";
 import StarIcon from "svgs/star.svg";
 import ExternalLinkIcon from "svgs/external_link.svg";
 import { useTheme } from "next-themes";
-import { HyperLink } from "./HyperLink";
 import { FlexColumn, SpaceBetween } from "styles/";
 import { Size } from "types/size";
 import useWindowSize from "hooks/useWindowSize";
@@ -34,7 +33,6 @@ const Box = styled("div", {
 
 const Item = styled("div", {
   display: "flex",
-  alignItems: "center",
   marginRight: "8px",
   padding: "4px",
   paddingLeft: 0,
@@ -42,7 +40,6 @@ const Item = styled("div", {
 
 const LinkItem = styled("button", {
   display: "flex",
-  alignItems: "center",
   marginRight: "8px",
   padding: "4px",
   background: "none",
@@ -125,18 +122,14 @@ const Meta: React.FC<Props> = ({
             <Text>{prettyTime(time)}</Text>
           </Item>
           <LinkItem css={{ marginRight: "4px" }}>
-            <HyperLink
-              href={externalLink}
-              target="_blank"
-              css={{ height: "14px", display: "flex" }}
-            >
+            <a href={externalLink} target="_blank" rel="noreferrer noopener">
               <ExternalLinkIcon
                 height={14}
                 width={14}
                 alt="time"
                 stroke={stroke}
               />
-            </HyperLink>
+            </a>
           </LinkItem>
           {domain && !isMobile && <Text>({domain})</Text>}
         </Box>

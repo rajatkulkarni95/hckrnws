@@ -18,8 +18,8 @@ const Author = styled("span", {
   fontSize: "$1",
   color: "$primaryText",
   background: "$codeBlock",
-  padding: "4px",
-  borderRadius: "4px",
+  padding: "4px 8px",
+  borderRadius: "6px",
   fontWeight: 500,
   display: "flex",
   alignItems: "center",
@@ -102,13 +102,13 @@ const CollapseButton = styled("button", {
   alignItems: "center",
   marginLeft: "8px",
   padding: "4px",
-  background: "$accent",
+  background: "$codeBlock",
   cursor: "pointer",
   borderRadius: "3px",
   border: "none",
 
   "&:hover": {
-    background: "$secondaryText",
+    background: "$accent",
   },
 });
 
