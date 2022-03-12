@@ -1,4 +1,5 @@
 import { createStitches } from "@stitches/react";
+import { slateDark, blueDark, violetDark } from "@radix-ui/colors";
 
 export const { styled, getCssText, createTheme } = createStitches({
   media: {
@@ -13,16 +14,15 @@ export const { styled, getCssText, createTheme } = createStitches({
       sans: "IBM Plex Sans",
     },
     colors: {
-      primaryText: "#EAEAEA",
-      secondaryText: "hsl(206, 6%, 43%)",
-      background: "hsl(240, 4%, 9%)",
-      link: "#FAA916",
-      coloredLink: "#E9C46A",
-      codeBlock: "#25292D",
-      accent: "#464444",
-      hovered: "#232323",
-      opBG: "#1D2433",
-      opColor: "#4970CB",
+      primaryText: slateDark.slate12,
+      secondaryText: slateDark.slate10,
+      background: slateDark.slate1,
+      coloredLink: blueDark.blue9,
+      codeBlock: slateDark.slate3,
+      accent: slateDark.slate6,
+      hovered: slateDark.slate2,
+      opBG: blueDark.blue3,
+      opColor: blueDark.blue9,
 
       level0: "#F02D3D",
       level1: "#FAA916",
@@ -53,7 +53,6 @@ export const lightTheme = createTheme({
     primaryText: "#161618",
     secondaryText: "#6F6F6F",
     background: "#ECEDEE",
-    link: "#3c798f",
     coloredLink: "#467599",
     codeBlock: "#D0CCD0",
     accent: "#BABABA",
