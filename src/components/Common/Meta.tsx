@@ -33,7 +33,6 @@ const Box = styled("div", {
 
 const Item = styled("div", {
   display: "flex",
-  alignItems: "center",
   marginRight: "8px",
   padding: "4px",
   paddingLeft: 0,
@@ -41,7 +40,6 @@ const Item = styled("div", {
 
 const LinkItem = styled("button", {
   display: "flex",
-  alignItems: "center",
   marginRight: "8px",
   padding: "4px",
   background: "none",
