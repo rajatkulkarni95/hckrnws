@@ -10,6 +10,8 @@ import {
   amberDark,
   brownDark,
   cyanDark,
+  slate,
+  blue,
 } from "@radix-ui/colors";
 
 export const { styled, getCssText, createTheme } = createStitches({
@@ -61,14 +63,14 @@ export const { styled, getCssText, createTheme } = createStitches({
 
 export const lightTheme = createTheme({
   colors: {
-    primaryText: "#161618",
-    secondaryText: "#6F6F6F",
-    background: "#ECEDEE",
-    coloredLink: "#467599",
-    codeBlock: "#D0CCD0",
-    accent: "#BABABA",
-    hovered: "#E5E5E5",
-    opBG: "#b9ccf4",
-    opColor: "#1d456c",
+    primaryText: slate.slate12,
+    secondaryText: slate.slate10,
+    background: slate.slate1,
+    coloredLink: blue.blue9,
+    codeBlock: slate.slate3,
+    accent: slate.slate7,
+    hovered: slate.slate3,
+    opBG: blue.blue3,
+    opColor: blue.blue9,
   },
 });
