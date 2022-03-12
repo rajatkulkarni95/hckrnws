@@ -1,5 +1,16 @@
 import { createStitches } from "@stitches/react";
-import { slateDark, blueDark, violetDark } from "@radix-ui/colors";
+import {
+  slateDark,
+  blueDark,
+  tomatoDark,
+  plumDark,
+  indigoDark,
+  tealDark,
+  grassDark,
+  amberDark,
+  brownDark,
+  cyanDark,
+} from "@radix-ui/colors";
 
 export const { styled, getCssText, createTheme } = createStitches({
   media: {
@@ -24,14 +35,14 @@ export const { styled, getCssText, createTheme } = createStitches({
       opBG: blueDark.blue3,
       opColor: blueDark.blue9,
 
-      level0: "#F02D3D",
-      level1: "#FAA916",
-      level2: "#6A994E",
-      level3: "#2A9BB7",
-      level4: "#E5989B",
-      level5: "#94D2BD",
-      level6: "#F9844A",
-      level7: "#52B788",
+      level0: tomatoDark.tomato8,
+      level1: plumDark.plum8,
+      level2: indigoDark.indigo8,
+      level3: tealDark.teal8,
+      level4: grassDark.grass8,
+      level5: amberDark.amber8,
+      level6: brownDark.brown8,
+      level7: cyanDark.cyan8,
     },
     fontSizes: {
       0: "12px",
