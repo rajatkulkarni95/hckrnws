@@ -31,7 +31,7 @@ const ShowStoriesList: NextPage<PageProps> = (props: PageProps) => {
         ))}
       </PageBox>
       <PaginationContainer>
-        {[...Array(10)].map((x, i) => (
+        {[...Array(2)].map((x, i) => (
           <Link key={i + 1} href={`/show/${i + 1}`} passHref>
             <PageNumber selected={(i + 1).toString() === number}>
               {i + 1}
