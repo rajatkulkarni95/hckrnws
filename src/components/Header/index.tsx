@@ -3,8 +3,9 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { styled } from "../../../stitches.config";
 
-import { SpaceBetween } from "styles/";
+import { AlignCenter, SpaceBetween } from "styles/";
 import Options from "./Options";
+import NavLinks from "@components/Common/NavLinks";
 
 const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
@@ -23,7 +24,10 @@ const Header: React.FC = () => {
         <Link href="/page/1" passHref>
           <Heading>hckrnws</Heading>
         </Link>
-        <Options theme={theme} handleThemeChange={handleThemeChange} />
+        <AlignCenter>
+          <NavLinks />
+          <Options theme={theme} handleThemeChange={handleThemeChange} />
+        </AlignCenter>
       </SpaceBetween>
     </Fragment>
   );
