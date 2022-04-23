@@ -41,9 +41,17 @@ const NavLinks = () => {
   const isTopSelected = router.pathname.includes("top");
   const isNewSelected = router.pathname.includes("new");
   const isShowSelected = router.pathname.includes("show");
+  const isAskSelected = router.pathname.includes("ask");
 
   return (
-    <AlignCenter css={{ margin: "0 8px" }}>
+    <AlignCenter
+      css={{
+        margin: "0 auto",
+        padding: "8px",
+        border: "1px solid $accent",
+        borderRadius: "4px",
+      }}
+    >
       <Link href="/">
         <StyledLink selected={isTopSelected}>Top</StyledLink>
       </Link>
@@ -52,6 +60,9 @@ const NavLinks = () => {
       </Link>
       <Link href="/show/1">
         <StyledLink selected={isShowSelected}>Show</StyledLink>
+      </Link>
+      <Link href="/ask/1">
+        <StyledLink selected={isAskSelected}>Ask</StyledLink>
       </Link>
     </AlignCenter>
   );
