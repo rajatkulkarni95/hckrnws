@@ -1,6 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
-import { TBaseStory } from "types/story";
-import { styled } from "../../../stitches.config";
+import { PageProps } from "types/story";
 import StoryListItem from "@components/StoryListItem";
 import Head from "next/head";
 import { Fragment } from "react";
@@ -8,38 +7,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { PageNumber } from "@components/Common/PageNumber";
 import { CenteredText } from "styles/";
+import { PageBox, PaginationContainer } from "@components/List";
 
-type PageProps = {
-  data: TBaseStory[];
-  errorCode: false | number;
-};
-
-const Box = styled("div", {
-  display: "flex",
-  flexDirection: "column",
-  marginTop: "48px",
-
-  "@tablet": {
-    marginTop: "24px",
-  },
-
-  "@phone": {
-    marginTop: "16px",
-  },
-});
-
-const PaginationContainer = styled("div", {
-  margin: "16px 0",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-
-  "@phone": {
-    flexWrap: "wrap",
-  },
-});
-
-const PageList: NextPage<PageProps> = (props: PageProps) => {
+const NewStoriesList: NextPage<PageProps> = (props: PageProps) => {
   const router = useRouter();
   const { number } = router.query;
   const { data, errorCode } = props;
@@ -52,17 +22,17 @@ const PageList: NextPage<PageProps> = (props: PageProps) => {
   return (
     <Fragment>
       <Head>
-        <title>hckrnws - Page {number} </title>
+        <title>hckrnws - New - {number} </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Box>
+      <PageBox>
         {data.map((story) => (
           <StoryListItem story={story} key={story.id} />
         ))}
-      </Box>
+      </PageBox>
       <PaginationContainer>
         {[...Array(10)].map((x, i) => (
-          <Link key={i + 1} href={`/page/${i + 1}`} passHref>
+          <Link key={i + 1} href={`/new/${i + 1}`} passHref>
             <PageNumber selected={(i + 1).toString() === number}>
               {i + 1}
             </PageNumber>
@@ -76,12 +46,12 @@ const PageList: NextPage<PageProps> = (props: PageProps) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { number } = context.query;
 
-  const NEWS_BASE_URL = "https://api.hnpwa.com/v0/news";
+  const NEWEST_BASE_URL = "https://api.hnpwa.com/v0/newest";
   // Due to the redirect being made from / to /page/1 , the number sometimes is undefined when it reaches the fetch
   // Setting it to 1, avoids the undefined api call
   const fetchUrl = number
-    ? `${NEWS_BASE_URL}/${number}.json`
-    : `${NEWS_BASE_URL}/1.json`;
+    ? `${NEWEST_BASE_URL}/${number}.json`
+    : `${NEWEST_BASE_URL}/1.json`;
 
   const response = await fetch(fetchUrl);
   const errorCode = response.ok ? false : response.status;
@@ -96,4 +66,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default PageList;
+export default NewStoriesList;

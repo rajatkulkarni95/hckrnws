@@ -14,7 +14,7 @@ import {
   blue,
 } from "@radix-ui/colors";
 
-export const { styled, getCssText, createTheme } = createStitches({
+export const { styled, getCssText, createTheme, globalCss } = createStitches({
   media: {
     phone: `(width < 720px)`,
     tablet: `(720px <= width < 1024px)`,

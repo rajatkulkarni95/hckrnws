@@ -38,3 +38,8 @@ export type TComment = {
   url: string;
   deleted?: boolean;
 };
+
+export type PageProps = {
+  data: TBaseStory[];
+  errorCode: false | number;
+};
