@@ -6,6 +6,7 @@ import { styled } from "../../../stitches.config";
 import { AlignCenter, SpaceBetween } from "styles/";
 import Options from "./Options";
 import NavLinks from "@components/Common/NavLinks";
+import Logo from "svgs/logo.svg";
 
 const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
@@ -22,7 +23,10 @@ const Header: React.FC = () => {
     <Fragment>
       <SpaceBetween css={{ padding: "16px 0" }}>
         <Link href="/page/1" passHref>
-          <Heading>hckrnws</Heading>
+          <AlignCenter>
+            <Logo width={32} height={32} />
+            <Heading>hckrnws</Heading>
+          </AlignCenter>
         </Link>
         <AlignCenter>
           <NavLinks />
@@ -42,13 +46,14 @@ const Heading = styled("h1", {
   cursor: "pointer",
   borderBottom: "2px solid",
   borderColor: "transparent",
+  marginLeft: "8px",
 
   "&:hover": {
     borderColor: "$primaryText",
   },
 
   "@phone": {
-    fontSize: "$4",
+    display: "none",
   },
 });
 

@@ -18,6 +18,10 @@ const StyledLink = styled("button", {
     background: "$accent",
   },
 
+  "@phone": {
+    fontSize: "12px",
+  },
+
   variants: {
     selected: {
       true: {
