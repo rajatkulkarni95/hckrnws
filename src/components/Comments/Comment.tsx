@@ -199,14 +199,10 @@ const Comment: React.FC<Props> = (props: Props) => {
               </Author>
               <AlignCenter>
                 {id !== parentCommentId && (
-                  <LinkButton type="parent" onClick={handleScrollToParent}>
-                    parent
-                  </LinkButton>
+                  <LinkButton onClick={handleScrollToParent}>parent</LinkButton>
                 )}
                 {id !== rootCommentId && (
-                  <LinkButton type="root" onClick={handleScrollToRoot}>
-                    root
-                  </LinkButton>
+                  <LinkButton onClick={handleScrollToRoot}>root</LinkButton>
                 )}
                 <Time>{prettyTime(time)}</Time>
                 <CollapseButton onClick={() => setCollapsed(true)}>
