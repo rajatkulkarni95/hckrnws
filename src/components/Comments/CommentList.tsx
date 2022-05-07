@@ -26,7 +26,13 @@ const CommentList: React.FC<Props> = (props: Props) => {
         <Fragment>
           <Title>Comments</Title>
           {comments.map((comment) => (
-            <Comment key={comment.id} comment={comment} op={op} />
+            <Comment
+              key={comment.id}
+              comment={comment}
+              op={op}
+              parentCommentId={comment.id}
+              rootCommentId={comment.id}
+            />
           ))}
         </Fragment>
       ) : (

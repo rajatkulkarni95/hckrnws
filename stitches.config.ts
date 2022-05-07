@@ -12,6 +12,8 @@ import {
   cyanDark,
   slate,
   blue,
+  cyan,
+  amber,
 } from "@radix-ui/colors";
 
 export const { styled, getCssText, createTheme, globalCss } = createStitches({
@@ -36,6 +38,8 @@ export const { styled, getCssText, createTheme, globalCss } = createStitches({
       hovered: slateDark.slate2,
       opBG: blueDark.blue3,
       opColor: blueDark.blue9,
+      rootComment: cyanDark.cyan9,
+      parentComment: amberDark.amber9,
 
       level0: tomatoDark.tomato8,
       level1: plumDark.plum8,
@@ -72,5 +76,7 @@ export const lightTheme = createTheme({
     hovered: slate.slate3,
     opBG: blue.blue3,
     opColor: blue.blue9,
+    rootComment: cyan.cyan9,
+    parentComment: amber.amber9,
   },
 });

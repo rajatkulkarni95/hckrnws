@@ -8,10 +8,13 @@ import ChevronUp from "svgs/chevron_up.svg";
 import { contains } from "helpers/contains";
 import { useTheme } from "next-themes";
 import InnerHTMLText from "@components/Common/InnerHTMLText";
+import { Button, LinkButton } from "@components/Common/Button";
 
 type Props = {
   comment: TComment;
   op: string;
+  parentCommentId: number;
+  rootCommentId: number;
 };
 
 const Author = styled("span", {
@@ -45,12 +48,8 @@ const OPTag = styled("span", {
 });
 
 const Time = styled("span", {
-  fontSize: "$1",
+  fontSize: "$0",
   color: "$secondaryText",
-
-  "@phone": {
-    fontSize: "$0",
-  },
 });
 
 const DeletedComment = styled("i", {
@@ -114,20 +113,43 @@ const CollapseButton = styled("button", {
 
 const Comment: React.FC<Props> = (props: Props) => {
   const {
-    comment: { user, time, content, deleted, level, comments, comments_count },
+    comment: {
+      id,
+      user,
+      time,
+      content,
+      deleted,
+      level,
+      comments,
+      comments_count,
+    },
+    parentCommentId,
+    rootCommentId,
     op,
   } = props;
   const isCommenterOP = user === op;
   const [collapsed, setCollapsed] = useState<Boolean>(false);
-
   const { theme } = useTheme();
   const stroke = theme === "light" ? "#161618" : "#FFFFFF";
+
+  const handleScrollToParent = () => {
+    const parentElement = document.getElementById(parentCommentId.toString());
+    if (parentElement) {
+      parentElement.scrollIntoView();
+    }
+  };
+
+  const handleScrollToRoot = () => {
+    const rootElement = document.getElementById(rootCommentId.toString());
+    if (rootElement) {
+      rootElement.scrollIntoView();
+    }
+  };
 
   // find quotes and apply styles
   useEffect(() => {
     contains("p", ">", "quotes");
   }, []);
-
   if (collapsed)
     return (
       <div style={{ display: "flex" }}>
@@ -168,6 +190,7 @@ const Comment: React.FC<Props> = (props: Props) => {
             "@phone": { marginLeft: `calc(8px * ${level})` },
           }}
           levels={level}
+          id={id.toString()}
         >
           {!deleted && (
             <SpaceBetween css={{ marginBottom: "8px" }}>
@@ -175,6 +198,16 @@ const Comment: React.FC<Props> = (props: Props) => {
                 {user} {isCommenterOP && <OPTag>OP</OPTag>}
               </Author>
               <AlignCenter>
+                {id !== parentCommentId && (
+                  <LinkButton type="parent" onClick={handleScrollToParent}>
+                    parent
+                  </LinkButton>
+                )}
+                {id !== rootCommentId && (
+                  <LinkButton type="root" onClick={handleScrollToRoot}>
+                    root
+                  </LinkButton>
+                )}
                 <Time>{prettyTime(time)}</Time>
                 <CollapseButton onClick={() => setCollapsed(true)}>
                   <ChevronUp
@@ -196,7 +229,13 @@ const Comment: React.FC<Props> = (props: Props) => {
         {/* // Recursively call the same component for children comments */}
       </div>
       {comments?.map((comment) => (
-        <Comment key={comment.id} comment={comment} op={op} />
+        <Comment
+          key={comment.id}
+          comment={comment}
+          op={op}
+          parentCommentId={id}
+          rootCommentId={rootCommentId}
+        />
       ))}
     </Fragment>
   );
