@@ -35,3 +35,17 @@ export const Icon = styled("button", {
     background: "$codeBlock",
   },
 });
+
+export const LinkButton = styled("button", {
+  fontSize: "$0",
+  color: "$secondaryText",
+  border: "none",
+  padding: "4px 8px",
+  borderRadius: "18px",
+  marginRight: "8px",
+  cursor: "pointer",
+  background: "transparent",
+  "&:hover": {
+    background: "$accent",
+  },
+});

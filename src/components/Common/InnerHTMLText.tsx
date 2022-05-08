@@ -36,9 +36,7 @@ const InnerHTMLText = styled("div", {
 
   code: {
     fontFamily: "$mono",
-    "@phone": {
-      fontSize: "$1",
-    },
+    fontSize: "$1",
   },
 });
 
