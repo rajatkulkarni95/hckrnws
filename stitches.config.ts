@@ -23,8 +23,8 @@ export const { styled, getCssText, createTheme, globalCss } = createStitches({
   },
   theme: {
     fonts: {
-      mono: "IBM Plex Mono",
-      sans: "IBM Plex Sans",
+      mono: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+      sans: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
     },
     colors: {
       primaryText: slateDark.slate12,
