@@ -15,6 +15,7 @@ import InnerHTMLText from "@components/Common/InnerHTMLText";
 import { Size } from "types/size";
 import useWindowSize from "hooks/useWindowSize";
 import useStore from "store/useStore";
+import { decode } from "html-entities";
 
 type Props = {
   data: TDetailedStory;
@@ -94,7 +95,7 @@ const Story: NextPage<Props> = (props: Props) => {
   return (
     <Fragment>
       <Head>
-        <title>{title} - hckrnws</title>
+        <title>{decode(title)} - hckrnws</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <FlexColumn css={{ padding: "16px 0" }}>
@@ -105,7 +106,7 @@ const Story: NextPage<Props> = (props: Props) => {
           <BackIcon width={14} height={14} stroke={stroke} />
         </Button>
         <Title>
-          {title} {isMobile && domain && <Text>({domain})</Text>}
+          {decode(title)} {isMobile && domain && <Text>({domain})</Text>}
         </Title>
 
         <InnerHTMLText dangerouslySetInnerHTML={{ __html: content }} />

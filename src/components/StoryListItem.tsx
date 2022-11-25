@@ -5,6 +5,7 @@ import Meta from "./Common/Meta";
 import useWindowSize from "hooks/useWindowSize";
 import { Size } from "types/size";
 import useStore from "store/useStore";
+import { decode } from "html-entities";
 
 type Props = {
   story: TBaseStory;
@@ -48,7 +49,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
     <Box>
       <Link href={`/stories/${id}`} passHref>
         <Title>
-          {title} {isMobile && domain && <Text>({domain})</Text>}
+          {decode(title)} {isMobile && domain && <Text>({domain})</Text>}
         </Title>
       </Link>
 
