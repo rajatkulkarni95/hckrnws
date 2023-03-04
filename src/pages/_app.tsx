@@ -1,4 +1,5 @@
 import { Container } from "styles/";
+import "styles/globals.css";
 import type { AppProps } from "next/app";
 import React from "react";
 import { globalStyles } from "../styles/globalStyles";
@@ -11,7 +12,6 @@ import { defaultSEO } from "config/seo";
 import { Analytics } from "@vercel/analytics/react";
 
 function App({ Component, pageProps }: AppProps) {
-  globalStyles();
   return (
     <ThemeProvider
       attribute="class"

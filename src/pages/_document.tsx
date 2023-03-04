@@ -1,16 +1,11 @@
 import React from "react";
 import NextDocument, { Html, Head, Main, NextScript } from "next/document";
-import { getCssText } from "../../stitches.config";
 
 export default class Document extends NextDocument {
   render() {
     return (
       <Html lang="en">
         <Head>
-          <style
-            id="stitches"
-            dangerouslySetInnerHTML={{ __html: getCssText() }}
-          />
           <link
             href="/fonts/ibm-plex-sans-var.woff2"
             as="font"
@@ -25,7 +20,7 @@ export default class Document extends NextDocument {
             crossOrigin="anonymous"
           />
         </Head>
-        <body>
+        <body className="h-screen block mx-auto font-sans scroll-smooth bg-zinc-900 text-slate-50 font-normal">
           <Main />
           <NextScript />
         </body>
