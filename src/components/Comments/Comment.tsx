@@ -7,6 +7,7 @@ import ChevronDown from "svgs/chevron_down.svg";
 import ChevronUp from "svgs/chevron_up.svg";
 import { contains } from "helpers/contains";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 import InnerHTMLText from "@components/Common/InnerHTMLText";
 
 type Props = {
@@ -114,7 +115,7 @@ const CollapseButton = styled("button", {
 
 const Comment: React.FC<Props> = (props: Props) => {
   const {
-    comment: { user, time, content, deleted, level, comments, comments_count },
+    comment: { id, user, time, content, deleted, level, comments, comments_count },
     op,
   } = props;
   const isCommenterOP = user === op;
@@ -175,7 +176,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                 {user} {isCommenterOP && <OPTag>OP</OPTag>}
               </Author>
               <AlignCenter>
-                <Time>{prettyTime(time)}</Time>
+                <Link href={`/stories/${id}`}><Time>{prettyTime(time)}</Time></Link>
                 <CollapseButton onClick={() => setCollapsed(true)}>
                   <ChevronUp
                     height={14}
