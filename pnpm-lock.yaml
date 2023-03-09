@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@radix-ui/colors': ^0.1.8
   '@radix-ui/react-dropdown-menu': ^2.0.4
-  '@stitches/react': ^1.2.7
   '@svgr/webpack': ^6.1.1
   '@types/node': 18.14.6
   '@types/react': 18.0.28
@@ -26,7 +25,6 @@ specifiers:
 dependencies:
   '@radix-ui/colors': 0.1.8
   '@radix-ui/react-dropdown-menu': 2.0.4_zula6vjvt3wdocc4mwcxqa6nzi
-  '@stitches/react': 1.2.8_react@18.2.0
   '@vercel/analytics': 0.1.11_react@18.2.0
   date-fns: 2.29.3
   html-entities: 2.3.3
@@ -1906,14 +1904,6 @@ packages:
   /@rushstack/eslint-patch/1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
     dev: true
-
-  /@stitches/react/1.2.8_react@18.2.0:
-    resolution: {integrity: sha512-9g9dWI4gsSVe8bNLlb+lMkBYsnIKCZTmvqvDG+Avnn69XfmHZKiaMrx7cgTaddq7aTPPmXiTsbFcUy0xgI4+wA==}
-    peerDependencies:
-      react: '>= 16.3.0'
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /@svgr/babel-plugin-add-jsx-attribute/6.5.1_@babel+core@7.21.0:
     resolution: {integrity: sha512-9PYGcXrAxitycIjRmZB+Q0JaN07GZIWaTBIGQzfaZv+qr1n8X1XUEJ5rZ/vx6OVD9RRYlrNnXWExQXcmZeD/BQ==}
