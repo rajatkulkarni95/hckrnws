@@ -1,4 +1,5 @@
 import React from "react";
+// @ts-ignore
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 interface IDropdown {
