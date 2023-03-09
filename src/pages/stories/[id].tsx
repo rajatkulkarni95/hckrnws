@@ -96,32 +96,38 @@ const Story: NextPage<Props> = (props: Props) => {
             Back
           </span>
         </button>
-        <div className="flex flex-col py-4 px-2 bg-primary border border-primary rounded">
+        <div className="flex flex-col p-4 bg-primary border border-primary rounded">
           <h2 className="text-lg md:text-xl font-medium text-primary m-0 mb-1 font-coolSans">
             {decode(title)}
           </h2>
-          {domain && (
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
-            >
-              ({domain})
-            </a>
-          )}
+          <div className="flex items-center">
+            {domain && (
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
+              >
+                ({domain})
+              </a>
+            )}
+            <Meta
+              time={time}
+              points={points}
+              user={user}
+              isDetailedView
+              comments={comments.length}
+              url={url}
+              handleStarring={handleStar}
+              isStoryStarred={isStoryStarred}
+            />
+          </div>
+          <p className="text-xs mt-1 ml-0.5 text-secondary font-normal font-coolSans">
+            by <span className="font-semibold text-primary">{user}</span>
+          </p>
 
           <InnerHTMLText content={content} />
-          <Meta
-            time={time}
-            points={points}
-            user={user}
-            isDetailedView
-            comments={comments.length}
-            url={url}
-            handleStarring={handleStar}
-            isStoryStarred={isStoryStarred}
-          />
+
           {/* <CommentList comments={comments} op={user} /> */}
         </div>
       </div>
