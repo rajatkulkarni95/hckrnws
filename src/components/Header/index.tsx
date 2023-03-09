@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { AskHNIcon, TopHNIcon, ShowHNIcon, ClockIcon } from "~/icons";
 import Dropdown from "../Common/Dropdown";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
@@ -60,7 +61,11 @@ const Header: React.FC = () => {
 
   return (
     <div className="flex justify-between py-3">
-      <div />
+      <Link href="/">
+        <h1 className="text-xl md:text-2xl font-mono font-bold text-primary">
+          hckrnws
+        </h1>
+      </Link>
       <Dropdown
         items={dropdownItems}
         triggerLabel={triggerLabel()}
