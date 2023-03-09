@@ -7,6 +7,7 @@ import { DefaultSeo } from "next-seo";
 import { defaultSEO } from "~/config/seo";
 // @ts-ignore
 import { Analytics } from "@vercel/analytics/react";
+import { CraftedBy } from "~/components/Common/Fragments";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,6 +16,7 @@ function App({ Component, pageProps }: AppProps) {
       <main className="mx-auto p-4 w-full md:w-5/6 overflow-x-hidden xl:w-[900px] ">
         <Header />
         <Component {...pageProps} />
+        <CraftedBy />
         <Analytics />
       </main>
     </ThemeProvider>
