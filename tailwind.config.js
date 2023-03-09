@@ -23,6 +23,7 @@ module.exports = {
         tertiary: "var(--color-text-tertiary)",
         icon: "var(--color-text-icon)",
         code: "var(--color-text-code)",
+        btn: "var(--color-text-btn)",
         ...colors,
       },
       backgroundColor: {
@@ -33,6 +34,7 @@ module.exports = {
         code: "var(--color-bg-code)",
         tooltip: "var(--color-bg-tooltip)",
         op: "var(--color-bg-op)",
+        btn: "var(--color-bg-btn)",
         ...colors,
       },
       borderColor: {

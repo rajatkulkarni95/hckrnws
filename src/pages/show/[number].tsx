@@ -1,44 +1,39 @@
 import { GetServerSideProps, NextPage } from "next";
-import { PageProps } from "types/story";
-import StoryListItem from "@components/StoryListItem";
+import { PageProps } from "~/types/story";
+import StoryListItem from "~/components/StoryListItem";
 import Head from "next/head";
 import { Fragment } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
-import { PageNumber } from "@components/Common/PageNumber";
-import { CenteredText } from "styles/";
-import { PageBox, PaginationContainer } from "@components/List";
+import Pagination from "~/components/Common/Pagination";
 
 const ShowStoriesList: NextPage<PageProps> = (props: PageProps) => {
   const router = useRouter();
   const { number } = router.query;
   const { data, errorCode } = props;
 
-  if (errorCode)
-    return <CenteredText>Oops! Something went wrong :(</CenteredText>;
+  // if (errorCode)
+  //   return <CenteredText>Oops! Something went wrong :(</CenteredText>;
 
-  if (!data) return <CenteredText>Loading...</CenteredText>;
+  // if (!data) return <CenteredText>Loading...</CenteredText>;
+
+  const handlePageChange = (page: number) => {
+    router.push(`/show/${page}`);
+  };
 
   return (
     <Fragment>
       <Head>
-        <title>hckrnws - Show - {number} </title>
+        <title>Show HN - Page {number}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <PageBox>
-        {data.map((story) => (
-          <StoryListItem story={story} key={story.id} />
-        ))}
-      </PageBox>
-      <PaginationContainer>
-        {[...Array(2)].map((x, i) => (
-          <Link key={i + 1} href={`/show/${i + 1}`} passHref>
-            <PageNumber selected={(i + 1).toString() === number}>
-              {i + 1}
-            </PageNumber>
-          </Link>
-        ))}
-      </PaginationContainer>
+      {data.map((story) => (
+        <StoryListItem story={story} key={story.id} />
+      ))}
+      <Pagination
+        currentPage={parseInt(number as string)}
+        onChangePage={handlePageChange}
+        totalPages={2}
+      />
     </Fragment>
   );
 };
