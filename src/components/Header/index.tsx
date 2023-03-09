@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
-import { AskHNIcon, TopHNIcon, ShowHNIcon, ClockIcon } from "~/icons";
+import {
+  AskHNIcon,
+  TopHNIcon,
+  ShowHNIcon,
+  ClockIcon,
+  SunIcon,
+  MoonIcon,
+} from "~/icons";
 import Dropdown from "../Common/Dropdown";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -9,6 +16,7 @@ import Link from "next/link";
 const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
+  const { theme, setTheme } = useTheme();
 
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), []);
@@ -54,7 +62,7 @@ const Header: React.FC = () => {
     <div className="flex items-center">
       {selectedItem?.icon}
       <span className="text-sm font-bold text-primary">
-        {selectedItem?.label || "None"}
+        {selectedItem?.label || "Select"}
       </span>
     </div>
   );
@@ -66,12 +74,24 @@ const Header: React.FC = () => {
           hckrnws
         </h1>
       </Link>
-      <Dropdown
-        items={dropdownItems}
-        triggerLabel={triggerLabel()}
-        selectedId={selectedItem?.id}
-        handleOnClick={(id) => router.push(`/${id}/1`)}
-      />
+      <div className="flex items-center">
+        <Dropdown
+          items={dropdownItems}
+          triggerLabel={triggerLabel()}
+          selectedId={selectedItem?.id}
+          handleOnClick={(id) => router.push(`/${id}/1`)}
+        />
+        <button
+          className="p-1.5 border border-primary bg-secondary ml-2 hover:bg-tertiary rounded"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          {theme === "dark" ? (
+            <SunIcon className="h-4 w-4 text-icon" />
+          ) : (
+            <MoonIcon className="h-4 w-4 text-icon" />
+          )}
+        </button>
+      </div>
     </div>
   );
 };
