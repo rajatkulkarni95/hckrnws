@@ -2,11 +2,10 @@ import { GetServerSideProps, NextPage } from "next";
 
 import { useRouter } from "next/router";
 import { TDetailedStory } from "~/types/story";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
 import Meta from "~/components/Common/Meta";
-// import CommentList from "~/components/Comments/CommentList";
-// import { Button } from "~/components/Common/Button";
+import CommentList from "~/components/Comments/CommentList";
 import { BackIcon } from "~/icons";
 import { useTheme } from "next-themes";
 import { Size } from "~/types/size";
@@ -23,6 +22,7 @@ type Props = {
 const Story: NextPage<Props> = (props: Props) => {
   const router = useRouter();
   const { data, errorCode } = props;
+  const [isStoryStarred, setIsStoryStarred] = useState(false);
 
   const size: Size = useWindowSize();
 
@@ -78,7 +78,9 @@ const Story: NextPage<Props> = (props: Props) => {
     }
   };
 
-  const isStoryStarred: boolean = starred?.some((story) => story.id === id);
+  useEffect(() => {
+    setIsStoryStarred(starred?.some((story) => story.id === id));
+  }, [starred, id]);
 
   return (
     <Fragment>
@@ -127,9 +129,8 @@ const Story: NextPage<Props> = (props: Props) => {
           </p>
 
           <InnerHTMLText content={content} />
-
-          {/* <CommentList comments={comments} op={user} /> */}
         </div>
+        <CommentList comments={comments} op={user} />
       </div>
     </Fragment>
   );

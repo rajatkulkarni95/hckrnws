@@ -4,6 +4,7 @@ export function contains(selector: string, text: string, className: string) {
     return [].filter.call(elements, function (element: any) {
       if (element.innerText.startsWith(text)) {
         element.className = className;
+        element.innerText = element.innerText.substring(1);
       }
     });
 }

@@ -32,6 +32,7 @@ module.exports = {
         hover: "var(--color-bg-hover)",
         code: "var(--color-bg-code)",
         tooltip: "var(--color-bg-tooltip)",
+        op: "var(--color-bg-op)",
         ...colors,
       },
       borderColor: {

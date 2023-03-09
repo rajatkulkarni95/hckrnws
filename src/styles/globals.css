@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+.quotes {
+  @apply px-4 border-l-2 border-secondary text-tertiary !my-4;
+}
+
 /* App Themes */
 
 [data-theme="light"] {
@@ -23,6 +27,7 @@
   --color-bg-hover: #f4f4f5;
   --color-bg-tooltip: #f5f6f8;
   --color-bg-code: #edebe5;
+  --color-bg-op: #ddd6fe;
 
   --color-border-primary: #d4d4d8;
   --color-border-secondary: #a1a1aa;
@@ -41,6 +46,7 @@
   --color-bg-hover: #232324;
   --color-bg-tooltip: #1a1a1a;
   --color-bg-code: #202020;
+  --color-bg-op: #5b21b6;
 
   --color-border-primary: #2e2e2f;
   --color-border-secondary: #52525b;
