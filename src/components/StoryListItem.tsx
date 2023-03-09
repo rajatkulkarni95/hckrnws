@@ -6,6 +6,7 @@ import { Size } from "~/types/size";
 import useStore from "~/store/useStore";
 import { decode } from "html-entities";
 import { useEffect, useState } from "react";
+import { StarIcon } from "~/icons";
 
 type Props = {
   story: TBaseStory;
@@ -59,16 +60,29 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
           ({domain})
         </a>
       )}
-      <Meta
-        id={id}
-        points={points}
-        comments={comments_count}
-        time={time}
-        user={user}
-        url={url}
-        handleStarring={handleStar}
-        isStoryStarred={isStoryStarred}
-      />
+      <div className="flex items-center justify-between">
+        <Meta
+          id={id}
+          points={points}
+          comments={comments_count}
+          time={time}
+          user={user}
+          url={url}
+        />
+        <button
+          className="flex mr-2 p-1 w-fit items-center cursor-pointer rounded border-none hover:bg-hover"
+          onClick={handleStar}
+        >
+          <StarIcon
+            className={`h-3 w-3 ${
+              isStoryStarred ? "text-amber-400" : "text-icon"
+            }`}
+          />
+          <span className="text-xs ml-1 text-secondary font-coolSans">
+            {isStoryStarred ? "Starred" : "Star"}
+          </span>
+        </button>
+      </div>
     </div>
   );
 };

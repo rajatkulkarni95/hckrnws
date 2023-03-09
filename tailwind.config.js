@@ -24,6 +24,7 @@ module.exports = {
         icon: "var(--color-text-icon)",
         code: "var(--color-text-code)",
         btn: "var(--color-text-btn)",
+        link: "var(--color-text-link)",
         ...colors,
       },
       backgroundColor: {

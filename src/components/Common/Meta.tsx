@@ -1,8 +1,7 @@
 import { prettyTime } from "~/helpers/time";
 
 import { Fragment, MouseEventHandler } from "react";
-import { ClockIcon, CommentIcon, UpvoteIcon, StarIcon } from "~/icons";
-import { isHackerNewsLink } from "~/helpers/contains";
+import { ClockIcon, CommentIcon, UpvoteIcon } from "~/icons";
 
 type Props = {
   points: number;
@@ -12,8 +11,6 @@ type Props = {
   user: string;
   url: string;
   isDetailedView?: boolean;
-  handleStarring: MouseEventHandler<HTMLButtonElement>;
-  isStoryStarred: boolean;
 };
 
 const Meta: React.FC<Props> = ({
@@ -23,8 +20,6 @@ const Meta: React.FC<Props> = ({
   id,
   user,
   url,
-  handleStarring,
-  isStoryStarred,
   isDetailedView = false,
 }) => {
   return (
@@ -53,19 +48,6 @@ const Meta: React.FC<Props> = ({
           </span>
         </div>
       </div>
-      <button
-        className="flex mr-2 p-1 items-center bg-secondary cursor-pointer rounded border-none hover:bg-hover"
-        onClick={handleStarring}
-      >
-        <StarIcon
-          className={`h-3 w-3 ${
-            isStoryStarred ? "text-amber-400" : "text-icon"
-          }`}
-        />
-        <span className="text-xs ml-1 text-secondary font-coolSans">
-          {isStoryStarred ? "Starred" : "Star"}
-        </span>
-      </button>
     </div>
   );
 };

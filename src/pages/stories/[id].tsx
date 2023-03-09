@@ -6,7 +6,7 @@ import { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
 import Meta from "~/components/Common/Meta";
 import CommentList from "~/components/Comments/CommentList";
-import { BackIcon } from "~/icons";
+import { BackIcon, StarIcon } from "~/icons";
 import { useTheme } from "next-themes";
 import { Size } from "~/types/size";
 import useWindowSize from "~/hooks/useWindowSize";
@@ -120,14 +120,26 @@ const Story: NextPage<Props> = (props: Props) => {
               isDetailedView
               comments={comments.length}
               url={url}
-              handleStarring={handleStar}
-              isStoryStarred={isStoryStarred}
             />
           </div>
-          <p className="text-xs mt-1 ml-0.5 text-secondary font-normal font-coolSans">
-            by <span className="font-semibold text-primary">{user}</span>
-          </p>
-
+          <div className="flex items-center justify-between">
+            <p className="text-xs mt-1 ml-0.5 text-secondary font-normal font-coolSans">
+              by <span className="font-semibold text-primary">{user}</span>
+            </p>
+            <button
+              className="flex mr-2 p-1 w-fit items-center cursor-pointer rounded border-none hover:bg-hover"
+              onClick={handleStar}
+            >
+              <StarIcon
+                className={`h-3 w-3 ${
+                  isStoryStarred ? "text-amber-400" : "text-icon"
+                }`}
+              />
+              <span className="text-xs ml-1 text-secondary font-coolSans">
+                {isStoryStarred ? "Starred" : "Star"}
+              </span>
+            </button>
+          </div>
           <InnerHTMLText content={content} />
         </div>
         <CommentList comments={comments} op={user} />
