@@ -1,3 +1,6 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: false,
@@ -17,7 +20,7 @@ module.exports = {
         primary: "var(--color-text-primary)",
         secondary: "var(--color-text-secondary)",
         tertiary: "var(--color-text-tertiary)",
-        icon: "var(--color-icon)",
+        icon: "var(--color-text-icon)",
         code: "var(--color-text-code)",
         ...colors,
       },
