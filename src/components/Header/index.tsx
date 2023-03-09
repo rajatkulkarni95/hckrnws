@@ -8,6 +8,7 @@ import {
   ClockIcon,
   SunIcon,
   MoonIcon,
+  StarIcon,
 } from "~/icons";
 import Dropdown from "../Common/Dropdown";
 import { useRouter } from "next/router";
@@ -52,6 +53,13 @@ const Header: React.FC = () => {
         <AskHNIcon className="h-4 w-4 mr-2 text-icon group-hover:text-primary" />
       ),
     },
+    {
+      label: "Starred",
+      id: "star",
+      icon: (
+        <StarIcon className="h-4 w-4 mr-2 text-icon group-hover:text-primary" />
+      ),
+    },
   ];
 
   const selectedItem = dropdownItems.find((item) =>
@@ -67,6 +75,14 @@ const Header: React.FC = () => {
     </div>
   );
 
+  const handleOnClick = (id: string) => {
+    if (id === "star") {
+      router.push(`/${id}`);
+    } else {
+      router.push(`/${id}/1`);
+    }
+  };
+
   return (
     <div className="flex justify-between py-3">
       <Link href="/">
@@ -79,7 +95,7 @@ const Header: React.FC = () => {
           items={dropdownItems}
           triggerLabel={triggerLabel()}
           selectedId={selectedItem?.id}
-          handleOnClick={(id) => router.push(`/${id}/1`)}
+          handleOnClick={handleOnClick}
         />
         <button
           className="p-1.5 border border-primary bg-secondary ml-2 hover:bg-tertiary rounded"
