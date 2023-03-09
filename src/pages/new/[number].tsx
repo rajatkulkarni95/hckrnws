@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PageProps } from "~/types/story";
 import StoryListItem from "~/components/StoryListItem";
 import Head from "next/head";
@@ -38,15 +38,12 @@ const NewStoriesList: NextPage<PageProps> = (props: PageProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { number } = context.query;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { params } = context;
+  const number = params?.number || 1;
 
-  const NEW_BASE_URL = "https://api.hnpwa.com/v0/newest";
-  // Due to the redirect being made from / to /page/1 , the number sometimes is undefined when it reaches the fetch
-  // Setting it to 1, avoids the undefined api call
-  const fetchUrl = number
-    ? `${NEW_BASE_URL}/${number}.json`
-    : `${NEW_BASE_URL}/1.json`;
+  const BASE_URL = "https://api.hnpwa.com/v0/newest";
+  const fetchUrl = `${BASE_URL}/${number}.json`;
 
   const response = await fetch(fetchUrl);
   const errorCode = response.ok ? false : response.status;
@@ -58,7 +55,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       errorCode,
       data,
     },
+
+    revalidate: 3600, // In seconds
   };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Get the paths we want to pre-render based on posts
+  const paths = [...Array(10)].map((x, idx) => ({
+    params: { number: (idx + 1).toString() },
+  }));
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: 'blocking' } will server-render pages
+  // on-demand if the path doesn't exist.
+  return { paths, fallback: "blocking" };
 };
 
 export default NewStoriesList;

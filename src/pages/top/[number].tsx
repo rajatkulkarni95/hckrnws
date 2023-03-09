@@ -1,9 +1,4 @@
-import {
-  GetServerSideProps,
-  GetStaticPaths,
-  GetStaticProps,
-  NextPage,
-} from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PageProps } from "~/types/story";
 import StoryListItem from "~/components/StoryListItem";
 import Head from "next/head";
@@ -43,9 +38,6 @@ const TopStoriesList: NextPage<PageProps> = (props: PageProps) => {
   );
 };
 
-// This function gets called at build time on server-side.
-// It may be called again, on a serverless function, if
-// revalidation is enabled and a new request comes in
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params } = context;
   const number = params?.number || 1;
@@ -64,17 +56,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
       data,
     },
 
-    revalidate: 10, // In seconds
+    revalidate: 3600, // In seconds
   };
 };
 
-// This function gets called at build time on server-side.
-// It may be called again, on a serverless function, if
-// the path has not been generated.
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const TOP_BASE_URL = "https://api.hnpwa.com/v0/news";
-  // const fetchUrl = `${TOP_BASE_URL}/${number}.json`;
-
   // Get the paths we want to pre-render based on posts
   const paths = [...Array(10)].map((x, idx) => ({
     params: { number: (idx + 1).toString() },
