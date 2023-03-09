@@ -1,20 +1,14 @@
 import Link from "next/link";
-import { TBaseStory } from "types/story";
-import { styled } from "../../stitches.config";
-import Meta from "./Common/Meta";
-import useWindowSize from "hooks/useWindowSize";
-import { Size } from "types/size";
-import useStore from "store/useStore";
+import { TBaseStory } from "~/types/story";
+import Meta from "~/components/Common/Meta";
+import useWindowSize from "~/hooks/useWindowSize";
+import { Size } from "~/types/size";
+import useStore from "~/store/useStore";
 import { decode } from "html-entities";
 
 type Props = {
   story: TBaseStory;
 };
-
-const Text = styled("span", {
-  fontSize: "12px",
-  marginLeft: "4px",
-});
 
 const StoryListItem: React.FC<Props> = (props: Props) => {
   const {
@@ -46,13 +40,24 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
   const isStoryStarred: boolean = starred?.some((story) => story.id === id);
 
   return (
-    <Box>
+    <div className="py-2 flex flex-col w-full bg-transparent mb-2 duration-100 border-b border-primary hover:border-secondary">
       <Link href={`/stories/${id}`} passHref>
-        <Title>
-          {decode(title)} {isMobile && domain && <Text>({domain})</Text>}
-        </Title>
+        <h3
+          className={`text-base text-secondary whitespace-pre-line font-medium duration-100 cursor-pointer font-coolSans hover:text-primary`}
+        >
+          {decode(title)}{" "}
+        </h3>
       </Link>
-
+      {domain && (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
+        >
+          ({domain})
+        </a>
+      )}
       <Meta
         id={id}
         points={points}
@@ -60,40 +65,11 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
         time={time}
         user={user}
         url={url}
-        domain={domain}
         handleStarring={handleStar}
         isStoryStarred={isStoryStarred}
       />
-    </Box>
+    </div>
   );
 };
-
-const Box = styled("div", {
-  padding: "16px",
-  display: "flex",
-  flexDirection: "column",
-  width: "100%",
-  background: "none",
-  marginBottom: "8px",
-  transition: "0.2s",
-  borderBottom: "1px dotted",
-  "&:hover": {
-    background: "$hovered",
-    borderRadius: "4px",
-    borderColor: "transparent",
-  },
-
-  "@phone": {
-    padding: "8px",
-  },
-});
-
-const Title = styled("h4", {
-  fontSize: "$2",
-  color: "$primaryText",
-  whiteSpace: "break-spaces",
-  fontWeight: 500,
-  cursor: "pointer",
-});
 
 export default StoryListItem;

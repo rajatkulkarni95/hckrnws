@@ -1,5 +1,5 @@
-import { getLocalStorage, setLocalStorage } from "helpers/localstorage";
-import { TBaseStory } from "types/story";
+import { getLocalStorage, setLocalStorage } from "~/helpers/localstorage";
+import { TBaseStory } from "~/types/story";
 import { SliceStateCreator } from "./useStore";
 
 export interface StarSlice {

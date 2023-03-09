@@ -15,6 +15,7 @@ module.exports = {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
         coolSans: ["Karla", ...defaultTheme.fontFamily.sans],
         serif: ["Sentinent", ...defaultTheme.fontFamily.serif],
+        mono: ["Space Mono", ...defaultTheme.fontFamily.mono],
       },
       textColor: {
         primary: "var(--color-text-primary)",
