@@ -5,6 +5,7 @@ import useWindowSize from "~/hooks/useWindowSize";
 import { Size } from "~/types/size";
 import useStore from "~/store/useStore";
 import { decode } from "html-entities";
+import { useEffect, useState } from "react";
 
 type Props = {
   story: TBaseStory;
@@ -15,13 +16,15 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
     story: { title, user, url, id, points, comments_count, time, domain },
     story,
   } = props;
+  const [isStoryStarred, setIsStoryStarred] = useState(false);
 
   const size: Size = useWindowSize();
   const starStory = useStore((state) => state.starStory);
   const starred = useStore((state) => state.starred);
 
-  // Assigning a number greater than the compared value, so that it defaults to false
-  const isMobile = (size?.width ?? 641) < 640;
+  useEffect(() => {
+    setIsStoryStarred(starred?.some((story) => story.id === id));
+  }, [starred, id]);
 
   // To hide the job posting's that have no discussions around them
   if (!user) return null;
@@ -36,8 +39,6 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
       starStory([...starred, story]);
     }
   };
-
-  const isStoryStarred: boolean = starred?.some((story) => story.id === id);
 
   return (
     <div className="py-2 flex flex-col w-full bg-transparent mb-2 duration-100 border-b border-primary hover:border-secondary">
