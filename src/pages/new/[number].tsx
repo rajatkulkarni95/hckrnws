@@ -5,16 +5,17 @@ import Head from "next/head";
 import { Fragment } from "react";
 import { useRouter } from "next/router";
 import Pagination from "~/components/Common/Pagination";
+import { CenteredText } from "~/components/Common/Fragments";
 
 const NewStoriesList: NextPage<PageProps> = (props: PageProps) => {
   const router = useRouter();
   const { number } = router.query;
   const { data, errorCode } = props;
 
-  // if (errorCode)
-  //   return <CenteredText>Oops! Something went wrong :(</CenteredText>;
+  if (errorCode)
+    return <CenteredText>Oops! Something went wrong :(</CenteredText>;
 
-  // if (!data) return <CenteredText>Loading...</CenteredText>;
+  if (!data) return <CenteredText>Loading...</CenteredText>;
 
   const handlePageChange = (page: number) => {
     router.push(`/new/${page}`);

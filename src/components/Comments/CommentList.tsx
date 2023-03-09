@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { TComment } from "~/types/story";
+import { CenteredText } from "../Common/Fragments";
 import Comment from "./Comment";
 
 type Props = {
@@ -18,9 +19,7 @@ const CommentList: React.FC<Props> = (props: Props) => {
           ))}
         </Fragment>
       ) : (
-        <p className="font-coolSans text-base text-primary font-normal text-center">
-          No comments posted yet!
-        </p>
+        <CenteredText>No comments posted yet!</CenteredText>
       )}
     </div>
   );
