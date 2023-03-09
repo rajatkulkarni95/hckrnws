@@ -23,7 +23,7 @@ const NewStoriesList: NextPage<PageProps> = (props: PageProps) => {
   return (
     <Fragment>
       <Head>
-        <title>Show HN - Page {number}</title>
+        <title>New HN - Page {number}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       {data.map((story) => (
