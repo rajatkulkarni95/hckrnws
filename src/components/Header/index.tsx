@@ -54,7 +54,7 @@ const Header: React.FC = () => {
     <div className="flex items-center">
       {selectedItem?.icon}
       <span className="text-sm font-bold text-primary">
-        {selectedItem?.label}
+        {selectedItem?.label || "None"}
       </span>
     </div>
   );

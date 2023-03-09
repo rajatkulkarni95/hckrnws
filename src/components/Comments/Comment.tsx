@@ -3,7 +3,6 @@ import { Fragment, useEffect, useState } from "react";
 import { TComment } from "~/types/story";
 import { ChevronDownIcon, ChevronUpIcon } from "~/icons";
 import { contains } from "~/helpers/contains";
-import { useTheme } from "next-themes";
 import InnerHTMLText from "~/components/Common/InnerHTMLText";
 import { Size } from "~/types/size";
 import useWindowSize from "~/hooks/useWindowSize";
@@ -15,7 +14,7 @@ type Props = {
 
 const Comment: React.FC<Props> = (props: Props) => {
   const {
-    comment: { user, content, deleted, level, comments, comments_count },
+    comment: { user, content, time, deleted, level, comments, comments_count },
     op,
   } = props;
   const isCommenterOP = user === op;
@@ -80,6 +79,9 @@ const Comment: React.FC<Props> = (props: Props) => {
                 {user}
               </span>
               <div className="flex items-center">
+                <span className="text-tertiary font-mono text-[10px]">
+                  {prettyTime(time)}
+                </span>
                 <button
                   className="p-1 ml-2 group"
                   onClick={() => setCollapsed(true)}
