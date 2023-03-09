@@ -1,45 +1,14 @@
-import { styled } from "../../../stitches.config";
+interface IProps {
+  content: string;
+}
 
-const InnerHTMLText = styled("div", {
-  fontSize: "$2",
-  lineHeight: "24px",
-
-  "@phone": {
-    lineHeight: "1.75",
-  },
-
-  p: {
-    marginBottom: "4px",
-    whiteSpace: "break-spaces",
-  },
-
-  a: {
-    color: "$coloredLink",
-    whiteSpace: "break-spaces",
-  },
-
-  pre: {
-    whiteSpace: "break-spaces",
-    padding: "8px",
-    background: "$codeBlock",
-    borderRadius: "4px",
-    margin: "8px 0",
-    overflowX: "auto",
-  },
-
-  ".quotes": {
-    padding: "8px 16px",
-    borderLeft: "2px solid",
-    color: "$secondaryText",
-    marginBottom: "8px",
-  },
-
-  code: {
-    fontFamily: "$mono",
-    "@phone": {
-      fontSize: "$1",
-    },
-  },
-});
+const InnerHTMLText = ({ content }: IProps) => {
+  return (
+    <div
+      dangerouslySetInnerHTML={{ __html: content }}
+      className="text-base font-coolSans [&>p]:mb-1 [&>p]:whitespace-pre-line [&>a]:whitespace-pre-line [&>a]:text-blue-400 [&>pre]:whitespace-pre-line [&>pre]:p-2 [&>pre]:bg-code [&>pre]:rounded [&>pre]:my-2 [&>pre]:overflow-x-auto [&>pre]:font-mono [&>code]:font-mono [&>code]:text-sm"
+    />
+  );
+};
 
 export default InnerHTMLText;

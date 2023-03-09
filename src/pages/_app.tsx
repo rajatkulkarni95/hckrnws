@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
       <DefaultSeo {...defaultSEO} />
-      <main className="mx-auto p-4 w-full md:w-5/6 overflow-x-hidden xl:w-[900px] 2xl:w-[1280px]">
+      <main className="mx-auto p-4 w-full md:w-5/6 overflow-x-hidden xl:w-[900px] ">
         {/* <Header /> */}
         <Component {...pageProps} />
         <Analytics />

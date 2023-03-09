@@ -55,8 +55,8 @@ const Meta: React.FC<Props> = ({
           onClick={handleStarring}
         >
           <StarIcon
-            className={`h-3 w-3 text-icon ${
-              isStoryStarred ? "text-amber-400" : ""
+            className={`h-3 w-3 ${
+              isStoryStarred ? "text-amber-400" : "text-icon"
             }`}
           />
           <span className="text-xs ml-1 text-secondary font-coolSans">
@@ -65,8 +65,8 @@ const Meta: React.FC<Props> = ({
         </button>
       </div>
       {isDetailedView && (
-        <span className="text-xs ml-1 text-secondary font-coolSans">
-          by {user}
+        <span className="text-xs mt-1 ml-0.5 text-secondary font-normal font-coolSans">
+          by <span className="font-semibold text-primary">{user}</span>
         </span>
       )}
     </div>
