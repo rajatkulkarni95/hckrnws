@@ -28,7 +28,7 @@ const Pagination = ({
             }`}
           />
           <span
-            className={`text-sm font-normal font-coolSans text-secondary ${
+            className={`text-sm font-normal font-sans text-secondary ${
               !isPrevDisabled ? "group-hover:text-btn" : ""
             } ml-1`}
           >
@@ -41,7 +41,7 @@ const Pagination = ({
           onClick={() => onChangePage(currentPage + 1)}
         >
           <span
-            className={`text-sm font-normal font-coolSans text-secondary ${
+            className={`text-sm font-normal font-sans text-secondary ${
               !isNextDisabled ? "group-hover:text-btn" : ""
             } mr-1`}
           >
@@ -54,7 +54,7 @@ const Pagination = ({
           />
         </button>
       </div>
-      <p className="text-center text-secondary text-sm mb-3 font-coolSans">
+      <p className="text-center text-secondary text-sm mb-3 font-sans">
         Page {currentPage} of {totalPages}
       </p>
     </Fragment>

@@ -4,7 +4,7 @@ interface IProps {
 
 export const CenteredText = ({ children }: IProps) => {
   return (
-    <p className="font-coolSans text-base text-primary font-normal text-center">
+    <p className="font-sans text-base text-primary font-normal text-center">
       {children}
     </p>
   );

@@ -153,48 +153,6 @@
       url("/fonts/karla/karla-v23-latin-700italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
-/* ---------------------------------------------- */
-/* Sentinent */
-@font-face {
-  font-family: "Sentinent";
-  font-style: normal;
-  font-weight: 400;
-  src: local(""),
-    url("/fonts/sentinent/Sentinent-Regular.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("/fonts/sentinent/Sentinent-Regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
-/* karla-500 - latin */
-@font-face {
-  font-family: "Sentinent";
-  font-style: normal;
-  font-weight: 500;
-  src: local(""), url("/fonts/sentinent/Sentinent-Medium.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("/fonts/sentinent/Sentinent-Medium.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
-/* karla-700 - latin */
-@font-face {
-  font-family: "Sentinent";
-  font-style: normal;
-  font-weight: 700;
-  src: local(""), url("/fonts/sentinent/Sentinent-Bold.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("/fonts/sentinent/Sentinent-Bold.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
-/* karla-italic - latin */
-@font-face {
-  font-family: "Sentinent";
-  font-style: italic;
-  font-weight: 400;
-  src: local(""), url("/fonts/sentinent/Sentinent-Italic.woff2") format("woff2"),
-    /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("/fonts/sentinent/Sentinent-Italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
 /* space-mono-regular - latin */
 @font-face {
   font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */

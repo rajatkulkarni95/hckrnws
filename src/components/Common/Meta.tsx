@@ -31,19 +31,17 @@ const Meta: React.FC<Props> = ({
       <div className="flex items-center">
         <div className="flex items-center mr-2 p-1 pl-0">
           <UpvoteIcon className="h-3 w-3 text-icon" />
-          <span className="text-xs ml-1 text-tertiary font-coolSans">
-            {points}
-          </span>
+          <span className="text-xs ml-1 text-tertiary font-sans">{points}</span>
         </div>
         <div className="flex items-center mr-2 p-1 pl-0">
           <CommentIcon className="h-3 w-3 text-icon" />
-          <span className="text-xs ml-1 text-tertiary font-coolSans">
+          <span className="text-xs ml-1 text-tertiary font-sans">
             {comments}
           </span>
         </div>
         <div className="flex items-center mr-2 p-1 pl-0">
           <ClockIcon className="h-3 w-3 text-icon" />
-          <span className="text-xs ml-1 text-tertiary font-coolSans">
+          <span className="text-xs ml-1 text-tertiary font-sans">
             {prettyTime(time)}
           </span>
         </div>

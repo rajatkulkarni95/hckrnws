@@ -12,9 +12,7 @@ module.exports = {
     extend: {
       fontFamily: {
         system: defaultTheme.fontFamily.sans,
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
-        coolSans: ["Karla", ...defaultTheme.fontFamily.sans],
-        serif: ["Sentinent", ...defaultTheme.fontFamily.serif],
+        sans: ["Karla", ...defaultTheme.fontFamily.sans],
         mono: ["Space Mono", ...defaultTheme.fontFamily.mono],
       },
       textColor: {

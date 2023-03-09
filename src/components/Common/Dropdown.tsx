@@ -22,7 +22,7 @@ const Dropdown = ({
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <button className="py-1 px-4 border max-w-[156px] outline-none rounded border-primary bg-secondary font-coolSans text-sm">
+        <button className="py-1 px-4 border max-w-[156px] outline-none rounded border-primary bg-secondary font-sans text-sm">
           {triggerLabel}
         </button>
       </DropdownMenu.Trigger>

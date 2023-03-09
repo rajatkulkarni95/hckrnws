@@ -99,7 +99,7 @@ const Story: NextPage<Props> = (props: Props) => {
           </span>
         </button>
         <div className="flex flex-col p-4 bg-primary border border-primary rounded">
-          <h2 className="text-lg md:text-xl font-medium text-primary m-0 mb-1 font-coolSans">
+          <h2 className="text-lg md:text-xl font-medium text-primary m-0 mb-1 font-sans">
             {decode(title)}
           </h2>
           <div className="flex items-center">
@@ -123,7 +123,7 @@ const Story: NextPage<Props> = (props: Props) => {
             />
           </div>
           <div className="flex items-center justify-between">
-            <p className="text-xs mt-1 ml-0.5 text-secondary font-normal font-coolSans">
+            <p className="text-xs mt-1 ml-0.5 text-secondary font-normal font-sans">
               by <span className="font-semibold text-primary">{user}</span>
             </p>
             <button
@@ -135,7 +135,7 @@ const Story: NextPage<Props> = (props: Props) => {
                   isStoryStarred ? "text-amber-400" : "text-icon"
                 }`}
               />
-              <span className="text-xs ml-1 text-secondary font-coolSans">
+              <span className="text-xs ml-1 text-secondary font-sans">
                 {isStoryStarred ? "Starred" : "Star"}
               </span>
             </button>
