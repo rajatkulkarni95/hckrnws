@@ -34,7 +34,7 @@ const Comment: React.FC<Props> = (props: Props) => {
     return (
       <div className="flex">
         <section
-          className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2`}
+          className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2 border-primary`}
           style={{ marginLeft: `calc(${margin}px * ${level})` }}
         >
           <div className="flex justify-between">
@@ -66,7 +66,7 @@ const Comment: React.FC<Props> = (props: Props) => {
       {/* Indent the children based on the level */}
       <div style={{ display: "flex" }}>
         <section
-          className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2`}
+          className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2  border-primary`}
           style={{ marginLeft: `calc(${margin}px * ${level})` }}
         >
           {!deleted && (

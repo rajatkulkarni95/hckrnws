@@ -55,7 +55,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
+          className="text-xs whitespace-nowrap font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
         >
           ({domain})
         </a>

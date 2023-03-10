@@ -108,7 +108,7 @@ const Story: NextPage<Props> = (props: Props) => {
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs mr-3 font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
+                className="text-xs mr-3 whitespace-nowrap font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
               >
                 ({domain})
               </a>
@@ -122,7 +122,7 @@ const Story: NextPage<Props> = (props: Props) => {
               url={url}
             />
           </div>
-          <div className="flex items-center justify-between mt-0.5 mb-3">
+          <div className="flex items-center justify-between mt-0.5">
             <p className="text-xs ml-0.5 text-secondary font-normal font-sans">
               by <span className="font-semibold text-primary">{user}</span>
             </p>
@@ -140,7 +140,7 @@ const Story: NextPage<Props> = (props: Props) => {
               </span>
             </button>
           </div>
-          <InnerHTMLText content={content} isDescription />
+          {content && <InnerHTMLText content={content} isDescription />}
         </div>
         <CommentList comments={comments} op={user} />
       </div>
