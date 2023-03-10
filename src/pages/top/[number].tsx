@@ -27,13 +27,15 @@ const TopStoriesList: NextPage<PageProps> = (props: PageProps) => {
         <title>Top HN - Page {number}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      {data.map((story) => (
-        <StoryListItem story={story} key={story.id} />
-      ))}
-      <Pagination
-        currentPage={parseInt(number as string)}
-        onChangePage={handlePageChange}
-      />
+      <div className="flex-1">
+        {data.map((story) => (
+          <StoryListItem story={story} key={story.id} />
+        ))}
+        <Pagination
+          currentPage={parseInt(number as string)}
+          onChangePage={handlePageChange}
+        />
+      </div>
     </Fragment>
   );
 };

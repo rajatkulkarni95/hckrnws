@@ -12,7 +12,7 @@ export const CenteredText = ({ children }: IProps) => {
 
 export const CraftedBy = () => {
   return (
-    <div className="sticky bottom-2 flex justify-between items-center">
+    <div className="mt-auto flex justify-between items-center flex-none">
       <p className="text-xs text-tertiary">
         Crafted by{" "}
         <a

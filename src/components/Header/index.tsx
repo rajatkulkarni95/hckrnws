@@ -84,7 +84,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-between py-3">
+    <div className="flex justify-between py-3 flex-none">
       <Link href="/">
         <h1 className="text-xl md:text-2xl font-mono font-bold text-primary">
           hckrnws

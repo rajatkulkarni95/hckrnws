@@ -88,7 +88,7 @@ const Story: NextPage<Props> = (props: Props) => {
         <title>{decode(title)} - hckrnws</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <div className="flex flex-col">
+      <div className="flex flex-col flex-1">
         <button
           className="px-2 py-1 bg-transparent rounded flex items-center mb-2 w-fit group hover:bg-hover"
           onClick={onClickBack}
@@ -108,7 +108,7 @@ const Story: NextPage<Props> = (props: Props) => {
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
+                className="text-xs mr-3 font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
               >
                 ({domain})
               </a>
@@ -122,8 +122,8 @@ const Story: NextPage<Props> = (props: Props) => {
               url={url}
             />
           </div>
-          <div className="flex items-center justify-between">
-            <p className="text-xs mt-1 ml-0.5 text-secondary font-normal font-sans">
+          <div className="flex items-center justify-between mt-0.5 mb-3">
+            <p className="text-xs ml-0.5 text-secondary font-normal font-sans">
               by <span className="font-semibold text-primary">{user}</span>
             </p>
             <button
@@ -140,7 +140,7 @@ const Story: NextPage<Props> = (props: Props) => {
               </span>
             </button>
           </div>
-          <InnerHTMLText content={content} />
+          <InnerHTMLText content={content} isDescription />
         </div>
         <CommentList comments={comments} op={user} />
       </div>

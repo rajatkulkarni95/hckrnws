@@ -1,6 +1,5 @@
 import { prettyTime } from "~/helpers/time";
 
-import { Fragment, MouseEventHandler } from "react";
 import { ClockIcon, CommentIcon, UpvoteIcon } from "~/icons";
 
 type Props = {
@@ -25,7 +24,7 @@ const Meta: React.FC<Props> = ({
   return (
     <div
       className={`flex justify-between w-full ${
-        isDetailedView ? "ml-3" : "mt-1"
+        isDetailedView ? "mt-0" : "mt-1"
       }`}
     >
       <div className="flex items-center">
