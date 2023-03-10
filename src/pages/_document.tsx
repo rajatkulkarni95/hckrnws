@@ -23,6 +23,17 @@ export default function Document() {
           sizes="16x16"
           type="image/png"
         />
+        <meta
+          name="theme-color"
+          content="#fafafa"
+          media="(prefers-color-scheme: light)"
+        />
+
+        <meta
+          name="theme-color"
+          content="#18181b"
+          media="(prefers-color-scheme: dark)"
+        />
       </Head>
       <body className="antialiased">
         <Main />

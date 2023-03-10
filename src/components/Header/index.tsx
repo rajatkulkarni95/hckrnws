@@ -69,7 +69,7 @@ const Header: React.FC = () => {
   const triggerLabel = () => (
     <div className="flex items-center">
       {selectedItem?.icon}
-      <span className="text-sm font-bold text-primary">
+      <span className="text-sm font-medium text-primary">
         {selectedItem?.label || "Select"}
       </span>
     </div>
@@ -86,9 +86,7 @@ const Header: React.FC = () => {
   return (
     <div className="flex justify-between py-3 flex-none">
       <Link href="/">
-        <h1 className="text-xl md:text-2xl font-mono font-bold text-primary">
-          hckrnws
-        </h1>
+        <h1 className="text-xl md:text-2xl font-mono text-primary">hckrnws</h1>
       </Link>
       <div className="flex items-center">
         <Dropdown
