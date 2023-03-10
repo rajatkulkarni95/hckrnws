@@ -86,7 +86,7 @@ const Header: React.FC = () => {
   return (
     <div className="flex justify-between py-3 flex-none">
       <Link href="/">
-        <h1 className="text-xl md:text-2xl font-mono text-primary">hckrnws</h1>
+        <h2 className="text-xl md:text-2xl font-mono text-primary">hckrnws</h2>
       </Link>
       <div className="flex items-center">
         <Dropdown
@@ -98,6 +98,8 @@ const Header: React.FC = () => {
         <button
           className="p-1.5 border border-primary bg-secondary ml-2 hover:bg-tertiary rounded"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          type="button"
+          aria-label="Toggle Theme"
         >
           {theme === "dark" ? (
             <SunIcon className="h-4 w-4 text-icon" />

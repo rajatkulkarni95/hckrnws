@@ -46,7 +46,7 @@ const Comment: React.FC<Props> = (props: Props) => {
               {user}
             </span>
             <div className="flex items-center">
-              <span className="py-0.5 px-1.5 text-tertiary font-mono bg-tertiary rounded text-[10px]">
+              <span className="py-0.5 px-1.5 text-secondary font-mono bg-tertiary rounded text-[10px]">
                 {comments_count}
               </span>
               <button
@@ -79,7 +79,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                 {user}
               </span>
               <div className="flex items-center">
-                <span className="text-tertiary font-mono text-[10px]">
+                <span className="text-secondary font-mono text-[10px]">
                   {prettyTime(time)}
                 </span>
                 <button
