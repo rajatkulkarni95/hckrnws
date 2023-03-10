@@ -19,6 +19,7 @@ export const CraftedBy = () => {
           href="https://rajatkulkarni.dev/"
           target="_blank"
           rel="noreferrer noopener"
+          className="hover:text-primary"
         >
           Rajat
         </a>
@@ -27,7 +28,7 @@ export const CraftedBy = () => {
         href="https://github.com/rajatkulkarni95/hckrnws"
         target="_blank"
         rel="noreferrer noopener"
-        className="text-xs text-tertiary"
+        className="text-xs text-tertiary hover:text-primary"
       >
         Source Code
       </a>
