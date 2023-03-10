@@ -5,16 +5,13 @@
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
+pnpm run dev
 ```
 
 ## Libraries
 
 - [NextJS](nextjs.org/) - React Framework
-- [Stitches](stitches.dev/) - CSS in JS
-- [swr](https://swr.vercel.app/) - Data Fetching
+- [Tailwind](tailwindcss.com/) - CSS in JS
 - [HeroIcons](https://heroicons.com/) - Svg Icons
 - [Zustand](https://github.com/pmndrs/zustand) - Lightweight state mangement for handling starred stories
 
