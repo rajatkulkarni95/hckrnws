@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.quotes {
+  @apply px-4 border-l-2 border-secondary text-tertiary !my-4;
+}
+
+/* App Themes */
+
+[data-theme="light"] {
+  --color-text-primary: #18181b;
+  --color-text-secondary: #3f3f46;
+  --color-text-tertiary: #52525b;
+  --color-text-code: #18181b;
+  --color-text-icon: #3c4149;
+  --color-text-btn: #fafafa;
+  --color-text-link: #38bdf8;
+
+  --color-bg-primary: #fafafa;
+  --color-bg-secondary: #f4f4f5;
+  --color-bg-tertiary: #e4e4e7;
+  --color-bg-hover: #f4f4f5;
+  --color-bg-tooltip: #f5f6f8;
+  --color-bg-code: #edebe5;
+  --color-bg-op: #ddd6fe;
+  --color-bg-btn: #18181b;
+
+  --color-border-primary: #d4d4d8;
+  --color-border-secondary: #a1a1aa;
+}
+
+[data-theme="dark"] {
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #d4d4d8;
+  --color-text-tertiary: #a1a1aa;
+  --color-text-code: #fafafa;
+  --color-text-icon: #c3c4c6;
+  --color-text-btn: #18181b;
+  --color-text-link: #38bdf8;
+
+  --color-bg-primary: #18181b;
+  --color-bg-secondary: #27272a;
+  --color-bg-tertiary: #3f3f46;
+  --color-bg-hover: #232324;
+  --color-bg-tooltip: #1a1a1a;
+  --color-bg-code: #202020;
+  --color-bg-op: #5b21b6;
+  --color-bg-btn: #fafafa;
+
+  --color-border-primary: #2e2e2f;
+  --color-border-secondary: #52525b;
+}
+
+[data-theme="andromeda"] {
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a5aba8;
+  --color-text-tertiary: #aeabb1;
+  --color-text-code: #ffffff;
+  --color-text-icon: #c3c4c6;
+
+  --color-bg-primary: #1e2025;
+  --color-bg-secondary: #272a32;
+  --color-bg-tertiary: #22242a;
+  --color-bg-hover: #262930;
+  --color-bg-code: #1e2025;
+  --color-bg-tooltip: #1a1a1a;
+
+  --color-border-primary: #2b2e37;
+  --color-border-secondary: #24262d;
+}
+
+/* App Themes */
+
+/* Karla */
+/* karla-regular - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("/fonts/karla/karla-v23-latin-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("/fonts/karla/karla-v23-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* karla-500 - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""), url("/fonts/karla/karla-v23-latin-500.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("/fonts/karla/karla-v23-latin-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* karla-600 - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url("/fonts/karla/karla-v23-latin-600.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("/fonts/karla/karla-v23-latin-600.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* karla-700 - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url("/fonts/karla/karla-v23-latin-700.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("/fonts/karla/karla-v23-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* karla-italic - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: italic;
+  font-weight: 400;
+  src: local(""),
+    url("/fonts/karla/karla-v23-latin-italic.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("/fonts/karla/karla-v23-latin-italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* karla-500italic - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: italic;
+  font-weight: 500;
+  src: local(""),
+    url("/fonts/karla/karla-v23-latin-500italic.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("/fonts/karla/karla-v23-latin-500italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* karla-700italic - latin */
+@font-face {
+  font-family: "Karla";
+  font-style: italic;
+  font-weight: 700;
+  src: local(""),
+    url("/fonts/karla/karla-v23-latin-700italic.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("/fonts/karla/karla-v23-latin-700italic.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* space-mono-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/space_mono/space-mono-v12-latin-regular.woff2")
+      format("woff2"),
+    /* Chrome 36+, Opera 23+, Firefox 39+ */
+      url("/fonts/space_mono/space-mono-v12-latin-regular.woff") format("woff"); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}

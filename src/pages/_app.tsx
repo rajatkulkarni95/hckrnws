@@ -1,32 +1,24 @@
-import { Container } from "styles/";
+import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import React from "react";
-import { globalStyles } from "../styles/globalStyles";
 import { ThemeProvider } from "next-themes";
-import { lightTheme } from "../../stitches.config";
-import Header from "@components/Header";
+import Header from "~/components/Header";
 import { DefaultSeo } from "next-seo";
-import { defaultSEO } from "config/seo";
+import { defaultSEO } from "~/config/seo";
 // @ts-ignore
 import { Analytics } from "@vercel/analytics/react";
+import { CraftedBy } from "~/components/Common/Fragments";
 
 function App({ Component, pageProps }: AppProps) {
-  globalStyles();
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="dark"
-      value={{
-        light: lightTheme.className,
-        dark: "dark",
-      }}
-    >
+    <ThemeProvider>
       <DefaultSeo {...defaultSEO} />
-      <Container>
+      <main className="mx-auto flex flex-col min-h-screen p-4 w-full md:w-5/6 overflow-x-hidden xl:w-[900px] ">
         <Header />
         <Component {...pageProps} />
+        <CraftedBy />
         <Analytics />
-      </Container>
+      </main>
     </ThemeProvider>
   );
 }

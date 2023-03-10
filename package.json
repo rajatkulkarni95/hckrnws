@@ -1,5 +1,5 @@
 {
-  "name": "hackernews-pretty",
+  "name": "hckrnws",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,24 +9,26 @@
   },
   "dependencies": {
     "@radix-ui/colors": "^0.1.8",
-    "@stitches/react": "^1.2.7",
+    "@radix-ui/react-dropdown-menu": "^2.0.4",
     "@vercel/analytics": "^0.1.4",
     "date-fns": "^2.27.0",
     "html-entities": "^2.3.3",
-    "next": "12.0.6",
-    "next-seo": "^5.1.0",
-    "next-themes": "^0.0.15",
-    "preact": "^10.6.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "zustand": "^3.6.8"
+    "next": "13.2.3",
+    "next-seo": "5.15.0",
+    "next-themes": "0.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "zustand": "4.3.5"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.1.1",
-    "@types/node": "16.11.11",
-    "@types/react": "17.0.37",
-    "eslint": "7",
-    "eslint-config-next": "12.0.6",
-    "typescript": "4.5.2"
+    "@types/node": "18.14.6",
+    "@types/react": "18.0.28",
+    "autoprefixer": "^10.4.13",
+    "eslint": "8.35.0",
+    "eslint-config-next": "13.2.3",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "typescript": "4.9.5"
   }
 }

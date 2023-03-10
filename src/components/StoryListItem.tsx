@@ -1,33 +1,31 @@
 import Link from "next/link";
-import { TBaseStory } from "types/story";
-import { styled } from "../../stitches.config";
-import Meta from "./Common/Meta";
-import useWindowSize from "hooks/useWindowSize";
-import { Size } from "types/size";
-import useStore from "store/useStore";
+import { TBaseStory } from "~/types/story";
+import Meta from "~/components/Common/Meta";
+import useWindowSize from "~/hooks/useWindowSize";
+import { Size } from "~/types/size";
+import useStore from "~/store/useStore";
 import { decode } from "html-entities";
+import { useEffect, useState } from "react";
+import { StarIcon } from "~/icons";
 
 type Props = {
   story: TBaseStory;
 };
-
-const Text = styled("span", {
-  fontSize: "12px",
-  marginLeft: "4px",
-});
 
 const StoryListItem: React.FC<Props> = (props: Props) => {
   const {
     story: { title, user, url, id, points, comments_count, time, domain },
     story,
   } = props;
+  const [isStoryStarred, setIsStoryStarred] = useState(false);
 
   const size: Size = useWindowSize();
   const starStory = useStore((state) => state.starStory);
   const starred = useStore((state) => state.starred);
 
-  // Assigning a number greater than the compared value, so that it defaults to false
-  const isMobile = (size?.width ?? 641) < 640;
+  useEffect(() => {
+    setIsStoryStarred(starred?.some((story) => story.id === id));
+  }, [starred, id]);
 
   // To hide the job posting's that have no discussions around them
   if (!user) return null;
@@ -43,57 +41,50 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
     }
   };
 
-  const isStoryStarred: boolean = starred?.some((story) => story.id === id);
-
   return (
-    <Box>
+    <div className="py-2 flex flex-col w-full bg-transparent mb-2 duration-100 border-b border-primary hover:border-secondary">
       <Link href={`/stories/${id}`} passHref>
-        <Title>
-          {decode(title)} {isMobile && domain && <Text>({domain})</Text>}
-        </Title>
+        <h3
+          className={`text-base text-secondary whitespace-pre-line font-medium duration-100 cursor-pointer font-sans hover:text-primary`}
+        >
+          {decode(title)}{" "}
+        </h3>
       </Link>
-
-      <Meta
-        id={id}
-        points={points}
-        comments={comments_count}
-        time={time}
-        user={user}
-        url={url}
-        domain={domain}
-        handleStarring={handleStar}
-        isStoryStarred={isStoryStarred}
-      />
-    </Box>
+      {domain && (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs whitespace-nowrap font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
+        >
+          ({domain})
+        </a>
+      )}
+      <div className="flex items-center justify-between">
+        <Meta
+          id={id}
+          points={points}
+          comments={comments_count}
+          time={time}
+          user={user}
+          url={url}
+        />
+        <button
+          className="flex mr-2 p-1 w-fit items-center cursor-pointer rounded border-none hover:bg-hover"
+          onClick={handleStar}
+        >
+          <StarIcon
+            className={`h-3 w-3 ${
+              isStoryStarred ? "text-amber-400" : "text-icon"
+            }`}
+          />
+          <span className="text-xs ml-1 text-secondary font-sans">
+            {isStoryStarred ? "Starred" : "Star"}
+          </span>
+        </button>
+      </div>
+    </div>
   );
 };
-
-const Box = styled("div", {
-  padding: "16px",
-  display: "flex",
-  flexDirection: "column",
-  width: "100%",
-  background: "none",
-  marginBottom: "8px",
-  transition: "0.2s",
-  borderBottom: "1px dotted",
-  "&:hover": {
-    background: "$hovered",
-    borderRadius: "4px",
-    borderColor: "transparent",
-  },
-
-  "@phone": {
-    padding: "8px",
-  },
-});
-
-const Title = styled("h4", {
-  fontSize: "$2",
-  color: "$primaryText",
-  whiteSpace: "break-spaces",
-  fontWeight: 500,
-  cursor: "pointer",
-});
 
 export default StoryListItem;

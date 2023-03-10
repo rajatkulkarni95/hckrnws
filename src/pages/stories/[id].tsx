@@ -1,46 +1,28 @@
 import { GetServerSideProps, NextPage } from "next";
-import { CenteredText, FlexColumn } from "../../styles";
 
 import { useRouter } from "next/router";
-import { TDetailedStory } from "types/story";
-import { Fragment } from "react";
+import { TDetailedStory } from "~/types/story";
+import { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
-import { styled } from "../../../stitches.config";
-import Meta from "@components/Common/Meta";
-import CommentList from "@components/Comments/CommentList";
-import { Button } from "@components/Common/Button";
-import BackIcon from "svgs/back.svg";
+import Meta from "~/components/Common/Meta";
+import CommentList from "~/components/Comments/CommentList";
+import { BackIcon, StarIcon } from "~/icons";
 import { useTheme } from "next-themes";
-import InnerHTMLText from "@components/Common/InnerHTMLText";
-import { Size } from "types/size";
-import useWindowSize from "hooks/useWindowSize";
-import useStore from "store/useStore";
+import { Size } from "~/types/size";
+import useWindowSize from "~/hooks/useWindowSize";
+import useStore from "~/store/useStore";
 import { decode } from "html-entities";
+import InnerHTMLText from "~/components/Common/InnerHTMLText";
 
 type Props = {
   data: TDetailedStory;
   errorCode: false | number;
 };
 
-const Title = styled("h2", {
-  fontSize: "$4",
-  color: "$primaryText",
-  margin: 0,
-  marginBottom: "8px",
-
-  "@phone": {
-    fontSize: "$3",
-  },
-});
-
-const Text = styled("span", {
-  fontSize: "12px",
-  marginLeft: "4px",
-});
-
 const Story: NextPage<Props> = (props: Props) => {
   const router = useRouter();
   const { data, errorCode } = props;
+  const [isStoryStarred, setIsStoryStarred] = useState(false);
 
   const size: Size = useWindowSize();
 
@@ -50,15 +32,21 @@ const Story: NextPage<Props> = (props: Props) => {
   const { theme } = useTheme();
   const stroke = theme === "light" ? "#161618" : "#FFFFFF";
 
-  if (errorCode)
-    return <CenteredText>Oops! Something went wrong :(</CenteredText>;
+  // if (errorCode)
+  //   return <CenteredText>Oops! Something went wrong :(</CenteredText>;
 
-  if (!data) return <CenteredText>Loading...</CenteredText>;
+  // if (!data) return <CenteredText>Loading...</CenteredText>;
 
   const { title, id, points, user, time, content, comments, domain } = data;
   let { url } = data;
 
-  const onClickBack = () => router.back();
+  const onClickBack = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      router.back();
+    } else {
+      router.push("/");
+    }
+  };
 
   // If url links to a hackernews story, remove the params, so that it can route inside hckrnws
   if (url.startsWith("item?id=")) {
@@ -90,7 +78,9 @@ const Story: NextPage<Props> = (props: Props) => {
     }
   };
 
-  const isStoryStarred: boolean = starred?.some((story) => story.id === id);
+  useEffect(() => {
+    setIsStoryStarred(starred?.some((story) => story.id === id));
+  }, [starred, id]);
 
   return (
     <Fragment>
@@ -98,31 +88,62 @@ const Story: NextPage<Props> = (props: Props) => {
         <title>{decode(title)} - hckrnws</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <FlexColumn css={{ padding: "16px 0" }}>
-        <Button
-          css={{ width: "48px", marginBottom: "16px" }}
+      <div className="flex flex-col flex-1">
+        <button
+          className="px-2 py-1 bg-transparent rounded flex items-center mb-2 w-fit group hover:bg-hover"
           onClick={onClickBack}
         >
-          <BackIcon width={14} height={14} stroke={stroke} />
-        </Button>
-        <Title>
-          {decode(title)} {isMobile && domain && <Text>({domain})</Text>}
-        </Title>
-
-        <InnerHTMLText dangerouslySetInnerHTML={{ __html: content }} />
-        <Meta
-          time={time}
-          points={points}
-          user={user}
-          isDetailedView
-          comments={comments.length}
-          url={url}
-          domain={domain}
-          handleStarring={handleStar}
-          isStoryStarred={isStoryStarred}
-        />
+          <BackIcon className="w-3 h-3 text-icon group-hover:text-primary" />
+          <span className="text-xs ml-1 font-mono text-tertiary group-hover:text-primary">
+            Back
+          </span>
+        </button>
+        <div className="flex flex-col p-4 bg-primary border border-primary rounded">
+          <h2 className="text-lg md:text-xl font-medium text-primary m-0 mb-1 font-sans">
+            {decode(title)}
+          </h2>
+          <div className="flex items-center">
+            {domain && (
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs mr-3  max-w-[128px] md:max-w-full truncate md:whitespace-normal md:overflow-visible font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
+              >
+                ({domain})
+              </a>
+            )}
+            <Meta
+              time={time}
+              points={points}
+              user={user}
+              isDetailedView
+              comments={comments.length}
+              url={url}
+            />
+          </div>
+          <div className="flex items-center justify-between mt-0.5">
+            <p className="text-xs ml-0.5 text-secondary font-normal font-sans">
+              by <span className="font-semibold text-primary">{user}</span>
+            </p>
+            <button
+              className="flex mr-2 p-1 w-fit items-center cursor-pointer rounded border-none hover:bg-hover"
+              onClick={handleStar}
+            >
+              <StarIcon
+                className={`h-3 w-3 ${
+                  isStoryStarred ? "text-amber-400" : "text-icon"
+                }`}
+              />
+              <span className="text-xs ml-1 text-secondary font-sans">
+                {isStoryStarred ? "Starred" : "Star"}
+              </span>
+            </button>
+          </div>
+          {content && <InnerHTMLText content={content} isDescription />}
+        </div>
         <CommentList comments={comments} op={user} />
-      </FlexColumn>
+      </div>
     </Fragment>
   );
 };
