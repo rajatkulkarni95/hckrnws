@@ -19,7 +19,8 @@ const Star: NextPage<PageProps> = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <h3 className="text-lg mt-4 text-secondary font-medium">
-        Your Stars {starred?.length} stories
+        You starred <span className="text-amber-400">{starred?.length}</span>{" "}
+        stories
       </h3>
       <div className="flex flex-col mt-8">
         {starred?.map((story) => (
