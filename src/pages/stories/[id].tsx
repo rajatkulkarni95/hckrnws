@@ -108,7 +108,7 @@ const Story: NextPage<Props> = (props: Props) => {
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs mr-3 whitespace-nowrap font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
+                className="text-xs mr-3  max-w-[128px] md:max-w-full truncate md:whitespace-normal md:overflow-visible font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-tertiary mt-0.5"
               >
                 ({domain})
               </a>
