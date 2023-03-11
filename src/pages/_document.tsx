@@ -35,7 +35,7 @@ export default function Document() {
           media="(prefers-color-scheme: dark)"
         />
       </Head>
-      <body className="antialiased">
+      <body className="antialiased bg-primary">
         <Main />
         <NextScript />
       </body>
