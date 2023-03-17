@@ -11,7 +11,7 @@ pnpm run dev
 ## Libraries
 
 - [NextJS](nextjs.org/) - React Framework
-- [Tailwind](tailwindcss.com/) - CSS in JS
+- [Tailwind](tailwindcss.com/) - CSS
 - [HeroIcons](https://heroicons.com/) - Svg Icons
 - [Zustand](https://github.com/pmndrs/zustand) - Lightweight state mangement for handling starred stories
 
