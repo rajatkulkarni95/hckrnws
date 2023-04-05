@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  hckrnws:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hckrnws
+    restart: always
+    ports:
+      - 3000:3000
+    security_opt:
+      - no-new-privileges:true
+    user: nobody
+    read_only: true
+    cap_drop:
+      - ALL
+    networks:
+      - hckrnws
+
+networks:
+  hckrnws:
