@@ -24,7 +24,7 @@ const Header: React.FC = () => {
   useKeyPress("s", () => router.push("/show/1"));
   useKeyPress("n", () => router.push("/new/1"));
   useKeyPress("a", () => router.push("/ask/1"));
-  useKeyPress("x", () => router.push("/starred"));
+  useKeyPress("x", () => router.push("/star"));
 
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), []);
