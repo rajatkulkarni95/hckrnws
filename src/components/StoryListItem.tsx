@@ -45,7 +45,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
     <div className="py-2 flex flex-col w-full bg-transparent mb-2 duration-100 border-b border-primary hover:border-secondary">
       <Link href={`/stories/${id}`} passHref>
         <h3
-          className={`text-base text-secondary whitespace-pre-line font-medium duration-100 cursor-pointer font-sans hover:text-primary`}
+          className={`text-base text-secondary whitespace-pre-line font-medium duration-100 cursor-default font-sans hover:text-primary`}
         >
           {decode(title)}{" "}
         </h3>
@@ -70,7 +70,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
           url={url}
         />
         <button
-          className="flex mr-2 p-1 w-fit items-center cursor-pointer rounded border-none hover:bg-hover"
+          className="flex mr-2 p-1 w-fit items-center cursor-default rounded border-none hover:bg-hover"
           onClick={handleStar}
         >
           <StarIcon

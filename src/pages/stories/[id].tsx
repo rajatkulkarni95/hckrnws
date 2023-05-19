@@ -41,11 +41,7 @@ const Story: NextPage<Props> = (props: Props) => {
   let { url } = data;
 
   const onClickBack = () => {
-    if (window.history.state && window.history.state.idx > 0) {
-      router.back();
-    } else {
-      router.push("/");
-    }
+    router.back();
   };
 
   // If url links to a hackernews story, remove the params, so that it can route inside hckrnws
@@ -88,7 +84,7 @@ const Story: NextPage<Props> = (props: Props) => {
         <title>{decode(title)} - hckrnws</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1 mb-8">
         <button
           className="px-2 py-1 bg-transparent rounded flex items-center mb-2 w-fit group hover:bg-hover"
           onClick={onClickBack}
@@ -127,7 +123,7 @@ const Story: NextPage<Props> = (props: Props) => {
               by <span className="font-semibold text-primary">{user}</span>
             </p>
             <button
-              className="flex mr-2 p-1 w-fit items-center cursor-pointer rounded border-none hover:bg-hover"
+              className="flex mr-2 p-1 w-fit items-center cursor-default rounded border-none hover:bg-hover"
               onClick={handleStar}
             >
               <StarIcon
