@@ -13,11 +13,18 @@ import {
 import Dropdown from "../Common/Dropdown";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useKeyPress } from "~/hooks/useKeyPress";
 
 const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const { theme, setTheme } = useTheme();
+
+  useKeyPress("t", () => router.push("/top/1"));
+  useKeyPress("s", () => router.push("/show/1"));
+  useKeyPress("n", () => router.push("/new/1"));
+  useKeyPress("a", () => router.push("/ask/1"));
+  useKeyPress("x", () => router.push("/starred"));
 
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), []);
@@ -31,6 +38,7 @@ const Header: React.FC = () => {
       icon: (
         <TopHNIcon className="h-4 w-4 mr-2 text-icon group-hover:text-primary" />
       ),
+      kbd: "T",
     },
     {
       label: "Show",
@@ -38,6 +46,7 @@ const Header: React.FC = () => {
       icon: (
         <ShowHNIcon className="h-4 w-4 mr-2 text-icon group-hover:text-primary" />
       ),
+      kbd: "S",
     },
     {
       label: "New",
@@ -45,6 +54,7 @@ const Header: React.FC = () => {
       icon: (
         <ClockIcon className="h-4 w-4 mr-2 text-icon group-hover:text-primary" />
       ),
+      kbd: "N",
     },
     {
       label: "Ask",
@@ -52,6 +62,7 @@ const Header: React.FC = () => {
       icon: (
         <AskHNIcon className="h-4 w-4 mr-2 text-icon group-hover:text-primary" />
       ),
+      kbd: "A",
     },
     {
       label: "Starred",
@@ -59,6 +70,7 @@ const Header: React.FC = () => {
       icon: (
         <StarIcon className="h-4 w-4 mr-2 text-icon group-hover:text-primary" />
       ),
+      kbd: "X",
     },
   ];
 
@@ -96,7 +108,7 @@ const Header: React.FC = () => {
           handleOnClick={handleOnClick}
         />
         <button
-          className="p-1.5 border border-primary bg-secondary ml-2 hover:bg-tertiary duration-150 cursor-default rounded"
+          className="p-1.5 border border-primary bg-secondary ml-2 hover:bg-tertiary duration-150 cursor-default rounded focus-visible:ring-1 focus-visible:ring-blue-500"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           type="button"
           aria-label="Toggle Theme"

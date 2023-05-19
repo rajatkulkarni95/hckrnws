@@ -60,7 +60,7 @@ const Comment: React.FC<Props> = (props: Props) => {
             <div className="flex items-center">
               {(isHovered || isMobile) && (
                 <button
-                  className="p-1 ml-2 group"
+                  className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
                   onClick={() => {
                     navigator.clipboard.writeText(
                       `${process.env.NEXT_PUBLIC_VERCEL_URL}/stories/${id}`
@@ -74,7 +74,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                 {comments_count}
               </span>
               <button
-                className="p-1 ml-2 group"
+                className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
                 onClick={() => setCollapsed(false)}
               >
                 <ChevronDownIcon className="h-3 w-3 text-icon group-hover:text-primary" />
@@ -105,7 +105,7 @@ const Comment: React.FC<Props> = (props: Props) => {
               <div className="flex items-center">
                 {(isHovered || isMobile) && (
                   <button
-                    className="p-1 ml-2 group"
+                    className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
                     onClick={() => {
                       navigator.clipboard.writeText(
                         `${process.env.NEXT_PUBLIC_VERCEL_URL}/stories/${id}`
@@ -119,7 +119,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                   {prettyTime(time)}
                 </span>
                 <button
-                  className="p-1 ml-2 group"
+                  className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
                   onClick={() => setCollapsed(true)}
                 >
                   <ChevronUpIcon className="h-3 w-3 text-icon group-hover:text-primary" />

@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+button,
+a {
+  outline: none;
+}
+
 .quotes {
   @apply px-4 border-l-2 border-secondary text-tertiary !my-4;
 }
