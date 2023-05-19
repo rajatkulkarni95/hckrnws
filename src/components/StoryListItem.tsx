@@ -55,7 +55,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs whitespace-nowrap font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-secondary mt-0.5"
+          className="text-xs whitespace-nowrap font-normal mb-0.5 border-b hover:text-primary border-primary w-fit font-mono text-secondary mt-0.5 focus-visible:ring-1 focus-visible:ring-blue-500"
         >
           ({domain})
         </a>
@@ -70,7 +70,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
           url={url}
         />
         <button
-          className="flex mr-2 p-1 w-fit items-center cursor-default rounded border-none hover:bg-hover"
+          className="flex mr-2 p-1 w-fit items-center cursor-default rounded border-none hover:bg-hover focus-visible:ring-1 focus-visible:ring-blue-500"
           onClick={handleStar}
         >
           <StarIcon

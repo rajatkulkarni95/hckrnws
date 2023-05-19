@@ -18,7 +18,7 @@ const Pagination = ({
     <Fragment>
       <div className="flex justify-center items-center mt-8 mb-1 rounded-full">
         <button
-          className="px-4 py-2 rounded-l-full flex items-center border-r border-primary justify-start bg-tertiary group enabled:hover:bg-btn w-20 disabled:cursor-not-allowed disabled:opacity-40"
+          className="px-4 py-2 rounded-l-full flex items-center border-r border-primary justify-start bg-tertiary group enabled:hover:bg-btn w-20 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:ring-1 focus-visible:ring-blue-500"
           disabled={isPrevDisabled}
           onClick={() => onChangePage(currentPage - 1)}
         >
@@ -36,7 +36,7 @@ const Pagination = ({
           </span>
         </button>
         <button
-          className="px-4 py-2 rounded-r-full flex items-center justify-end bg-tertiary group enabled:hover:bg-btn w-20 disabled:cursor-not-allowed disabled:opacity-40"
+          className="px-4 py-2 rounded-r-full flex items-center justify-end bg-tertiary group enabled:hover:bg-btn w-20 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:ring-1 focus-visible:ring-blue-500"
           disabled={isNextDisabled}
           onClick={() => onChangePage(currentPage + 1)}
         >

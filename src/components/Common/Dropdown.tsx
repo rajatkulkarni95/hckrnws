@@ -8,6 +8,7 @@ interface IDropdown {
     label: string;
     id: string;
     icon?: React.ReactNode;
+    kbd?: string;
   }[];
   selectedId?: string;
   handleOnClick: (id: string) => void;
@@ -22,7 +23,7 @@ const Dropdown = ({
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <button className="py-1 px-4 border max-w-[156px] outline-none rounded border-primary bg-secondary hover:bg-tertiary duration-150 font-sans cursor-default text-sm">
+        <button className="py-1 px-2 border max-w-[156px] focus-visible:ring-1 focus-visible:ring-blue-500 outline-none rounded border-primary bg-secondary hover:bg-tertiary duration-150 font-sans cursor-default text-sm">
           {triggerLabel}
         </button>
       </DropdownMenu.Trigger>
@@ -45,6 +46,9 @@ const Dropdown = ({
             >
               {item.icon}
               {item.label}{" "}
+              <span className="text-xs text-tertiary font-normal ml-auto">
+                {item.kbd}
+              </span>
             </DropdownMenu.Item>
           ))}
         </DropdownMenu.Content>
