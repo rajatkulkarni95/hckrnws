@@ -68,6 +68,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                       `${process.env.NEXT_PUBLIC_VERCEL_URL}/stories/${id}`
                     );
                   }}
+                  tabIndex={-1}
                 >
                   <ClipboardIcon className="h-3 w-3 text-icon mr-2 group-hover:text-primary" />
                 </button>
@@ -81,6 +82,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                   setCollapsed(false);
                   handleCollapse(false, id);
                 }}
+                tabIndex={-1}
               >
                 <ChevronDownIcon className="h-3 w-3 text-icon group-hover:text-primary" />
               </button>
@@ -116,6 +118,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                         `${process.env.NEXT_PUBLIC_VERCEL_URL}/stories/${id}`
                       );
                     }}
+                    tabIndex={-1}
                   >
                     <ClipboardIcon className="h-3 w-3 text-icon mr-2 group-hover:text-primary" />
                   </button>
@@ -129,6 +132,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                     setCollapsed(true);
                     handleCollapse(true, id);
                   }}
+                  tabIndex={-1}
                 >
                   <ChevronUpIcon className="h-3 w-3 text-icon group-hover:text-primary" />
                 </button>

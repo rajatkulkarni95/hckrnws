@@ -87,6 +87,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
       </Link>
       {domain && (
         <a
+          tabIndex={-1}
           href={url}
           target="_blank"
           rel="noopener noreferrer"
@@ -107,6 +108,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
         <button
           className="flex mr-2 p-1 w-fit items-center cursor-default rounded border-none hover:bg-hover focus-visible:ring-1 focus-visible:ring-blue-500"
           onClick={handleStar}
+          tabIndex={-1}
         >
           <StarIcon
             className={`h-3 w-3 ${

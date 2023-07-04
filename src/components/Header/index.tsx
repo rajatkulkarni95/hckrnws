@@ -115,6 +115,7 @@ const Header: React.FC = () => {
           onClick={toggleTheme}
           type="button"
           aria-label="Toggle Theme"
+          tabIndex={-1}
         >
           {theme === "dark" ? (
             <SunIcon className="h-4 w-4 text-icon" />
