@@ -13,6 +13,7 @@ import useWindowSize from "~/hooks/useWindowSize";
 import useStore from "~/store/useStore";
 import { decode } from "html-entities";
 import InnerHTMLText from "~/components/Common/InnerHTMLText";
+import { useHotkeys } from "react-hotkeys-hook";
 
 type Props = {
   data: TDetailedStory;
@@ -43,6 +44,8 @@ const Story: NextPage<Props> = (props: Props) => {
   const onClickBack = () => {
     router.back();
   };
+
+  useHotkeys("escape", onClickBack);
 
   // If url links to a hackernews story, remove the params, so that it can route inside hckrnws
   if (url.startsWith("item?id=")) {
@@ -88,6 +91,7 @@ const Story: NextPage<Props> = (props: Props) => {
         <button
           className="px-2 py-1 bg-transparent rounded flex items-center mb-2 w-fit group hover:bg-hover focus-visible:ring-1 focus-visible:ring-blue-500"
           onClick={onClickBack}
+          tabIndex={-1}
         >
           <BackIcon className="w-3 h-3 text-icon group-hover:text-primary" />
           <span className="text-xs ml-1 font-mono text-secondary group-hover:text-primary">
@@ -125,6 +129,7 @@ const Story: NextPage<Props> = (props: Props) => {
             <button
               className="flex mr-2 p-1 w-fit items-center cursor-default rounded border-none hover:bg-hover focus-visible:ring-1 focus-visible:ring-blue-500"
               onClick={handleStar}
+              tabIndex={-1}
             >
               <StarIcon
                 className={`h-3 w-3 ${
@@ -138,7 +143,7 @@ const Story: NextPage<Props> = (props: Props) => {
           </div>
           {content && <InnerHTMLText content={content} isDescription />}
         </div>
-        <CommentList comments={comments} op={user} />
+        <CommentList comments={comments} op={user} key={id} />
       </div>
     </Fragment>
   );

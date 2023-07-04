@@ -7,28 +7,26 @@ import useStore from "~/store/useStore";
 import { decode } from "html-entities";
 import { useEffect, useState } from "react";
 import { StarIcon } from "~/icons";
+import { useHotkeys } from "react-hotkeys-hook";
+import { useRouter } from "next/router";
 
 type Props = {
   story: TBaseStory;
+  selected?: boolean;
 };
 
 const StoryListItem: React.FC<Props> = (props: Props) => {
   const {
     story: { title, user, url, id, points, comments_count, time, domain },
     story,
+    selected,
   } = props;
   const [isStoryStarred, setIsStoryStarred] = useState(false);
 
   const size: Size = useWindowSize();
   const starStory = useStore((state) => state.starStory);
   const starred = useStore((state) => state.starred);
-
-  useEffect(() => {
-    setIsStoryStarred(starred?.some((story) => story.id === id));
-  }, [starred, id]);
-
-  // To hide the job posting's that have no discussions around them
-  if (!user) return null;
+  const router = useRouter();
 
   const handleStar = () => {
     // save them to the zustand store, which in turn will save to local storage
@@ -41,8 +39,45 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
     }
   };
 
+  useHotkeys(
+    "enter",
+    () => {
+      router.push(`/stories/${id}`);
+    },
+    {
+      enabled: selected,
+    }
+  );
+
+  useHotkeys(
+    "v",
+    () => {
+      window.open(url, "_blank");
+    },
+    {
+      enabled: selected,
+    }
+  );
+
+  useHotkeys("shift+s", handleStar, {
+    enabled: selected,
+  });
+
+  useEffect(() => {
+    setIsStoryStarred(starred?.some((story) => story.id === id));
+  }, [starred, id]);
+
+  // To hide the job posting's that have no discussions around them
+  if (!user) return null;
+
   return (
-    <div className="py-2 flex flex-col w-full bg-transparent mb-2 duration-100 border-b border-primary hover:border-secondary">
+    <div
+      className={`p-2 flex flex-col w-full mb-2 duration-100 border-b ${
+        selected
+          ? "bg-hover rounded border-transparent activeElement"
+          : "border-primary rounded-none hover:rounded bg-transparent hover:bg-hover hover:border-transparent"
+      }`}
+    >
       <Link href={`/stories/${id}`} passHref>
         <h3
           className={`text-base text-secondary whitespace-pre-line font-medium duration-100 cursor-default font-sans hover:text-primary`}
@@ -52,6 +87,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
       </Link>
       {domain && (
         <a
+          tabIndex={-1}
           href={url}
           target="_blank"
           rel="noopener noreferrer"
@@ -72,6 +108,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
         <button
           className="flex mr-2 p-1 w-fit items-center cursor-default rounded border-none hover:bg-hover focus-visible:ring-1 focus-visible:ring-blue-500"
           onClick={handleStar}
+          tabIndex={-1}
         >
           <StarIcon
             className={`h-3 w-3 ${

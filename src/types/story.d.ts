@@ -37,6 +37,7 @@ export type TComment = {
   level: number;
   url: string;
   deleted?: boolean;
+  parent?: number;
 };
 
 export type PageProps = {

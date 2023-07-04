@@ -1,5 +1,5 @@
 import { prettyTime } from "~/helpers/time";
-import { Fragment, RefObject, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { TComment } from "~/types/story";
 import { ChevronDownIcon, ChevronUpIcon, ClipboardIcon } from "~/icons";
 import { contains } from "~/helpers/contains";
@@ -11,6 +11,7 @@ import { useHover } from "~/hooks/useHover";
 type Props = {
   comment: TComment;
   op: string;
+  handleCollapse: (isCollapsed: boolean, id: number) => void;
 };
 
 const Comment: React.FC<Props> = (props: Props) => {
@@ -26,6 +27,7 @@ const Comment: React.FC<Props> = (props: Props) => {
       id,
     },
     op,
+    handleCollapse,
   } = props;
   const isCommenterOP = user === op;
   const [collapsed, setCollapsed] = useState<Boolean>(false);
@@ -66,6 +68,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                       `${process.env.NEXT_PUBLIC_VERCEL_URL}/stories/${id}`
                     );
                   }}
+                  tabIndex={-1}
                 >
                   <ClipboardIcon className="h-3 w-3 text-icon mr-2 group-hover:text-primary" />
                 </button>
@@ -75,7 +78,11 @@ const Comment: React.FC<Props> = (props: Props) => {
               </span>
               <button
                 className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
-                onClick={() => setCollapsed(false)}
+                onClick={() => {
+                  setCollapsed(false);
+                  handleCollapse(false, id);
+                }}
+                tabIndex={-1}
               >
                 <ChevronDownIcon className="h-3 w-3 text-icon group-hover:text-primary" />
               </button>
@@ -111,6 +118,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                         `${process.env.NEXT_PUBLIC_VERCEL_URL}/stories/${id}`
                       );
                     }}
+                    tabIndex={-1}
                   >
                     <ClipboardIcon className="h-3 w-3 text-icon mr-2 group-hover:text-primary" />
                   </button>
@@ -120,7 +128,11 @@ const Comment: React.FC<Props> = (props: Props) => {
                 </span>
                 <button
                   className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
-                  onClick={() => setCollapsed(true)}
+                  onClick={() => {
+                    setCollapsed(true);
+                    handleCollapse(true, id);
+                  }}
+                  tabIndex={-1}
                 >
                   <ChevronUpIcon className="h-3 w-3 text-icon group-hover:text-primary" />
                 </button>
@@ -138,7 +150,12 @@ const Comment: React.FC<Props> = (props: Props) => {
         {/* // Recursively call the same component for children comments */}
       </div>
       {comments?.map((comment) => (
-        <Comment key={comment.id} comment={comment} op={op} />
+        <Comment
+          key={comment.id}
+          comment={comment}
+          op={op}
+          handleCollapse={handleCollapse}
+        />
       ))}
     </Fragment>
   );

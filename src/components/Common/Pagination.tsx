@@ -21,6 +21,7 @@ const Pagination = ({
           className="px-4 py-2 rounded-l-full flex items-center border-r border-primary justify-start bg-tertiary group enabled:hover:bg-btn w-20 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:ring-1 focus-visible:ring-blue-500"
           disabled={isPrevDisabled}
           onClick={() => onChangePage(currentPage - 1)}
+          tabIndex={-1}
         >
           <ArrowLeftIcon
             className={`h-4 w-4 text-icon ${
@@ -39,6 +40,7 @@ const Pagination = ({
           className="px-4 py-2 rounded-r-full flex items-center justify-end bg-tertiary group enabled:hover:bg-btn w-20 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:ring-1 focus-visible:ring-blue-500"
           disabled={isNextDisabled}
           onClick={() => onChangePage(currentPage + 1)}
+          tabIndex={-1}
         >
           <span
             className={`text-sm font-normal font-sans text-secondary ${
