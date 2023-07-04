@@ -1,11 +1,10 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { PageProps } from "~/types/story";
-import StoryListItem from "~/components/StoryListItem";
 import Head from "next/head";
 import { Fragment } from "react";
 import { useRouter } from "next/router";
-import Pagination from "~/components/Common/Pagination";
 import { CenteredText } from "~/components/Common/Fragments";
+import StoryList from "~/components/StoryList";
 
 const ShowStoriesList: NextPage<PageProps> = (props: PageProps) => {
   const router = useRouter();
@@ -27,16 +26,12 @@ const ShowStoriesList: NextPage<PageProps> = (props: PageProps) => {
         <title>Show HN - Page {number}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <div className="flex-1">
-        {data.map((story) => (
-          <StoryListItem story={story} key={story.id} />
-        ))}
-        <Pagination
-          currentPage={parseInt(number as string)}
-          onChangePage={handlePageChange}
-          totalPages={2}
-        />
-      </div>
+      <StoryList
+        data={data}
+        handlePageChange={handlePageChange}
+        number={number}
+        key={`show-${number}`}
+      />
     </Fragment>
   );
 };

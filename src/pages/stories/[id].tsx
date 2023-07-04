@@ -13,6 +13,7 @@ import useWindowSize from "~/hooks/useWindowSize";
 import useStore from "~/store/useStore";
 import { decode } from "html-entities";
 import InnerHTMLText from "~/components/Common/InnerHTMLText";
+import { useHotkeys } from "react-hotkeys-hook";
 
 type Props = {
   data: TDetailedStory;
@@ -43,6 +44,8 @@ const Story: NextPage<Props> = (props: Props) => {
   const onClickBack = () => {
     router.back();
   };
+
+  useHotkeys("escape", onClickBack);
 
   // If url links to a hackernews story, remove the params, so that it can route inside hckrnws
   if (url.startsWith("item?id=")) {
