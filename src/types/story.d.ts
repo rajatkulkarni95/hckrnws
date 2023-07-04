@@ -40,6 +40,13 @@ export type TComment = {
   parent?: number;
 };
 
+export type TStrippedComment = {
+  id: number;
+  user: string;
+  parent?: number;
+  level: number;
+};
+
 export type PageProps = {
   data: TBaseStory[];
   errorCode: false | number;

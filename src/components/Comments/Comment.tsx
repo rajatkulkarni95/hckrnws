@@ -7,11 +7,13 @@ import InnerHTMLText from "~/components/Common/InnerHTMLText";
 import { Size } from "~/types/size";
 import useWindowSize from "~/hooks/useWindowSize";
 import { useHover } from "~/hooks/useHover";
+import { useHotkeys } from "react-hotkeys-hook";
 
 type Props = {
   comment: TComment;
   op: string;
   handleCollapse: (isCollapsed: boolean, id: number) => void;
+  highlightedId: number;
 };
 
 const Comment: React.FC<Props> = (props: Props) => {
@@ -28,6 +30,7 @@ const Comment: React.FC<Props> = (props: Props) => {
     },
     op,
     handleCollapse,
+    highlightedId,
   } = props;
   const isCommenterOP = user === op;
   const [collapsed, setCollapsed] = useState<Boolean>(false);
@@ -44,11 +47,23 @@ const Comment: React.FC<Props> = (props: Props) => {
 
   const margin = isMobile ? 8 : 16;
 
+  const toggleCollapse = () => {
+    setCollapsed(!collapsed);
+    handleCollapse(!collapsed, id);
+  };
+
+  useHotkeys("space", toggleCollapse, {
+    preventDefault: true,
+    enabled: highlightedId === id,
+  });
+
   if (collapsed)
     return (
       <div className="flex" ref={hoverRef}>
         <section
-          className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2 border-primary`}
+          className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2 border-primary ${
+            highlightedId === id ? "bg-hover activeComment" : "bg-transparent"
+          }`}
           style={{ marginLeft: `calc(${margin}px * ${level})` }}
         >
           <div className="flex justify-between">
@@ -78,10 +93,7 @@ const Comment: React.FC<Props> = (props: Props) => {
               </span>
               <button
                 className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
-                onClick={() => {
-                  setCollapsed(false);
-                  handleCollapse(false, id);
-                }}
+                onClick={toggleCollapse}
                 tabIndex={-1}
               >
                 <ChevronDownIcon className="h-3 w-3 text-icon group-hover:text-primary" />
@@ -97,7 +109,9 @@ const Comment: React.FC<Props> = (props: Props) => {
       {/* Indent the children based on the level */}
       <div style={{ display: "flex" }} ref={hoverRef}>
         <section
-          className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2  border-primary`}
+          className={`pt-2 pr-2 mb-1 pb-1 pl-3 flex flex-col relative w-full border-l-2 border-primary ${
+            highlightedId === id ? "bg-hover activeComment" : "bg-transparent"
+          }`}
           style={{ marginLeft: `calc(${margin}px * ${level})` }}
         >
           {!deleted && (
@@ -128,10 +142,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                 </span>
                 <button
                   className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
-                  onClick={() => {
-                    setCollapsed(true);
-                    handleCollapse(true, id);
-                  }}
+                  onClick={toggleCollapse}
                   tabIndex={-1}
                 >
                   <ChevronUpIcon className="h-3 w-3 text-icon group-hover:text-primary" />
@@ -155,6 +166,7 @@ const Comment: React.FC<Props> = (props: Props) => {
           comment={comment}
           op={op}
           handleCollapse={handleCollapse}
+          highlightedId={highlightedId}
         />
       ))}
     </Fragment>

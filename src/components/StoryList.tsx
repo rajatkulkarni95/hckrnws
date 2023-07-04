@@ -51,10 +51,10 @@ const StoryList = ({
   const currentPage = parseInt(number as string);
 
   useHotkeys("ArrowUp", () => moveSelectedIndex(-1), {
-    preventDefault: true,
+    preventDefault: selectedIndex !== 0,
   });
   useHotkeys("ArrowDown", () => moveSelectedIndex(1), {
-    preventDefault: true,
+    preventDefault: selectedIndex !== data.length - 1,
   });
 
   useHotkeys("q", () => {
