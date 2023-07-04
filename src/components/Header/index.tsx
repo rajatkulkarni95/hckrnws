@@ -13,18 +13,21 @@ import {
 import Dropdown from "../Common/Dropdown";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useKeyPress } from "~/hooks/useKeyPress";
+import { useHotkeys } from "react-hotkeys-hook";
 
 const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const { theme, setTheme } = useTheme();
 
-  useKeyPress("t", () => router.push("/top/1"));
-  useKeyPress("s", () => router.push("/show/1"));
-  useKeyPress("n", () => router.push("/new/1"));
-  useKeyPress("a", () => router.push("/ask/1"));
-  useKeyPress("x", () => router.push("/star"));
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+
+  useHotkeys("t", () => router.push("/top/1"));
+  useHotkeys("s", () => router.push("/show/1"));
+  useHotkeys("n", () => router.push("/new/1"));
+  useHotkeys("a", () => router.push("/ask/1"));
+  useHotkeys("x", () => router.push("/star"));
+  useHotkeys("alt+t", toggleTheme);
 
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), []);
@@ -109,7 +112,7 @@ const Header: React.FC = () => {
         />
         <button
           className="p-1.5 border border-primary bg-secondary ml-2 hover:bg-tertiary duration-150 cursor-default rounded focus-visible:ring-1 focus-visible:ring-blue-500"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          onClick={toggleTheme}
           type="button"
           aria-label="Toggle Theme"
         >
