@@ -31,6 +31,8 @@ const TopStoriesList: NextPage<PageProps> = (props: PageProps) => {
         handlePageChange={handlePageChange}
         number={number}
         key={`top-${number}`}
+        view="top"
+        totalPages={10}
       />
     </Fragment>
   );

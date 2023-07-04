@@ -31,6 +31,8 @@ const ShowStoriesList: NextPage<PageProps> = (props: PageProps) => {
         handlePageChange={handlePageChange}
         number={number}
         key={`show-${number}`}
+        view="show"
+        totalPages={2}
       />
     </Fragment>
   );

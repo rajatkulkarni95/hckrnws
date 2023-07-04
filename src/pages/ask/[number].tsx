@@ -31,6 +31,8 @@ const AskStoriesList: NextPage<PageProps> = (props: PageProps) => {
         handlePageChange={handlePageChange}
         number={number}
         key={`ask-${number}`}
+        view="ask"
+        totalPages={2}
       />
     </Fragment>
   );

@@ -3,16 +3,26 @@ import Pagination from "./Common/Pagination";
 import StoryListItem from "./StoryListItem";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 
 type TStoryList = {
   data: TBaseStory[];
   number: string | string[] | undefined;
   handlePageChange: (page: number) => void;
+  view: "new" | "top" | "ask" | "show";
+  totalPages: number;
 };
 
-const StoryList = ({ data, number, handlePageChange }: TStoryList) => {
+const StoryList = ({
+  data,
+  number,
+  handlePageChange,
+  view,
+  totalPages,
+}: TStoryList) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   const moveSelectedIndex = (direction: number) => {
     const newIndex = selectedIndex + direction;
@@ -38,11 +48,23 @@ const StoryList = ({ data, number, handlePageChange }: TStoryList) => {
     });
   }, [selectedIndex]);
 
+  const currentPage = parseInt(number as string);
+
   useHotkeys("ArrowUp", () => moveSelectedIndex(-1), {
     preventDefault: true,
   });
   useHotkeys("ArrowDown", () => moveSelectedIndex(1), {
     preventDefault: true,
+  });
+
+  useHotkeys("q", () => {
+    if (currentPage === 1) return;
+    router.push(`/${view}/${currentPage - 1}`);
+  });
+
+  useHotkeys("e", () => {
+    if (currentPage === totalPages) return;
+    router.push(`/${view}/${currentPage + 1}`);
   });
 
   return (
@@ -55,8 +77,9 @@ const StoryList = ({ data, number, handlePageChange }: TStoryList) => {
         />
       ))}
       <Pagination
-        currentPage={parseInt(number as string)}
+        currentPage={currentPage}
         onChangePage={handlePageChange}
+        totalPages={totalPages}
       />
     </div>
   );
