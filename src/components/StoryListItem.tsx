@@ -28,6 +28,17 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
   const starred = useStore((state) => state.starred);
   const router = useRouter();
 
+  const handleStar = () => {
+    // save them to the zustand store, which in turn will save to local storage
+    const isStoryStarred = starred?.some((story) => story.id === id);
+    if (isStoryStarred) {
+      const filteredStories = starred?.filter((story) => story.id !== id);
+      starStory(filteredStories);
+    } else {
+      starStory([...starred, story]);
+    }
+  };
+
   useHotkeys(
     "enter",
     () => {
@@ -48,23 +59,16 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
     }
   );
 
+  useHotkeys("shift+s", handleStar, {
+    enabled: selected,
+  });
+
   useEffect(() => {
     setIsStoryStarred(starred?.some((story) => story.id === id));
   }, [starred, id]);
 
   // To hide the job posting's that have no discussions around them
   if (!user) return null;
-
-  const handleStar = () => {
-    // save them to the zustand store, which in turn will save to local storage
-    const isStoryStarred = starred?.some((story) => story.id === id);
-    if (isStoryStarred) {
-      const filteredStories = starred?.filter((story) => story.id !== id);
-      starStory(filteredStories);
-    } else {
-      starStory([...starred, story]);
-    }
-  };
 
   return (
     <div
