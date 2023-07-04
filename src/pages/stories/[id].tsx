@@ -138,7 +138,7 @@ const Story: NextPage<Props> = (props: Props) => {
           </div>
           {content && <InnerHTMLText content={content} isDescription />}
         </div>
-        <CommentList comments={comments} op={user} />
+        <CommentList comments={comments} op={user} key={id} />
       </div>
     </Fragment>
   );
