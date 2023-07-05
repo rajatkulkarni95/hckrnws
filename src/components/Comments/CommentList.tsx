@@ -3,6 +3,7 @@ import { TComment, TStrippedComment } from "~/types/story";
 import { CenteredText } from "../Common/Fragments";
 import Comment from "./Comment";
 import { useHotkeys } from "react-hotkeys-hook";
+import usePrevious from "~/hooks/usePrevious";
 
 type Props = {
   comments: TComment[];
@@ -18,6 +19,7 @@ const CommentList: React.FC<Props> = (props: Props) => {
   const flatListComments: TStrippedComment[] = useMemo(() => [], []);
 
   const [collapsedComments, setCollapsedComments] = useState<number[]>([]);
+  const previousCollapsedComments = usePrevious(collapsedComments);
 
   function recursivelyListComments(
     child: TComment[],
@@ -28,7 +30,6 @@ const CommentList: React.FC<Props> = (props: Props) => {
       flatListComments.splice(0, flatListComments.length);
     }
     const flatListCommentsIds: number[] = flatListComments.map((c) => c.id);
-    console.log({ flatListCommentsIds });
 
     child.forEach((c) => {
       c.parent = parent || undefined;
@@ -52,8 +53,10 @@ const CommentList: React.FC<Props> = (props: Props) => {
   }
 
   useEffect(() => {
-    recursivelyListComments(comments);
-  }, []);
+    if (collapsedComments.length <= (previousCollapsedComments?.length ?? 0)) {
+      recursivelyListComments(comments, 0, true);
+    }
+  }, [collapsedComments]);
 
   // When a comment is collapsed, we need to recursively remove all of its children from the flat list, so that they don't get rendered
   // We shouldn't alter the collapsedComments array, because that would cause a re-render, we should instead remove the children from the flat list
@@ -104,11 +107,8 @@ const CommentList: React.FC<Props> = (props: Props) => {
       recursivelyCollapseComments(id);
     } else {
       setCollapsedComments(collapsedComments.filter((c) => c !== id));
-      recursivelyListComments(comments, 0, true);
     }
   };
-
-  console.log({ flatListComments });
 
   return (
     <div className="mt-4">
