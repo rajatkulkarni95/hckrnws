@@ -63,7 +63,7 @@ const Comment: React.FC<Props> = (props: Props) => {
     return (
       <div className="flex" ref={hoverRef}>
         <section
-          className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2 border-primary ${
+          className={`pt-1 pr-2 mb-1 pb-1 pl-3 flex flex-col relative w-full border-l-2 border-primary ${
             isHighlighted ? "bg-hover activeComment" : "bg-transparent"
           }`}
           style={{ marginLeft: `calc(${margin}px * ${level})` }}
