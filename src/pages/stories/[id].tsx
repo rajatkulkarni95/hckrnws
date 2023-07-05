@@ -81,6 +81,8 @@ const Story: NextPage<Props> = (props: Props) => {
     setIsStoryStarred(starred?.some((story) => story.id === id));
   }, [starred, id]);
 
+  useHotkeys("shift+s", handleStar);
+
   return (
     <Fragment>
       <Head>

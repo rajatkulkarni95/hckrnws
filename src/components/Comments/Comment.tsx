@@ -37,6 +37,8 @@ const Comment: React.FC<Props> = (props: Props) => {
 
   const [hoverRef, isHovered] = useHover<HTMLDivElement>();
 
+  const isHighlighted = highlightedId === id;
+
   // find quotes and apply styles
   useEffect(() => {
     contains("p", ">", "quotes");
@@ -54,7 +56,7 @@ const Comment: React.FC<Props> = (props: Props) => {
 
   useHotkeys("space", toggleCollapse, {
     preventDefault: true,
-    enabled: highlightedId === id,
+    enabled: isHighlighted,
   });
 
   if (collapsed)
@@ -62,7 +64,7 @@ const Comment: React.FC<Props> = (props: Props) => {
       <div className="flex" ref={hoverRef}>
         <section
           className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2 border-primary ${
-            highlightedId === id ? "bg-hover activeComment" : "bg-transparent"
+            isHighlighted ? "bg-hover activeComment" : "bg-transparent"
           }`}
           style={{ marginLeft: `calc(${margin}px * ${level})` }}
         >
@@ -75,7 +77,7 @@ const Comment: React.FC<Props> = (props: Props) => {
               {user}
             </span>
             <div className="flex items-center">
-              {(isHovered || isMobile) && (
+              {(isHovered || isMobile || isHighlighted) && (
                 <button
                   className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
                   onClick={() => {
@@ -124,7 +126,7 @@ const Comment: React.FC<Props> = (props: Props) => {
                 {user}
               </span>
               <div className="flex items-center">
-                {(isHovered || isMobile) && (
+                {(isHovered || isMobile || isHighlighted) && (
                   <button
                     className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
                     onClick={() => {
