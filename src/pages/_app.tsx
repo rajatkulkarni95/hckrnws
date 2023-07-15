@@ -6,7 +6,6 @@ import Header from "~/components/Header";
 import { DefaultSeo } from "next-seo";
 import { defaultSEO } from "~/config/seo";
 // @ts-ignore
-import { Analytics } from "@vercel/analytics/react";
 import { CraftedBy } from "~/components/Common/Fragments";
 
 function App({ Component, pageProps }: AppProps) {
@@ -18,7 +17,6 @@ function App({ Component, pageProps }: AppProps) {
         <Header />
         <Component {...pageProps} />
         <CraftedBy />
-        <Analytics />
       </main>
     </ThemeProvider>
   );
