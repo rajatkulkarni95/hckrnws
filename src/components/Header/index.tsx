@@ -14,11 +14,20 @@ import Dropdown from "../Common/Dropdown";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useKeyPress } from "~/hooks/useKeyPress";
+import { useSearchParams } from "next/navigation";
 
 const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const { theme, setTheme } = useTheme();
+
+  const searchParams = useSearchParams();
+  const themeParam = searchParams.get("theme");
+
+  if (themeParam == "dark") {
+    setTheme("dark");
+    console.log(theme)
+  }
 
   useKeyPress("t", () => router.push("/top/1"));
   useKeyPress("s", () => router.push("/show/1"));
