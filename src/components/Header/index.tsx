@@ -21,14 +21,6 @@ const Header: React.FC = () => {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
 
-  const searchParams = useSearchParams();
-  const themeParam = searchParams.get("theme");
-
-  if (themeParam == "dark") {
-    setTheme("dark");
-    console.log(theme)
-  }
-
   useKeyPress("t", () => router.push("/top/1"));
   useKeyPress("s", () => router.push("/show/1"));
   useKeyPress("n", () => router.push("/new/1"));
