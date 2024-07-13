@@ -14,6 +14,7 @@ import Dropdown from "../Common/Dropdown";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useKeyPress } from "~/hooks/useKeyPress";
+import { useSearchParams } from "next/navigation";
 
 const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
