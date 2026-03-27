@@ -14,7 +14,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en" data-theme="dark">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <title>hckrnws</title>
         <meta name="description" content="hckrnws - A cleaner frontend for reading hackernews" />
         <meta property="og:type" content="website" />
