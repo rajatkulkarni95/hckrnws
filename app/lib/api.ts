@@ -16,8 +16,37 @@ type AlgoliaHit = {
 type AlgoliaSearchResponse = {
   hits: AlgoliaHit[];
   nbPages: number;
+  nbHits: number;
   page: number;
   hitsPerPage: number;
+};
+
+type AlgoliaCommentHit = {
+  objectID: string;
+  author: string;
+  comment_text: string | null;
+  story_id: number;
+  story_title: string | null;
+  story_url: string | null;
+  created_at_i: number;
+  points: number | null;
+};
+
+type AlgoliaCommentSearchResponse = {
+  hits: AlgoliaCommentHit[];
+  nbPages: number;
+  nbHits: number;
+  page: number;
+  hitsPerPage: number;
+};
+
+export type TSearchComment = {
+  id: number;
+  author: string;
+  text: string;
+  storyId: number;
+  storyTitle: string;
+  time: number;
 };
 
 type AlgoliaItem = {
@@ -149,7 +178,7 @@ export async function fetchStoryDetail(
 export async function searchStories(
   query: string,
   page: number
-): Promise<{ stories: TBaseStory[]; nbPages: number }> {
+): Promise<{ stories: TBaseStory[]; nbPages: number; nbHits: number }> {
   const algoliaPage = page - 1;
   const res = await fetch(
     `${ALGOLIA_BASE}/search?query=${encodeURIComponent(query)}&tags=story&hitsPerPage=30&page=${algoliaPage}`
@@ -160,5 +189,52 @@ export async function searchStories(
   return {
     stories: data.hits.map(mapHitToBaseStory),
     nbPages: data.nbPages,
+    nbHits: data.nbHits,
+  };
+}
+
+export async function searchComments(
+  query: string,
+  page: number
+): Promise<{ comments: TSearchComment[]; nbPages: number; nbHits: number }> {
+  const algoliaPage = page - 1;
+  const res = await fetch(
+    `${ALGOLIA_BASE}/search?query=${encodeURIComponent(query)}&tags=comment&hitsPerPage=30&page=${algoliaPage}`
+  );
+  if (!res.ok) throw new Error("Failed to fetch");
+
+  const data: AlgoliaCommentSearchResponse = await res.json();
+  return {
+    comments: data.hits.map((hit) => ({
+      id: parseInt(hit.objectID),
+      author: hit.author || "",
+      text: hit.comment_text || "",
+      storyId: hit.story_id,
+      storyTitle: hit.story_title || "",
+      time: hit.created_at_i,
+    })),
+    nbPages: data.nbPages,
+    nbHits: data.nbHits,
+  };
+}
+
+export async function searchCounts(
+  query: string
+): Promise<{ posts: number; comments: number }> {
+  const q = encodeURIComponent(query);
+  const [postsRes, commentsRes] = await Promise.all([
+    fetch(`${ALGOLIA_BASE}/search?query=${q}&tags=story&hitsPerPage=0`),
+    fetch(`${ALGOLIA_BASE}/search?query=${q}&tags=comment&hitsPerPage=0`),
+  ]);
+  if (!postsRes.ok || !commentsRes.ok) throw new Error("Failed to fetch");
+
+  const [postsData, commentsData] = await Promise.all([
+    postsRes.json() as Promise<AlgoliaSearchResponse>,
+    commentsRes.json() as Promise<AlgoliaCommentSearchResponse>,
+  ]);
+
+  return {
+    posts: postsData.nbHits,
+    comments: commentsData.nbHits,
   };
 }
