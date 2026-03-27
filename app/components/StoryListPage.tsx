@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import StoryListItem from "~/components/StoryListItem";
 import Pagination from "~/components/Common/Pagination";
 import { CenteredText } from "~/components/Common/Fragments";
+import { StoryListSkeleton } from "~/components/Skeletons";
 import type { TBaseStory } from "~/types/story";
 
 type Props = {
@@ -42,7 +43,7 @@ export default function StoryListPage({
   }, [titlePrefix, pageNum]);
 
   if (error) return <CenteredText>Oops! Something went wrong :(</CenteredText>;
-  if (!data) return <CenteredText>Loading...</CenteredText>;
+  if (!data) return <StoryListSkeleton />;
 
   return (
     <div className="flex-1">

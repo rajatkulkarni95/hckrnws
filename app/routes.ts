@@ -7,6 +7,7 @@ export default [
   route("ask/:number", "routes/ask.$number.tsx"),
   route("show/:number", "routes/show.$number.tsx"),
   route("stories/:id", "routes/stories.$id.tsx"),
+  route("item", "routes/item.tsx"),
   route("star", "routes/star.tsx"),
   route("*", "routes/$.tsx"),
 ] satisfies RouteConfig;

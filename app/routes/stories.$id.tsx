@@ -8,6 +8,7 @@ import { useStarred } from "~/lib/starred";
 import { decode } from "html-entities";
 import InnerHTMLText from "~/components/Common/InnerHTMLText";
 import { CenteredText } from "~/components/Common/Fragments";
+import { StoryDetailSkeleton } from "~/components/Skeletons";
 
 export default function Story() {
   const { id } = useParams();
@@ -34,7 +35,7 @@ export default function Story() {
   }, [data]);
 
   if (error) return <CenteredText>Oops! Something went wrong :(</CenteredText>;
-  if (!data) return <CenteredText>Loading...</CenteredText>;
+  if (!data) return <StoryDetailSkeleton />;
 
   const { title, points, user, time, content, comments, domain } = data;
   let { url } = data;
