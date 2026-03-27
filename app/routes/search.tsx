@@ -14,6 +14,7 @@ import {
 import { SearchIcon } from "~/icons";
 import { prettyTime } from "~/helpers/time";
 import InnerHTMLText from "~/components/Common/InnerHTMLText";
+import { decode } from "html-entities";
 
 type Tab = "posts" | "comments";
 
@@ -23,19 +24,70 @@ function formatCount(n: number): string {
   return String(n);
 }
 
-function CommentResult({ comment }: { comment: TSearchComment }) {
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function highlightHTML(html: string, query: string): string {
+  if (!query.trim()) return html;
+  const words = query.trim().split(/\s+/).map(escapeRegExp).filter(Boolean);
+  if (words.length === 0) return html;
+  const pattern = new RegExp(`(${words.join("|")})`, "gi");
+  // Split on HTML tags to only highlight text content, not inside tags
+  return html.replace(/(<[^>]*>)|([^<]+)/g, (match, tag, text) => {
+    if (tag) return tag;
+    return text.replace(pattern, "<mark>$1</mark>");
+  });
+}
+
+function HighlightedText({
+  text,
+  query,
+  className,
+}: {
+  text: string;
+  query: string;
+  className?: string;
+}) {
+  if (!query.trim()) return <span className={className}>{text}</span>;
+  const words = query.trim().split(/\s+/).map(escapeRegExp).filter(Boolean);
+  if (words.length === 0) return <span className={className}>{text}</span>;
+  const pattern = new RegExp(`(${words.join("|")})`, "gi");
+  const parts = text.split(pattern);
+  return (
+    <span className={className}>
+      {parts.map((part, i) =>
+        pattern.test(part) ? (
+          <mark key={i}>{part}</mark>
+        ) : (
+          part
+        )
+      )}
+    </span>
+  );
+}
+
+function CommentResult({
+  comment,
+  query,
+}: {
+  comment: TSearchComment;
+  query: string;
+}) {
   return (
     <div className="py-2 flex flex-col w-full bg-transparent mb-2 border-b border-border-primary">
       <Link to={`/stories/${comment.storyId}`}>
         <p className="text-xs text-text-secondary font-sans mb-1">
           on{" "}
-          <span className="text-text-primary font-medium">
-            {comment.storyTitle}
-          </span>
+          <HighlightedText
+            text={comment.storyTitle}
+            query={query}
+            className="text-text-primary font-medium"
+          />
         </p>
       </Link>
       <div className="text-sm text-text-secondary font-sans">
-        <InnerHTMLText content={comment.text} />
+        <InnerHTMLText content={highlightHTML(comment.text, query)} />
       </div>
       <div className="flex items-center mt-1 gap-2">
         <span className="text-xs text-text-secondary font-sans">
@@ -195,7 +247,13 @@ export default function Search() {
       {activeTab === "posts" && posts && posts.length > 0 && (
         <>
           {posts.map((story) => (
-            <StoryListItem story={story} key={story.id} />
+            <StoryListItem
+              story={story}
+              key={story.id}
+              titleContent={
+                <HighlightedText text={decode(story.title)} query={query} />
+              }
+            />
           ))}
           <Pagination
             currentPage={page}
@@ -210,7 +268,7 @@ export default function Search() {
       {activeTab === "comments" && comments && comments.length > 0 && (
         <>
           {comments.map((comment) => (
-            <CommentResult comment={comment} key={comment.id} />
+            <CommentResult comment={comment} query={query} key={comment.id} />
           ))}
           <Pagination
             currentPage={page}

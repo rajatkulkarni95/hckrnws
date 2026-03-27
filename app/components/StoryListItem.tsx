@@ -7,12 +7,14 @@ import { StarIcon } from "~/icons";
 
 type Props = {
   story: TBaseStory;
+  titleContent?: React.ReactNode;
 };
 
 const StoryListItem: React.FC<Props> = (props: Props) => {
   const {
     story: { title, user, url, id, points, comments_count, time, domain },
     story,
+    titleContent,
   } = props;
 
   const { toggleStar, isStarred } = useStarred();
@@ -26,7 +28,7 @@ const StoryListItem: React.FC<Props> = (props: Props) => {
         <h3
           className={`text-base text-text-secondary whitespace-pre-line font-medium duration-100 cursor-default font-sans hover:text-text-primary`}
         >
-          {decode(title)}{" "}
+          {titleContent || decode(title)}{" "}
         </h3>
       </Link>
       {domain && (

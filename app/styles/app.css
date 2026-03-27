@@ -38,6 +38,10 @@ a {
   @apply px-4 border-l-2 border-border-secondary text-text-tertiary !my-4;
 }
 
+mark {
+  @apply bg-amber-400/30 text-inherit rounded-sm px-0.5;
+}
+
 /* App Themes */
 
 [data-theme="light"] {
