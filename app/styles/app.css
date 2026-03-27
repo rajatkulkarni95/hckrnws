@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+
+  --color-text-primary: var(--color-text-primary-var);
+  --color-text-secondary: var(--color-text-secondary-var);
+  --color-text-tertiary: var(--color-text-tertiary-var);
+  --color-text-icon: var(--color-text-icon-var);
+  --color-text-code: var(--color-text-code-var);
+  --color-text-btn: var(--color-text-btn-var);
+  --color-text-link: var(--color-text-link-var);
+
+  --color-bg-primary: var(--color-bg-primary-var);
+  --color-bg-secondary: var(--color-bg-secondary-var);
+  --color-bg-tertiary: var(--color-bg-tertiary-var);
+  --color-bg-hover: var(--color-bg-hover-var);
+  --color-bg-code: var(--color-bg-code-var);
+  --color-bg-tooltip: var(--color-bg-tooltip-var);
+  --color-bg-op: var(--color-bg-op-var);
+  --color-bg-btn: var(--color-bg-btn-var);
+
+  --color-border-primary: var(--color-border-primary-var);
+  --color-border-secondary: var(--color-border-secondary-var);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+a {
+  outline: none;
+}
+
+.quotes {
+  @apply px-4 border-l-2 border-border-secondary text-text-tertiary !my-4;
+}
+
+mark {
+  @apply bg-amber-400/30 text-inherit rounded-sm px-0.5;
+}
+
+/* App Themes */
+
+[data-theme="light"] {
+  --color-text-primary-var: #18181b;
+  --color-text-secondary-var: #3f3f46;
+  --color-text-tertiary-var: #52525b;
+  --color-text-code-var: #18181b;
+  --color-text-icon-var: #3c4149;
+  --color-text-btn-var: #fafafa;
+  --color-text-link-var: #38bdf8;
+
+  --color-bg-primary-var: #fafafa;
+  --color-bg-secondary-var: #f4f4f5;
+  --color-bg-tertiary-var: #e4e4e7;
+  --color-bg-hover-var: #f4f4f5;
+  --color-bg-tooltip-var: #f5f6f8;
+  --color-bg-code-var: #edebe5;
+  --color-bg-op-var: #ddd6fe;
+  --color-bg-btn-var: #18181b;
+
+  --color-border-primary-var: #d4d4d8;
+  --color-border-secondary-var: #a1a1aa;
+}
+
+[data-theme="dark"] {
+  --color-text-primary-var: #fafafa;
+  --color-text-secondary-var: #d4d4d8;
+  --color-text-tertiary-var: #a1a1aa;
+  --color-text-code-var: #fafafa;
+  --color-text-icon-var: #c3c4c6;
+  --color-text-btn-var: #18181b;
+  --color-text-link-var: #38bdf8;
+
+  --color-bg-primary-var: #18181b;
+  --color-bg-secondary-var: #27272a;
+  --color-bg-tertiary-var: #3f3f46;
+  --color-bg-hover-var: #232324;
+  --color-bg-tooltip-var: #1a1a1a;
+  --color-bg-code-var: #202020;
+  --color-bg-op-var: #5b21b6;
+  --color-bg-btn-var: #fafafa;
+
+  --color-border-primary-var: #2e2e2f;
+  --color-border-secondary-var: #52525b;
+}
+
+[data-theme="andromeda"] {
+  --color-text-primary-var: #ffffff;
+  --color-text-secondary-var: #a5aba8;
+  --color-text-tertiary-var: #aeabb1;
+  --color-text-code-var: #ffffff;
+  --color-text-icon-var: #c3c4c6;
+
+  --color-bg-primary-var: #1e2025;
+  --color-bg-secondary-var: #272a32;
+  --color-bg-tertiary-var: #22242a;
+  --color-bg-hover-var: #262930;
+  --color-bg-code-var: #1e2025;
+  --color-bg-tooltip-var: #1a1a1a;
+
+  --color-border-primary-var: #2b2e37;
+  --color-border-secondary-var: #24262d;
+}
+
+/* Karla */
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/karla/karla-v23-latin-regular.woff2") format("woff2"),
+    url("/fonts/karla/karla-v23-latin-regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/karla/karla-v23-latin-500.woff2") format("woff2"),
+    url("/fonts/karla/karla-v23-latin-500.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/karla/karla-v23-latin-600.woff2") format("woff2"),
+    url("/fonts/karla/karla-v23-latin-600.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/karla/karla-v23-latin-700.woff2") format("woff2"),
+    url("/fonts/karla/karla-v23-latin-700.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Karla";
+  font-style: italic;
+  font-weight: 400;
+  src: url("/fonts/karla/karla-v23-latin-italic.woff2") format("woff2"),
+    url("/fonts/karla/karla-v23-latin-italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Karla";
+  font-style: italic;
+  font-weight: 500;
+  src: url("/fonts/karla/karla-v23-latin-500italic.woff2") format("woff2"),
+    url("/fonts/karla/karla-v23-latin-500italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Karla";
+  font-style: italic;
+  font-weight: 700;
+  src: url("/fonts/karla/karla-v23-latin-700italic.woff2") format("woff2"),
+    url("/fonts/karla/karla-v23-latin-700italic.woff") format("woff");
+}
+
+/* Space Mono */
+@font-face {
+  font-display: swap;
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/space_mono/space-mono-v12-latin-regular.woff2") format("woff2"),
+    url("/fonts/space_mono/space-mono-v12-latin-regular.woff") format("woff");
+}
