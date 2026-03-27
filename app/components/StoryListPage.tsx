@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams, useSearchParams } from "react-router";
 import StoryListItem from "~/components/StoryListItem";
 import Pagination from "~/components/Common/Pagination";
 import { CenteredText } from "~/components/Common/Fragments";
 import { StoryListSkeleton } from "~/components/Skeletons";
 import type { TBaseStory } from "~/types/story";
-import { fetchStoryList } from "~/lib/api";
+import { fetchStoryList, type TTimeRange } from "~/lib/api";
 
 type Props = {
   apiPath: string;
@@ -22,7 +22,10 @@ export default function StoryListPage({
 }: Props) {
   const { number } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const pageNum = parseInt(number || "1");
+
+  const timeRange = (searchParams.get("range") as TTimeRange) || "day";
 
   const [data, setData] = useState<TBaseStory[] | null>(null);
   const [error, setError] = useState(false);
@@ -30,10 +33,10 @@ export default function StoryListPage({
   useEffect(() => {
     setData(null);
     setError(false);
-    fetchStoryList(apiPath, pageNum)
+    fetchStoryList(apiPath, pageNum, timeRange)
       .then(setData)
       .catch(() => setError(true));
-  }, [apiPath, pageNum]);
+  }, [apiPath, pageNum, timeRange]);
 
   useEffect(() => {
     document.title = `${titlePrefix} - Page ${pageNum}`;
@@ -49,7 +52,9 @@ export default function StoryListPage({
       ))}
       <Pagination
         currentPage={pageNum}
-        onChangePage={(page) => navigate(`/${category}/${page}`)}
+        onChangePage={(page) =>
+          navigate(`/${category}/${page}?range=${timeRange}`)
+        }
         totalPages={totalPages}
       />
     </div>

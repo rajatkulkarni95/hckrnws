@@ -129,9 +129,27 @@ const TAG_MAP: Record<string, string> = {
   show: "show_hn",
 };
 
+export type TTimeRange = "day" | "week" | "month" | "year" | "all";
+
+const TIME_RANGE_SECONDS: Record<Exclude<TTimeRange, "all">, number> = {
+  day: 86400,
+  week: 604800,
+  month: 2592000,
+  year: 31536000,
+};
+
+export const TIME_RANGE_OPTIONS: { id: TTimeRange; label: string }[] = [
+  { id: "day", label: "Past 24h" },
+  { id: "week", label: "Past Week" },
+  { id: "month", label: "Past Month" },
+  { id: "year", label: "Past Year" },
+  { id: "all", label: "All Time" },
+];
+
 export async function fetchStoryList(
   apiPath: string,
-  page: number
+  page: number,
+  timeRange: TTimeRange = "day"
 ): Promise<TBaseStory[]> {
   const tag = TAG_MAP[apiPath];
   if (!tag) throw new Error(`Unknown api path: ${apiPath}`);
@@ -140,8 +158,14 @@ export async function fetchStoryList(
   const sortByDate = apiPath === "newest";
   const endpoint = sortByDate ? "search_by_date" : "search";
 
+  let numericFilters = "";
+  if (timeRange !== "all") {
+    const cutoff = Math.floor(Date.now() / 1000) - TIME_RANGE_SECONDS[timeRange];
+    numericFilters = `&numericFilters=created_at_i>${cutoff}`;
+  }
+
   const res = await fetch(
-    `${ALGOLIA_BASE}/${endpoint}?tags=${tag}&hitsPerPage=30&page=${algoliaPage}`
+    `${ALGOLIA_BASE}/${endpoint}?tags=${tag}&hitsPerPage=30&page=${algoliaPage}${numericFilters}`
   );
   if (!res.ok) throw new Error("Failed to fetch");
 
