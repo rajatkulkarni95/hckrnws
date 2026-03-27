@@ -57,7 +57,7 @@ function HighlightedText({
   return (
     <span className={className}>
       {parts.map((part, i) =>
-        pattern.test(part) ? (
+        i % 2 === 1 ? (
           <mark key={i}>{part}</mark>
         ) : (
           part
