@@ -9,6 +9,7 @@ import {
   SunIcon,
   MoonIcon,
   StarIcon,
+  SearchIcon,
 } from "~/icons";
 import Dropdown from "../Common/Dropdown";
 import { useNavigate, useLocation, Link } from "react-router";
@@ -25,6 +26,7 @@ const Header: React.FC = () => {
   useKeyPress("n", () => navigate("/new/1"));
   useKeyPress("a", () => navigate("/ask/1"));
   useKeyPress("x", () => navigate("/star"));
+  useKeyPress("/", () => navigate("/search"));
 
   useEffect(() => setMounted(true), []);
 
@@ -64,6 +66,14 @@ const Header: React.FC = () => {
       kbd: "A",
     },
     {
+      label: "Search",
+      id: "search",
+      icon: (
+        <SearchIcon className="h-4 w-4 mr-2 text-text-icon group-hover:text-text-primary" />
+      ),
+      kbd: "/",
+    },
+    {
       label: "Starred",
       id: "star",
       icon: (
@@ -87,7 +97,7 @@ const Header: React.FC = () => {
   );
 
   const handleOnClick = (id: string) => {
-    if (id === "star") {
+    if (id === "star" || id === "search") {
       navigate(`/${id}`);
     } else {
       navigate(`/${id}/1`);

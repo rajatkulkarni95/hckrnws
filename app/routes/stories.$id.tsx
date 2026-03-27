@@ -9,6 +9,7 @@ import { decode } from "html-entities";
 import InnerHTMLText from "~/components/Common/InnerHTMLText";
 import { CenteredText } from "~/components/Common/Fragments";
 import { StoryDetailSkeleton } from "~/components/Skeletons";
+import { fetchStoryDetail } from "~/lib/api";
 
 export default function Story() {
   const { id } = useParams();
@@ -19,11 +20,8 @@ export default function Story() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(`https://api.hnpwa.com/v0/item/${id}.json`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch");
-        return res.json();
-      })
+    if (!id) return;
+    fetchStoryDetail(id)
       .then(setData)
       .catch(() => setError(true));
   }, [id]);

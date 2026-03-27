@@ -5,6 +5,7 @@ import Pagination from "~/components/Common/Pagination";
 import { CenteredText } from "~/components/Common/Fragments";
 import { StoryListSkeleton } from "~/components/Skeletons";
 import type { TBaseStory } from "~/types/story";
+import { fetchStoryList } from "~/lib/api";
 
 type Props = {
   apiPath: string;
@@ -29,11 +30,7 @@ export default function StoryListPage({
   useEffect(() => {
     setData(null);
     setError(false);
-    fetch(`https://api.hnpwa.com/v0/${apiPath}/${pageNum}.json`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch");
-        return res.json();
-      })
+    fetchStoryList(apiPath, pageNum)
       .then(setData)
       .catch(() => setError(true));
   }, [apiPath, pageNum]);

@@ -8,6 +8,7 @@ export default [
   route("show/:number", "routes/show.$number.tsx"),
   route("stories/:id", "routes/stories.$id.tsx"),
   route("item", "routes/item.tsx"),
+  route("search", "routes/search.tsx"),
   route("star", "routes/star.tsx"),
   route("*", "routes/$.tsx"),
 ] satisfies RouteConfig;
