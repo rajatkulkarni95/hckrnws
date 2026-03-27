@@ -1,38 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
-interface IKey {
-  key: string;
+function isEditableTarget() {
+  const el = document.activeElement;
+  if (!el) return false;
+  const tag = (el as HTMLElement).tagName;
+  return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT";
 }
 
 export function useKeyPress(
   targetKey: string,
   handlePress: () => void
-): boolean {
-  const [keyPressed, setKeyPressed] = useState(false);
-
-  function downHandler({ key }: IKey): void {
-    if (key === targetKey) {
-      setKeyPressed(true);
-    }
-  }
-
-  const upHandler = ({ key }: IKey): void => {
-    if (key === targetKey) {
-      setKeyPressed(false);
-      const tag = (document.activeElement as HTMLElement)?.tagName;
-      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
-      handlePress();
-    }
-  };
+): void {
+  const callbackRef = useRef(handlePress);
+  callbackRef.current = handlePress;
 
   useEffect(() => {
-    window.addEventListener("keydown", downHandler);
-    window.addEventListener("keyup", upHandler);
-    return () => {
-      window.removeEventListener("keydown", downHandler);
-      window.removeEventListener("keyup", upHandler);
-    };
-  }, [targetKey]);
+    function handler(e: KeyboardEvent): void {
+      if (e.key === targetKey && !isEditableTarget()) {
+        callbackRef.current();
+      }
+    }
 
-  return keyPressed;
+    window.addEventListener("keyup", handler);
+    return () => window.removeEventListener("keyup", handler);
+  }, [targetKey]);
 }
