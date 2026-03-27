@@ -187,6 +187,9 @@ export default function Search() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Search Hacker News..."
+            autoCorrect="off"
+            spellCheck={false}
+            autoComplete="off"
             className="flex-1 bg-transparent text-sm text-text-primary font-sans px-3 py-2.5 outline-none placeholder:text-text-icon"
           />
           {input && (

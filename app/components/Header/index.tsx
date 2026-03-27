@@ -127,6 +127,9 @@ const Header: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search..."
+              autoCorrect="off"
+              spellCheck={false}
+              autoComplete="off"
               className="bg-transparent text-xs text-text-primary font-mono w-32 md:w-44 px-2 py-1.5 outline-none placeholder:text-text-icon"
             />
             <kbd className="text-[10px] text-text-icon font-mono mr-2">/</kbd>
