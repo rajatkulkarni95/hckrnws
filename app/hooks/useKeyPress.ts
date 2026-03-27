@@ -19,6 +19,8 @@ export function useKeyPress(
   const upHandler = ({ key }: IKey): void => {
     if (key === targetKey) {
       setKeyPressed(false);
+      const tag = (document.activeElement as HTMLElement)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
       handlePress();
     }
   };
