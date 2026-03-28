@@ -150,7 +150,7 @@ export async function fetchStoryList(
   apiPath: string,
   page: number,
   timeRange: TTimeRange = "day"
-): Promise<TBaseStory[]> {
+): Promise<{ stories: TBaseStory[]; nbPages: number }> {
   const tag = TAG_MAP[apiPath];
   if (!tag) throw new Error(`Unknown api path: ${apiPath}`);
 
@@ -170,7 +170,7 @@ export async function fetchStoryList(
   if (!res.ok) throw new Error("Failed to fetch");
 
   const data: AlgoliaSearchResponse = await res.json();
-  return data.hits.map(mapHitToBaseStory);
+  return { stories: data.hits.map(mapHitToBaseStory), nbPages: data.nbPages };
 }
 
 export async function fetchStoryDetail(

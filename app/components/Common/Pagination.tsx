@@ -13,6 +13,9 @@ const Pagination = ({
 }: PaginationProps) => {
   const isPrevDisabled = currentPage === 1;
   const isNextDisabled = currentPage === totalPages;
+
+  if (totalPages <= 1) return null;
+
   return (
     <>
       <div className="flex justify-center items-center mt-8 mb-1 rounded-full">

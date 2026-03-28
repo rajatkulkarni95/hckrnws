@@ -29,12 +29,16 @@ export default function StoryListPage({
 
   const [data, setData] = useState<TBaseStory[] | null>(null);
   const [error, setError] = useState(false);
+  const [actualTotalPages, setActualTotalPages] = useState<number | undefined>(totalPages);
 
   useEffect(() => {
     setData(null);
     setError(false);
     fetchStoryList(apiPath, pageNum, timeRange)
-      .then(setData)
+      .then((result) => {
+        setData(result.stories);
+        setActualTotalPages(result.nbPages);
+      })
       .catch(() => setError(true));
   }, [apiPath, pageNum, timeRange]);
 
@@ -55,7 +59,7 @@ export default function StoryListPage({
         onChangePage={(page) =>
           navigate(`/${category}/${page}?range=${timeRange}`)
         }
-        totalPages={totalPages}
+        totalPages={actualTotalPages}
       />
     </div>
   );
