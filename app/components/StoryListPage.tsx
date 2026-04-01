@@ -5,7 +5,7 @@ import Pagination from "~/components/Common/Pagination";
 import { CenteredText } from "~/components/Common/Fragments";
 import { StoryListSkeleton } from "~/components/Skeletons";
 import type { TBaseStory } from "~/types/story";
-import { fetchStoryList, type TTimeRange } from "~/lib/api";
+import { fetchStoryList, type TTimeRange, type TBestRange } from "~/lib/api";
 
 type Props = {
   apiPath: string;
@@ -25,7 +25,8 @@ export default function StoryListPage({
   const [searchParams] = useSearchParams();
   const pageNum = parseInt(number || "1");
 
-  const timeRange = (searchParams.get("range") as TTimeRange) || "day";
+  const defaultRange = apiPath === "best" ? "48h" : "day";
+  const timeRange = (searchParams.get("range") as TTimeRange | TBestRange) || defaultRange;
 
   const [data, setData] = useState<TBaseStory[] | null>(null);
   const [error, setError] = useState(false);

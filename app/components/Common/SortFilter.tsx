@@ -1,23 +1,26 @@
 import { ChevronDownIcon } from "~/icons";
-import { TIME_RANGE_OPTIONS, type TTimeRange } from "~/lib/api";
+import { TIME_RANGE_OPTIONS, BEST_RANGE_OPTIONS, type TTimeRange, type TBestRange } from "~/lib/api";
 
 type Props = {
-  value: TTimeRange;
-  onChange: (range: TTimeRange) => void;
+  value: TTimeRange | TBestRange;
+  onChange: (range: TTimeRange | TBestRange) => void;
   disabled?: boolean;
+  variant?: "default" | "best";
 };
 
-export default function SortFilter({ value, onChange, disabled }: Props) {
+export default function SortFilter({ value, onChange, disabled, variant = "default" }: Props) {
+  const options = variant === "best" ? BEST_RANGE_OPTIONS : TIME_RANGE_OPTIONS;
+
   return (
     <div className="flex items-center">
       <div className="relative">
         <select
           value={value}
           disabled={disabled}
-          onChange={(e) => onChange(e.target.value as TTimeRange)}
+          onChange={(e) => onChange(e.target.value as TTimeRange | TBestRange)}
           className="appearance-none bg-bg-secondary hover:bg-bg-tertiary border border-border-primary rounded text-xs text-text-primary font-sans pl-2 pr-6 py-1.5 outline-none focus-visible:ring-1 focus-visible:ring-blue-500 cursor-default disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          {TIME_RANGE_OPTIONS.map((opt) => (
+          {options.map((opt) => (
             <option key={opt.id} value={opt.id}>
               {opt.label}
             </option>

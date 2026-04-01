@@ -125,17 +125,26 @@ function countComments(children: AlgoliaComment[]): number {
 const TAG_MAP: Record<string, string> = {
   news: "front_page",
   newest: "story",
+  best: "story",
   ask: "ask_hn",
   show: "show_hn",
 };
 
 export type TTimeRange = "day" | "week" | "month" | "year" | "all";
+export type TBestRange = "24h" | "48h" | "72h" | "96h";
 
 const TIME_RANGE_SECONDS: Record<Exclude<TTimeRange, "all">, number> = {
   day: 86400,
   week: 604800,
   month: 2592000,
   year: 31536000,
+};
+
+const BEST_RANGE_SECONDS: Record<TBestRange, number> = {
+  "24h": 86400,
+  "48h": 172800,
+  "72h": 259200,
+  "96h": 345600,
 };
 
 export const TIME_RANGE_OPTIONS: { id: TTimeRange; label: string }[] = [
@@ -146,10 +155,17 @@ export const TIME_RANGE_OPTIONS: { id: TTimeRange; label: string }[] = [
   { id: "all", label: "All Time" },
 ];
 
+export const BEST_RANGE_OPTIONS: { id: TBestRange; label: string }[] = [
+  { id: "24h", label: "24 Hours" },
+  { id: "48h", label: "48 Hours" },
+  { id: "72h", label: "72 Hours" },
+  { id: "96h", label: "96 Hours" },
+];
+
 export async function fetchStoryList(
   apiPath: string,
   page: number,
-  timeRange: TTimeRange = "day"
+  timeRange: TTimeRange | TBestRange = "day"
 ): Promise<{ stories: TBaseStory[]; nbPages: number }> {
   const tag = TAG_MAP[apiPath];
   if (!tag) throw new Error(`Unknown api path: ${apiPath}`);
@@ -159,8 +175,11 @@ export async function fetchStoryList(
   const endpoint = sortByDate ? "search_by_date" : "search";
 
   let numericFilters = "";
-  if (timeRange !== "all") {
-    const cutoff = Math.floor(Date.now() / 1000) - TIME_RANGE_SECONDS[timeRange];
+  if (apiPath === "best") {
+    const cutoff = Math.floor(Date.now() / 1000) - BEST_RANGE_SECONDS[timeRange as TBestRange];
+    numericFilters = `&numericFilters=created_at_i>${cutoff}`;
+  } else if (timeRange !== "all") {
+    const cutoff = Math.floor(Date.now() / 1000) - TIME_RANGE_SECONDS[timeRange as Exclude<TTimeRange, "all">];
     numericFilters = `&numericFilters=created_at_i>${cutoff}`;
   }
 

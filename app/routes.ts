@@ -6,6 +6,7 @@ export default [
   route("new/:number", "routes/new.$number.tsx"),
   route("ask/:number", "routes/ask.$number.tsx"),
   route("show/:number", "routes/show.$number.tsx"),
+  route("best/:number", "routes/best.$number.tsx"),
   route("stories/:id", "routes/stories.$id.tsx"),
   route("item", "routes/item.tsx"),
   route("search", "routes/search.tsx"),

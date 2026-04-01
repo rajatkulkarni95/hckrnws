@@ -5,6 +5,7 @@ import {
   AskHNIcon,
   TopHNIcon,
   ShowHNIcon,
+  BestIcon,
   ClockIcon,
   SunIcon,
   MoonIcon,
@@ -15,7 +16,7 @@ import Dropdown from "../Common/Dropdown";
 import SortFilter from "../Common/SortFilter";
 import { useNavigate, useLocation, Link, useSearchParams } from "react-router";
 import { useKeyPress } from "~/hooks/useKeyPress";
-import type { TTimeRange } from "~/lib/api";
+import type { TTimeRange, TBestRange } from "~/lib/api";
 
 const Header: React.FC = () => {
   const [mounted, setMounted] = useState(false);
@@ -26,12 +27,13 @@ const Header: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { theme, setTheme } = useTheme();
 
-  const currentRange = (searchParams.get("range") as TTimeRange) || "day";
+  const isBest = location.pathname.startsWith("/best");
+  const currentRange = (searchParams.get("range") as TTimeRange | TBestRange) || (isBest ? "48h" : "day");
 
   const handleTimeRangeChange = useCallback(
-    (range: TTimeRange) => {
+    (range: TTimeRange | TBestRange) => {
       setSearchParams({ range });
-      const categoryMatch = location.pathname.match(/^\/(top|new|ask|show)/);
+      const categoryMatch = location.pathname.match(/^\/(top|new|ask|show|best)/);
       if (categoryMatch) {
         navigate(`/${categoryMatch[1]}/1?range=${range}`);
       }
@@ -39,10 +41,12 @@ const Header: React.FC = () => {
     [location.pathname, navigate, setSearchParams],
   );
 
-  useKeyPress("t", () => navigate(`/top/1?range=${currentRange}`));
-  useKeyPress("s", () => navigate(`/show/1?range=${currentRange}`));
-  useKeyPress("n", () => navigate(`/new/1?range=${currentRange}`));
-  useKeyPress("a", () => navigate(`/ask/1?range=${currentRange}`));
+  const defaultRange = isBest ? "day" : currentRange;
+  useKeyPress("t", () => navigate(`/top/1?range=${defaultRange}`));
+  useKeyPress("s", () => navigate(`/show/1?range=${defaultRange}`));
+  useKeyPress("n", () => navigate(`/new/1?range=${defaultRange}`));
+  useKeyPress("a", () => navigate(`/ask/1?range=${defaultRange}`));
+  useKeyPress("b", () => navigate("/best/1?range=48h"));
   useKeyPress("x", () => navigate("/star"));
   useKeyPress("/", () => searchInputRef.current?.focus());
 
@@ -91,6 +95,14 @@ const Header: React.FC = () => {
       kbd: "A",
     },
     {
+      label: "Best",
+      id: "best",
+      icon: (
+        <BestIcon className="h-4 w-4 mr-1 text-text-icon group-hover:text-text-primary" />
+      ),
+      kbd: "B",
+    },
+    {
       label: "Starred",
       id: "star",
       icon: (
@@ -116,8 +128,11 @@ const Header: React.FC = () => {
   const handleOnClick = (id: string) => {
     if (id === "star") {
       navigate(`/${id}`);
+    } else if (id === "best") {
+      navigate(`/${id}/1?range=48h`);
     } else {
-      navigate(`/${id}/1?range=${currentRange}`);
+      const range = isBest ? "day" : currentRange;
+      navigate(`/${id}/1?range=${range}`);
     }
   };
 
@@ -175,6 +190,7 @@ const Header: React.FC = () => {
             value={currentRange}
             onChange={handleTimeRangeChange}
             disabled={selectedItem?.id === "new" || selectedItem?.id === "search"}
+            variant={selectedItem?.id === "best" ? "best" : "default"}
           />
         )}
         <button
