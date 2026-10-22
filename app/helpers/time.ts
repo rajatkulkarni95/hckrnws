@@ -5,6 +5,8 @@ export const prettyTime = (time: number) => {
   return formatTimeShorthand(formatDistanceToNowStrict(convertFromUnix));
 };
 
+export const isoTime = (time: number) => fromUnixTime(time).toISOString();
+
 const formatTimeShorthand = (convertedString: string) => {
   const splitString = convertedString.split(" ");
   const time = splitString[0];
