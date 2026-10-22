@@ -1,4 +1,4 @@
-import { prettyTime } from "~/helpers/time";
+import { isoTime, prettyTime } from "~/helpers/time";
 import { Fragment, useEffect, useState } from "react";
 import { TComment } from "~/types/story";
 import { ChevronDownIcon, ChevronUpIcon, ClipboardIcon } from "~/icons";
@@ -47,6 +47,8 @@ const Comment: React.FC<Props> = (props: Props) => {
         <section
           className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2 border-border-primary`}
           style={{ marginLeft: `calc(${margin}px * ${level})` }}
+          data-comment-id={id}
+          data-level={level}
         >
           <div className="flex justify-between">
             <span
@@ -90,6 +92,8 @@ const Comment: React.FC<Props> = (props: Props) => {
         <section
           className={`pt-0 pr-2 pb-1 pl-3 flex flex-col my-2 relative w-full border-l-2 border-border-primary`}
           style={{ marginLeft: `calc(${margin}px * ${level})` }}
+          data-comment-id={id}
+          data-level={level}
         >
           {!deleted && (
             <div className="flex justify-between mb-2">
@@ -113,9 +117,12 @@ const Comment: React.FC<Props> = (props: Props) => {
                     <ClipboardIcon className="h-3 w-3 text-text-icon mr-2 group-hover:text-text-primary" />
                   </button>
                 )}
-                <span className="text-text-secondary font-mono text-[10px]">
+                <time
+                  dateTime={isoTime(time)}
+                  className="text-text-secondary font-mono text-[10px]"
+                >
                   {prettyTime(time)}
-                </span>
+                </time>
                 <button
                   className="p-1 ml-2 group focus-visible:ring-1 focus-visible:ring-blue-500"
                   onClick={() => setCollapsed(true)}

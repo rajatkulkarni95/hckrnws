@@ -1,4 +1,4 @@
-import { prettyTime } from "~/helpers/time";
+import { isoTime, prettyTime } from "~/helpers/time";
 import { ClockIcon, CommentIcon, UpvoteIcon } from "~/icons";
 
 type Props = {
@@ -38,9 +38,12 @@ const Meta: React.FC<Props> = ({
         </div>
         <div className="flex items-center mr-2 p-1 pl-0">
           <ClockIcon className="h-3 w-3 text-text-icon" />
-          <span className="text-xs ml-1 text-text-secondary font-sans">
+          <time
+            dateTime={isoTime(time)}
+            className="text-xs ml-1 text-text-secondary font-sans"
+          >
             {prettyTime(time)}
-          </span>
+          </time>
         </div>
       </div>
     </div>
